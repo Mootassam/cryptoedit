@@ -1,0 +1,30 @@
+body {
+  background-color: #e8f1f8;
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.app__content {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.app__canvas {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+}
+
+.content {
+  position: relative;
+
+}
+
+
+.app__container { 
+  display: flex;
+    align-items: start;
+    gap: 50px;
+}
