@@ -50,8 +50,9 @@ function Sidebar({
   brushSize,
   changeBrushSize,
   clear,
+  transactionType,
+  setTransactionType,
 }) {
-  const [transactionType, setTransactionType] = useState("deposit");
   const [selectedCoin, setSelectedCoin] = useState("USDT");
   const [showEditModal, setShowEditModal] = useState(false);
   const [language, setLanguage] = useState("english");
@@ -275,11 +276,13 @@ function Sidebar({
               value={value}
               onChange={(e) => setvalue(e.target.value)}
             >
-              {optionBank.map((item) => (
-                <option key={item.value} value={item.value}>
-                  {item.name}
-                </option>
-              ))}
+              {optionBank
+                .filter((item) => item.type === transactionType)
+                .map((item) => (
+                  <option key={item.value} value={item.value}>
+                    {item.name}
+                  </option>
+                ))}
             </select>
           </div>
 

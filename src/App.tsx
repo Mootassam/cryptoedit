@@ -26,6 +26,7 @@ function App() {
   };
   const [value, setValue] = useState("template1");
   const [size, setSize] = useState("small");
+  const [transactionType, setTransactionType] = useState("deposit");
   const [
     { cursor, canvasRef, color },
     { startDrawing, draw, endDrawing, ...api },
@@ -57,6 +58,8 @@ function App() {
           setvalue={setValue}
           setSize={setSize}
           size={value}
+          transactionType={transactionType}
+          setTransactionType={setTransactionType}
           {...toolbarProps}
         />
         <main className="app__main">
