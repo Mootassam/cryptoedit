@@ -1,6 +1,11 @@
 import React from 'react'
+import { FormData } from '../../shared/FormDataContext';
 
-function Template6() {
+interface Template6Props {
+  formData: FormData;
+}
+
+const Template6: React.FC<Template6Props> = ({ formData }) => {
   return (
     <><style>{`
          :root {
@@ -580,7 +585,7 @@ button {
     <div className="main-container">
       <div className="groups">
         <div className="groups-1">
-          <span className="time">12:19</span>
+          <span className="time">{formData.time || "12:19"}</span>
           <div className="image"></div>
           <div className="image-2"></div>
           <div className="image-3"></div>
@@ -589,17 +594,17 @@ button {
         <span className="withdraw-usdt">Withdraw USDT (Eth)</span>
         <div className="groups-6">
           <span className="pending">Pending</span>
-          <span className="time-info">Jul9,2024at12:17:32PM</span>
+          <span className="time-info">{formData.date || "Jul9,2024at12:17:32PM"}</span>
         </div>
       </div>
       <div className="groups-7">
         <div className="groups-8">
           <div className="groups-9">
             <div className="flex-column-f">
-              <span className="number-info">12,496.31</span>
+              <span className="number-info">{formData.amount || "12,496.31"}</span>
               <div className="button">
                 <div className="background">
-                  <span className="amount">12,296.93</span><span className="currency">USD</span><span className="symbol">$</span>
+                  <span className="amount">{formData.amount ? `${formData.amount}` : "12,296.93"}</span><span className="currency">USD</span><span className="symbol">$</span>
                 </div>
               </div>
               <span className="withdrawal-details">Withdrawal details</span>
@@ -610,12 +615,11 @@ button {
             <div className="groups-b">
               <div className="background-c"></div>
               <div className="flex-row">
-                <span className="sending">Sending</span><span className="usdt">12,486.31USDT</span>
+                <span className="sending">Sending</span><span className="usdt">{formData.amount ? `${formData.amount}USDT` : "12,486.31USDT"}</span>
               </div>
             </div>
             <div className="groups-d">
-              <span className="xbae"
-                >0xB6755A53889e71cc0F721<br />23d018E0c1f4A7DB8b9</span><span className="withdraw-to">Withdraw to</span>
+              <span className="xbae">{formData.receiver || "0xB6755A53889e71cc0F721\n23d018E0c1f4A7DB8b9"}</span><span className="withdraw-to">Withdraw to</span>
             </div>
             <div className="flex-row-e">
               <span className="network-type">Network Type</span><span className="erc">ERC20</span>
@@ -624,7 +628,7 @@ button {
               <span className="fee">Fee</span><span className="usdt-e">10.00 USDT</span>
             </div>
             <div className="groups-f">
-              <span className="usdt-10">12,496.31USDT</span><span className="total">Total</span>
+              <span className="usdt-10">{formData.amount ? `${formData.amount}USDT` : "12,496.31USDT"}</span><span className="total">Total</span>
             </div>
           </div>
         </div>

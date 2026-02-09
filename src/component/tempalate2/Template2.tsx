@@ -1,6 +1,11 @@
 import React from 'react';
+import { FormData } from '../../shared/FormDataContext';
 
-const Template2 = () => {
+interface Template2Props {
+  formData: FormData;
+}
+
+const Template2: React.FC<Template2Props> = ({ formData }) => {
   return (
     <>
       <style>{`
@@ -725,7 +730,7 @@ const Template2 = () => {
                   <div className="image-2"></div>
                 </div>
               </div>
-              <span className="time">5:21</span>
+              <span className="time">{formData.time || "5:21"}</span>
               <div className="image-3"></div>
               <div className="image-4"></div>
               <div className="image-5"></div>
@@ -740,7 +745,7 @@ const Template2 = () => {
               <div className="groups-9">
                 <div className="background-a">
                   <div className="flex-column-e">
-                    <span className="usdt">-9USDT</span><span className="trc-trnh-jl">TRC20 TR7NH...jLj6t</span>
+                    <span className="usdt">{formData.amount ? `-${formData.amount}USDT` : "-9USDT"}</span><span className="trc-trnh-jl">TRC20 TR7NH...jLj6t</span>
                   </div>
                   <div className="image-b"></div>
                 </div>
@@ -751,15 +756,15 @@ const Template2 = () => {
                     <span className="status">Status</span><span className="pending">Pending</span>
                   </div>
                   <div className="flex-row">
-                    <span className="time-e">Time</span><span className="text-9">2024-04-0317:20:48</span>
+                    <span className="time-e">Time</span><span className="text-9">{formData.date || "2024-04-0317:20:48"}</span>
                   </div>
                 </div>
               </div>
               <div className="groups-f">
                 <div className="background-10">
                   <div className="flex-column-f">
-                    <span className="thybkhr-my">TH98ybKh1R2...myLFwpEzMHV</span><span
-                      className="txoy-kdfan-y">TXoy99Kdfan...3Yhc3usLGYa</span>
+                    <span className="thybkhr-my">{formData.sender || "TH98ybKh1R2...myLFwpEzMHV"}</span><span
+                      className="txoy-kdfan-y">{formData.receiver || "TXoy99Kdfan...3Yhc3usLGYa"}</span>
                   </div>
                   <div className="flex-column-ccc">
                     <span className="from">From</span><span className="to">To</span>
@@ -773,7 +778,7 @@ const Template2 = () => {
               <div className="groups-14">
                 <div className="background-15">
                   <div className="flex-row-e">
-                    <span className="txid">TxID</span><span className="dba-cf">8d53ba...c9954f</span>
+                    <span className="txid">TxID</span><span className="dba-cf">{formData.txid || "8d53ba...c9954f"}</span>
                     <div className="image-16"></div>
                   </div>
                   <div className="flex-row-ff">

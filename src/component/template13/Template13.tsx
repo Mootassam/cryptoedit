@@ -1,6 +1,10 @@
 import React from 'react'
+import { FormData } from '../../shared/FormDataContext';
 
-function Template13() {
+interface Template13Props {
+  formData: FormData;
+}
+const Template13: React.FC<Template13Props> = ({ formData }) => {
   return (
     <>
     <style>{`
@@ -778,7 +782,7 @@ function Template13() {
         <div className="wrapper">
             <div className="box">
                 <div className="box-2">
-                    <span className="text">7:42AM</span>
+                    <span className="text">{formData.time || "7:42"}{formData.time?.includes('AM') || formData.time?.includes('PM') ? '' : 'AM'}</span>
                     <div className="img"></div>
                     <div className="pic"></div>
                     <div className="pic-2"></div>
@@ -798,7 +802,7 @@ function Template13() {
                 <div className="groups-5">
                     <div className="groups-6">
                         <div className="image-7"></div>
-                        <span className="successful">Successful</span><span className="jul-date">Jul19,2024 23:11+0400</span>
+                        <span className="successful">Successful</span><span className="jul-date">{formData.date || "Jul19,2024"} {formData.time || "23:11"}+0400</span>
                     </div>
                     <div className="groups-8">
                         <div className="background">
@@ -806,7 +810,7 @@ function Template13() {
                                 <span className="details-9">Details</span><span className="send">Send</span>
                             </div>
                             <div className="flex-row-a">
-                                <span className="usdt">-150 USDT</span>
+                                <span className="usdt">{formData.amount ? `-${formData.amount} USDT` : "-150 USDT"}</span>
                                 <div className="image-a"><span className="qian">千</span></div>
                             </div>
                             <div className="background-b"></div>
@@ -819,13 +823,13 @@ function Template13() {
                     </div>
                     <div className="groups-d">
                         <div className="groups-e">
-                            <span className="tmsmmtkye-ahss">TMSm8mtkY5eA3HssTSKzNNq7bTc9Cp<br />A61S</span><span
+                            <span className="tmsmmtkye-ahss">{formData.sender || "TMSm8mtkY5eA3HssTSKzNNq7bTc9Cp"}<br />{"A61S"}</span><span
                                 className="from">From</span>
                         </div>
                         <div className="background-f">
                             <div className="background-10"></div>
                             <div className="groups-11">
-                                <span className="tmo-ndcon-hwznhbmb">TMoNDConHwznhbmBUWf43vxqbkRorjrL<br />d8</span><span
+                                <span className="tmo-ndcon-hwznhbmb">{formData.receiver || "TMoNDConHwznhbmBUWf43vxqbkRorjrL"}<br />{"d8"}</span><span
                                     className="to">To</span>
                             </div>
                         </div>
@@ -834,7 +838,7 @@ function Template13() {
                         <div className="background-13">
                             <div className="flex-column-aa">
                                 <span
-                                    className="text-10">4bf991290fdd5d4286ace1820665f91864<br />cd61d5033b48f180676ece8ad38cd8</span><span
+                                    className="text-10">{formData.txid || "4bf991290fdd5d4286ace1820665f91864"}<br />{"cd61d5033b48f180676ece8ad38cd8"}</span><span
                                     className="see-details">See details</span>
                                 <div className="image-14"></div>
                             </div>

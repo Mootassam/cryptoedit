@@ -1,6 +1,10 @@
 import React from 'react'
+import { FormData } from '../../shared/FormDataContext';
 
-function Template11() {
+interface Template11Props {
+  formData: FormData;
+}
+const Template11: React.FC<Template11Props> = ({ formData }) => {
   return (
     <><style>{`   :root {
             --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -754,7 +758,7 @@ function Template11() {
             <div className="main-container">
         <div className="root">
             <div className="groups">
-                <span className="time">10:32</span>
+                <span className="time">{formData.time || "10:32"}</span>
                 <div className="image"></div>
                 <div className="image-1"></div>
                 <div className="image-2"></div>
@@ -768,8 +772,8 @@ function Template11() {
                     </div>
                     <div className="groups-9">
                         <div className="image-a"></div>
-                        <span className="withdrawn">Withdrawn 58.860333USDT</span><span
-                            className="withdrawn-amount">~$58.8</span>
+                        <span className="withdrawn">{formData.amount ? `Withdrawn ${formData.amount}USDT` : "Withdrawn 58.860333USDT"}</span><span
+                            className="withdrawn-amount">{formData.amount ? `~${formData.amount}` : "~$58.8"}</span>
                     </div>
                     <div className="groups-b">
                         <div className="image-c"></div>
@@ -779,7 +783,7 @@ function Template11() {
                 </div>
                 <div className="groups-d">
                     <div className="groups-e">
-                        <span className="xafc">0x98af70c4339476438a4c<br />47f3796726d119097534</span><span
+                        <span className="xafc">{formData.receiver || "0x98af70c4339476438a4c"}<br />{"47f3796726d119097534"}</span><span
                             className="address">Address</span>
                         <div className="image-f"></div>
                     </div>
@@ -795,11 +799,11 @@ function Template11() {
                         <span className="usdt">0.15USDT</span><span className="network-fee">Network fee</span>
                     </div>
                     <div className="groups-16">
-                        <span className="xb-c">0x13b..294c4</span><span className="transaction-id">Transaction ID</span>
+                        <span className="xb-c">{formData.txid || "0x13b..294c4"}</span><span className="transaction-id">Transaction ID</span>
                         <div className="image-17"></div>
                     </div>
                     <div className="groups-18">
-                        <span className="jan-date">Jan 18,2026,9:29 PM</span><span className="submitted-time">Submitted
+                        <span className="jan-date">{formData.date || "Jan 18,2026"},{formData.time || "9:29 PM"}</span><span className="submitted-time">Submitted
                             time</span>
                     </div>
                     <div className="groups-19">

@@ -1,6 +1,11 @@
 import React from 'react'
+import { FormData } from '../../shared/FormDataContext';
 
-function Template4() {
+interface Template4Props {
+  formData: FormData;
+}
+
+const Template4: React.FC<Template4Props> = ({ formData }) => {
   return (
     <>
     <style>{`    :root {
@@ -655,7 +660,7 @@ button {
         <div className="groups-1">
           <span className="span">3.25</span>
           <div className="flex-row-e">
-            <span className="colon">6:03</span>
+            <span className="colon">{formData.time || "6:03"}</span>
             <div className="regroup">
               <div className="image"></div>
               <div className="image-2"></div>
@@ -673,7 +678,7 @@ button {
             <div className="image-b"><div className="image-c"></div></div>
           </div>
           <span className="payment-successf">Payment Successful</span
-          ><span className="usdt">0.0080046USDT</span
+          ><span className="usdt">{formData.amount || "0.0080046"}USDT</span
           ><span className="the-recipient-ca"
             >The recipient can check the balance in the Funding<br />Account</span
           >
@@ -682,12 +687,12 @@ button {
           <div className="groups-e">
             <div className="flex-row-d">
               <span className="span-to">To</span
-              ><span className="span-nickname-muneeb">Nickname: Muneeb-h4u6m</span>
+              ><span className="span-nickname-muneeb">Nickname: {formData.sender || "Muneeb-h4u6m"}</span>
             </div>
-            <span className="span-940266562">940266562</span
+            <span className="span-940266562">{formData.receiver || "940266562"}</span
             ><span className="span-add-alias">Add Alias</span>
             <div className="groups-f">
-              <span className="span-411263337551249408">411263337551249408</span>
+              <span className="span-411263337551249408">{formData.sender || "411263337551249408"}</span>
               <div className="image-10"></div>
               <span className="span-order-id">Order ID</span>
             </div>
@@ -698,7 +703,7 @@ button {
           </div>
           <div className="flex-row-e-11">
             <span className="paid-with">Paid With</span
-            ><span className="usdt-12">0.0080046USDT</span>
+            ><span className="usdt-12">{formData.amount || "0.0080046"}USDT</span>
           </div>
           <div className="groups-13">
             <div className="background">

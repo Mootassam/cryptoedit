@@ -1,6 +1,10 @@
 import React from 'react'
+import { FormData } from '../../shared/FormDataContext';
 
-function Template10() {
+interface Template10Props {
+  formData: FormData;
+}
+const Template10: React.FC<Template10Props> = ({ formData }) => {
   return (
     <div><style>{`   :root {
   --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -605,7 +609,7 @@ button {
  <div className="main-container">
       <div className="groups">
         <div className="groups-1">
-          <span className="time">9:11</span>
+          <span className="time">{formData.time || "9:11"}</span>
           <div className="image"></div>
           <div className="image-2"></div>
           <div className="image-3"></div>
@@ -615,7 +619,7 @@ button {
           <span className="withdrawal-details">Withdrawal Details</span>
           <div className="image-6"></div>
         </div>
-        <span className="quantity">Quantity</span><span className="usdt">100 USDT</span><span className="withdrawal-completed">Withdrawal Completed</span>
+        <span className="quantity">Quantity</span><span className="usdt">{formData.amount ? `${formData.amount} USDT` : "100 USDT"}</span><span className="withdrawal-completed">Withdrawal Completed</span>
         <div className="image-7"></div>
       </div>
       <div className="groups-8">
@@ -636,17 +640,17 @@ button {
                 <span className="chain-type">Chain Type</span                ><span className="trc">TRC20</span>
               </div>
               <div className="groups-f">
-                <span className="time-10">2024-04-0220:59:54</span                ><span className="time-11">Time</span>
+                <span className="time-10">{formData.date || "2024-04-02"} {formData.time || "20:59:54"}</span                ><span className="time-11">Time</span>
               </div>
               <div className="groups-12">
                 <span className="tuuuxxtmdxkfrjb"
-                  >TU7uuxXtMdXkFrjbFXo<br />Cm8E2v2oxKjehxQ</span                ><span className="withdrawal-address">Withdrawal Address</span>
+                  >{formData.sender || "TU7uuxXtMdXkFrjbFXo"}<br />{"Cm8E2v2oxKjehxQ"}</span                ><span className="withdrawal-address">Withdrawal Address</span>
                 <div className="image-13"></div>
                 <div className="image-14"></div>
               </div>
               <div className="groups-15">
                 <span className="da"
-                  >32da073058657255e31<br />7e137c2c062a2af8ae55<br />129b4a586170f8cfed9d<br />f620b</span                ><span className="transaction-hash">Transaction Hash</span>
+                  >{formData.txid || "32da073058657255e31"}<br />{"7e137c2c062a2af8ae55"}<br />{"129b4a586170f8cfed9d"}<br />{"f620b"}</span                ><span className="transaction-hash">Transaction Hash</span>
                 <div className="image-16"></div>
               </div>
             </div>

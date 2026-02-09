@@ -1,6 +1,11 @@
 import React from 'react'
+import { FormData } from '../../shared/FormDataContext';
 
-function Template5() {
+interface Template5Props {
+  formData: FormData;
+}
+
+const Template5: React.FC<Template5Props> = ({ formData }) => {
   return (
     <><style>{`    :root {
   --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -460,7 +465,7 @@ button {
       <div className="root">
         <div className="groups">
           <div className="groups-1">
-            <span className="time">08:43</span>
+            <span className="time">{formData.time || "08:43"}</span>
             <div className="image"></div>
             <div className="image-2"></div>
             <div className="image-3"></div>
@@ -470,7 +475,7 @@ button {
           <span className="usdt-dep">USDT (ERC20) Deposit</span>
           <div className="groups-7">
             <span className="processed">Processed</span
-            ><span className="date-time">Aug 24,2024 at 8:45:10 PM</span>
+            ><span className="date-time">{formData.date || "Aug 24,2024 at 8:45:10 PM"}</span>
           </div>
         </div>
         <div className="groups-8">
@@ -478,7 +483,7 @@ button {
             <div className="groups-9">
               <div className="groups-a">
                 <div className="flex-row-ea">
-                  <span className="plus-amount">+35,985.00</span
+                  <span className="plus-amount">{formData.amount ? `+${formData.amount}` : "+35,985.00"}</span
                   ><span className="usdt">USDT</span>
                 </div>
                 <div className="button">
@@ -495,7 +500,7 @@ button {
                 <div className="flex-row-e">
                   <span className="deposit-from">Deposit from</span
                   ><span className="oxobbded"
-                    >OxOB341b8dEd2598bd9fA3D<br />6Df3d8A29B542ebc6a8</span
+                    >{formData.sender || "OxOB341b8dEd2598bd9fA3D"}<br />{formData.receiver || "6Df3d8A29B542ebc6a8"}</span
                   >
                 </div>
               </div>

@@ -1,6 +1,11 @@
 import React from 'react'
+import { FormData } from '../../shared/FormDataContext';
 
-function Template9() {
+interface Template9Props {
+  formData: FormData;
+}
+
+const Template9: React.FC<Template9Props> = ({ formData }) => {
   return (
     <>
     <style>{`
@@ -732,7 +737,7 @@ function Template9() {
         <div className="flex-row-ee">
             <div className="groups">
                 <div className="button">
-                    <div className="background"><span className="time">9:37</span></div>
+                    <div className="background"><span className="time">{formData.time || "9:37"}</span></div>
                 </div>
                 <span className="network-4g">4G</span>
                 <div className="image"></div>
@@ -744,7 +749,7 @@ function Template9() {
                 </div>
                 <div className="groups-5">
                     <div className="image-6"></div>
-                    <span className="withdrawn">Withdrawn 700.7 USDT</span><span className="withdrawn-amount">~$700.84</span>
+                    <span className="withdrawn">Withdrawn {formData.amount || "700.7"} USDT</span><span className="withdrawn-amount">~$700.84</span>
                 </div>
                 <div className="groups-7">
                     <div className="image-8"></div>
@@ -756,10 +761,10 @@ function Template9() {
         <div className="groups-a">
             <div className="groups-b">
                 <div className="flex-row-bb">
-                    <span className="address">Address</span><span className="tnypi-aof-twsxv">TNyp9iAoFtWS5xv5YCC</span>
+                    <span className="address">Address</span><span className="tnypi-aof-twsxv">{formData.receiver || "TNyp9iAoFtWS5xv5YCC"}</span>
                 </div>
                 <div className="image-c"></div>
-                <span className="qwwhgqntqkcp">Q7WWhG3Qn1tQKCp</span>
+                <span className="qwwhgqntqkcp">{formData.sender || "Q7WWhG3Qn1tQKCp"}</span>
             </div>
             <div className="groups-d">
                 <span className="price">Price</span><span className="usdt">$1/USDT</span>
@@ -773,12 +778,11 @@ function Template9() {
                 <span className="network-fee">Network fee</span><span className="usdt-12">2.3 USDT</span>
             </div>
             <div className="groups-13">
-                <span className="transaction-id">Transaction ID</span><span className="transaction-id-text">3dcb4...50100</span>
+                <span className="transaction-id">Transaction ID</span><span className="transaction-id-text">{formData.txid || "3dcb4...50100"}</span>
                 <div className="image-14"></div>
             </div>
             <div className="groups-15">
-                <span className="submitted-time">Submitted time</span><span className="submitted-time-text">Oct 19,20259:35
-                    PM</span>
+                <span className="submitted-time">Submitted time</span><span className="submitted-time-text">{formData.date || "Oct 19,20259:35 PM"}</span>
             </div>
         </div>
         <div className="flex-row-b">

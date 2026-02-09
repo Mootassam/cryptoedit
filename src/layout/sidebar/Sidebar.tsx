@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./sidebar.css";
 import optionBank from "../../data/OptionBank";
+import { FormData } from "../../shared/FormDataContext";
 import { 
   FaEraser, 
   FaUndo, 
@@ -52,6 +53,8 @@ function Sidebar({
   clear,
   transactionType,
   setTransactionType,
+  formData,
+  setFormData,
 }) {
   const [selectedCoin, setSelectedCoin] = useState("USDT");
   const [showEditModal, setShowEditModal] = useState(false);
@@ -59,14 +62,7 @@ function Sidebar({
   const [randomData, setRandomData] = useState(false);
   const [isScreenshotAnimating, setIsScreenshotAnimating] = useState(false);
   
-  const [formData, setFormData] = useState({
-    time: "",
-    date: "",
-    sender: "",
-    amount: "",
-    receiver: "",
-    txid: "" // New TXID field
-  });
+  // formData is now received from props (global state from App.tsx)
 
   // Coin options
   const coinOptions = [
@@ -97,7 +93,7 @@ function Sidebar({
     const timeString = now.toLocaleTimeString('en-US', { 
       hour: '2-digit', 
       minute: '2-digit',
-      hour12: true 
+      hour12: false 
     });
     const today = new Date().toISOString().split('T')[0];
     
@@ -139,7 +135,7 @@ function Sidebar({
     const timeString = now.toLocaleTimeString('en-US', { 
       hour: '2-digit', 
       minute: '2-digit',
-      hour12: true 
+      hour12: false 
     });
     setFormData(prev => ({ ...prev, time: timeString }));
   };
@@ -407,7 +403,7 @@ function Sidebar({
                     name="time"
                     value={formData.time}
                     onChange={handleInputChange}
-                    placeholder="Time (HH:MM AM/PM)"
+                    placeholder="Time (HH:MM)"
                   />
                   <button className="input__button" onClick={setCurrentTime} title="Set current time">
                     <FaClock size={14} />

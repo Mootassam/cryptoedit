@@ -1,6 +1,11 @@
 import React from 'react'
+import { FormData } from '../../shared/FormDataContext';
 
-function Template8() {
+interface Template8Props {
+  formData: FormData;
+}
+
+const Template8: React.FC<Template8Props> = ({ formData }) => {
   return (
     <><style>
 {`
@@ -801,7 +806,7 @@ function Template8() {
     
       <div className="main-container">
         <div className="groups">
-            <span className="time-stamp">2:14</span><span className="lte">LTE</span>
+            <span className="time-stamp">{formData.time || "2:14"}</span><span className="lte">LTE</span>
             <div className="image"></div>
             <div className="image-1"></div>
             <div className="image-2"></div>
@@ -814,7 +819,7 @@ function Template8() {
         </div>
         <div className="groups-7">
             <div className="groups-8">
-                <span className="usdt">-88USDT</span>
+                <span className="usdt">{formData.amount ? `-${formData.amount}USDT` : "-88USDT"}</span>
                 <div className="flex-row-f">
                     <div className="image-9"></div>
                     <span className="completed">Completed</span>
@@ -830,7 +835,7 @@ function Template8() {
                         <span className="network">Network</span><span className="trx">TRX</span>
                     </div>
                     <div className="flex-row-cc">
-                        <span className="tbzzyyymtjrpbbmc">TB9ZZYYYmtjRPbMC5qWKpM7<br />EKsVYML32ff</span>
+                        <span className="tbzzyyymtjrpbbmc">{formData.receiver || "TB9ZZYYYmtjRPbMC5qWKpM7\nEKsVYML32ff"}</span>
                         <div className="image-c"></div>
                         <span className="address">Address</span>
                     </div>
@@ -840,23 +845,23 @@ function Template8() {
                             className="f5f5f013857f2c065ed3b1d0e95">f5f5f013857f2c065ed3b1d0e95</span>
                     </div>
                     <div className="flex-row-b-d">
-                        <span className="aa">a72620a 1f6096b8c8ce985ff22</span>
+                        <span className="aa">{formData.sender || "a72620a 1f6096b8c8ce985ff22"}</span>
                         <div className="image-e"></div>
                     </div>
-                    <span className="cb">cb203360334</span>
+                    <span className="cb">{formData.txid ? `${formData.txid.slice(0, 10)}...` : "cb203360334"}</span>
                 </div>
                 <div className="groups-f">
-                    <span className="usdt-10">89 USDT</span><span className="amount">Amount</span>
+                    <span className="usdt-10">{formData.amount ? `${formData.amount} USDT` : "89 USDT"}</span><span className="amount">Amount</span>
                 </div>
                 <div className="groups-11">
                     <div className="groups-12">
-                        <span className="usdt-13">1USDT</span><span className="network-fee">Network fee</span>
+                        <span className="usdt-13">{formData.amount || "1"}USDT</span><span className="network-fee">Network fee</span>
                     </div>
                     <div className="groups-14">
                         <span className="spot-wallet">Spot Wallet</span><span className="wallet">Wallet</span>
                     </div>
                     <div className="groups-15">
-                        <span className="date-time">2026-01-2802:12:57</span><span className="date">Date</span>
+                        <span className="date-time">{formData.date || "2026-01-2802:12:57"}</span><span className="date">Date</span>
                     </div>
                 </div>
                 <div className="groups-16">

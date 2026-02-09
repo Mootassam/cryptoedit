@@ -4,7 +4,8 @@ import Header from "./layout/Header";
 import Sidebar from "./layout/sidebar/Sidebar";
 import Screenshot from "./shared/Screenshot";
 import { DrawingApp } from "./shared/DrawingApp";
- 
+import { FormDataProvider, FormData } from "./shared/FormDataContext";
+
 import Template1 from "./component/tempalate1/Template1";
 import Template2 from "./component/tempalate2/Template2";
 import Template3 from "./component/template3/Template3";
@@ -32,6 +33,16 @@ function App() {
     { startDrawing, draw, endDrawing, ...api },
   ] = DrawingApp();
   const toolbarProps = { color, ...api };
+
+  // Global form data state
+  const [formData, setFormData] = useState<FormData>({
+    time: "",
+    date: "",
+    sender: "",
+    amount: "",
+    receiver: "",
+    txid: ""
+  });
   
   // Set canvas dimensions based on template
   const getCanvasDimensions = () => {
@@ -60,6 +71,8 @@ function App() {
           size={value}
           transactionType={transactionType}
           setTransactionType={setTransactionType}
+          formData={formData}
+          setFormData={setFormData}
           {...toolbarProps}
         />
         <main className="app__main">
@@ -75,20 +88,22 @@ function App() {
                 onMouseUp={endDrawing}
               />
             </div> */}
- 
-            {value === "template1" && <Template1 />}
-            {value === "template2" && <Template2 />}
-            {value === "template3" && <Template3 />}
-            {value === "template4" && <Template4 />}
-            {value === "template5" && <Template5 />}
-            {value === "template6" && <Template6 />}
-            {value === "template7" && <Template7 />}
-            {value === "template8" && <Template8 />}
-            {value === "template9" && <Template9 />}
-            {value === "template10" && <Template10 />}
-            {value === "template11" && <Template11 />}
-            {value === "template12" && <Template12 />}
-            {value === "template13" && <Template13 />}
+
+            <FormDataProvider value={{ formData, setFormData }}>
+              {value === "template1" && <Template1 formData={formData} />}
+              {value === "template2" && <Template2 formData={formData} />}
+              {value === "template3" && <Template3 formData={formData} />}
+              {value === "template4" && <Template4 formData={formData} />}
+              {value === "template5" && <Template5 formData={formData} />}
+              {value === "template6" && <Template6 formData={formData} />}
+              {value === "template7" && <Template7 formData={formData} />}
+              {value === "template8" && <Template8 formData={formData} />}
+              {value === "template9" && <Template9 formData={formData} />}
+              {value === "template10" && <Template10 formData={formData} />}
+              {value === "template11" && <Template11 formData={formData} />}
+              {value === "template12" && <Template12 formData={formData} />}
+              {value === "template13" && <Template13 formData={formData} />}
+            </FormDataProvider>
           </div>
         </main>
       </div>

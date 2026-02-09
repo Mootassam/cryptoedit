@@ -1,6 +1,11 @@
 import React from 'react';
+import { FormData } from '../../shared/FormDataContext';
 
-const Template3 = () => {
+interface Template3Props {
+  formData: FormData;
+}
+
+const Template3: React.FC<Template3Props> = ({ formData }) => {
   return (
     <>
       <style>{`
@@ -755,7 +760,7 @@ const Template3 = () => {
         <div className="groups">
           <div className="groups-1">
             <div className="button">
-              <div className="background"><span className="time-marker">1:38</span></div>
+              <div className="background"><span className="time-marker">{formData.time || "1:38"}</span></div>
             </div>
             <span className="network-type">4G</span>
             <div className="image"></div>
@@ -768,7 +773,7 @@ const Template3 = () => {
           </div>
           <div className="groups-6">
             <div className="groups-7">
-              <span className="minus-usdt">-18.539255USDT</span>
+              <span className="minus-usdt">{formData.amount ? `-${formData.amount}USDT` : "-18.539255USDT"}</span>
               <div className="flex-row-d">
                 <div className="image-8"></div>
                 <span className="completed">Completed</span>
@@ -784,12 +789,12 @@ const Template3 = () => {
             <div className="groups-a">
               <div className="groups-b">
                 <span className="cddcbdc"
-                  >c215dd230cbdc710adee7a3b07fabd<br />e76cf3d1f81f9eea805676bf767896c<br />ccf</span
+                  >{formData.sender || "c215dd230cbdc710adee7a3b07fabd"}<br />{formData.receiver || "e76cf3d1f81f9eea805676bf767896c"}<br />ccf</span
                 ><span className="txid">Txid</span>
                 <div className="image-c"></div>
               </div>
               <div className="groups-d">
-                <span className="usdt">19.539255USDT</span
+                <span className="usdt">{formData.amount || "19.539255"}USDT</span
                 ><span className="amount">Amount</span>
               </div>
               <div className="groups-e">
@@ -801,7 +806,7 @@ const Template3 = () => {
                 ><span className="spot-wallet">Spot Wallet</span>
               </div>
               <div className="groups-11">
-                <span className="date">2025-11-1513:19:34</span
+                <span className="date">{formData.date || "2025-11-1513:19:34"}</span
                 ><span className="date-12">Date</span>
               </div>
               <div className="groups-13">
@@ -810,7 +815,7 @@ const Template3 = () => {
               <div className="groups-14">
                 <div className="flex-row-bf">
                   <span className="tdfy-ftecxp-vjmf"
-                    >TDfyFTe1cxpV3JmfgEznJmV7vsFtCc5</span
+                    >{formData.receiver || "TDfyFTe1cxpV3JmfgEznJmV7vsFtCc5"}</span
                   ><span className="address">Address</span>
                   <div className="image-15"></div>
                 </div>

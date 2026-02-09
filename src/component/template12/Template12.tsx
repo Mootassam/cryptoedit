@@ -1,6 +1,10 @@
 import React from 'react'
+import { FormData } from '../../shared/FormDataContext';
 
-function Template12() {
+interface Template12Props {
+  formData: FormData;
+}
+const Template12: React.FC<Template12Props> = ({ formData }) => {
   return (
     <>
     <style>{`
@@ -639,7 +643,7 @@ function Template12() {
          <div className="main-container">
         <div className="root">
             <div className="groups">
-                <span className="time">10:31</span>
+                <span className="time">{formData.time || "10:31"}</span>
                 <div className="image"></div>
                 <div className="image-1"></div>
                 <div className="image-2"></div>
@@ -659,7 +663,7 @@ function Template12() {
                 <div className="groups-9">
                     <div className="groups-a">
                         <div className="image-b"></div>
-                        <span className="deposited-usd">Deposited 210USDT</span><span className="dollar-amount">~$209.8</span>
+                        <span className="deposited-usd">{formData.amount ? `Deposited ${formData.amount}USDT` : "Deposited 210USDT"}</span><span className="dollar-amount">{formData.amount ? `~${formData.amount}` : "~$209.8"}</span>
                     </div>
                     <div className="groups-c">
                         <div className="image-d"></div>
@@ -677,16 +681,16 @@ function Template12() {
                         <div className="image-13"></div>
                     </div>
                     <div className="groups-14">
-                        <span className="transaction-id">Transaction ID</span><span className="oxf-ada">Ox14f...97d0a</span>
+                        <span className="transaction-id">Transaction ID</span><span className="oxf-ada">{formData.txid || "Ox14f...97d0a"}</span>
                         <div className="image-15"></div>
                     </div>
                     <div className="groups-16">
-                        <span className="text-d">0x507e7c8da475463ff743<br />b6b7b65333ac8dc22f26</span><span
+                        <span className="text-d">{formData.receiver || "0x507e7c8da475463ff743"}<br />{"b6b7b65333ac8dc22f26"}</span><span
                             className="text-e">Address</span>
                         <div className="img-8"></div>
                     </div>
                     <div className="box-4">
-                        <span className="text-f">Nov 9,2025,8:15 PM</span><span className="text-10">Time</span>
+                        <span className="text-f">{formData.date || "Nov 9,2025"},{formData.time || "8:15 PM"}</span><span className="text-10">Time</span>
                     </div>
                 </div>
             </div>

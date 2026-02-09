@@ -1,6 +1,11 @@
 import React from 'react'
+import { FormData } from '../../shared/FormDataContext';
 
-function Template7() {
+interface Template7Props {
+  formData: FormData;
+}
+
+const Template7: React.FC<Template7Props> = ({ formData }) => {
   return (
     <>
     
@@ -2545,7 +2550,7 @@ button {
       <div className="main-container">
         <div className="root">
           <div className="groups">
-            <span className="time">10:56PM</span>
+            <span className="time">{formData.time || "10:56PM"}</span>
             <div className="image"></div>
             <div className="image-1"></div>
             <div className="image-2"></div>
@@ -2565,7 +2570,7 @@ button {
           <div className="groups-b">
             <div className="groups-c">
               <div className="background">
-                <span className="my-balance">My Balance</span><span className="usdt-d">0.17USDT</span><span className="dollar">$0.16</span>
+                <span className="my-balance">My Balance</span><span className="usdt-d">{formData.amount || "0.17"}USDT</span><span className="dollar">$0.16</span>
               </div>
             </div>
             <div className="groups-e">
