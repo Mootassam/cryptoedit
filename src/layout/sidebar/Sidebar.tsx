@@ -215,10 +215,14 @@ function Sidebar({
                     src={coin.icon} 
                     alt={coin.name}
                     className="coin__icon"
-                    onError={(e) => {
+                    onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                       // If image fails to load, show fallback
-                      e.target.style.display = 'none';
-                      e.target.nextElementSibling?.style.display = 'flex';
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const nextSibling = target.nextElementSibling as HTMLElement;
+                      if (nextSibling) {
+                        nextSibling.style.display = 'flex';
+                      }
                     }}
                   />
                 ) : (
