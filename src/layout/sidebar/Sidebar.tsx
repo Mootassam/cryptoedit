@@ -76,22 +76,36 @@ function Sidebar({
 
   // Generate random data
   const generateRandomData = useCallback(() => {
-    const names = ["Alex Johnson", "Maria Garcia", "David Smith", "Lisa Wong", "Robert Chen", "Sarah Miller"];
+    const wallets = [
+      "0x8a7f6e5d4c3b2a1987654321abcdef1234567890",
+      "0x1234567890abcdef1234567890abcdef12345678",
+      "0xabcdef1234567890abcdef1234567890abcdef12",
+      "0xdef123456789abcdef0123456789abcdef012345",
+      "0x56789abcdef0123456789abcdef0123456789abcd",
+      "0x3456789abcdef0123456789abcdef0123456789ab"
+    ];
     const amounts = ["50.00", "100.00", "200.00", "500.00", "750.00", "1000.00"];
-    const times = ["09:15 AM", "02:30 PM", "11:45 AM", "04:20 PM", "01:10 PM"];
-    const dates = ["2024-01-15", "2024-01-16", "2024-01-17", "2024-01-18"];
     const txids = [
       "0x8a7f6e5d4c3b2a1987654321abcdef1234567890",
       "0x1234567890abcdef1234567890abcdef12345678",
       "0xabcdef1234567890abcdef1234567890abcdef12"
     ];
     
+    // Get current time
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-US', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      hour12: true 
+    });
+    const today = new Date().toISOString().split('T')[0];
+    
     return {
-      time: times[Math.floor(Math.random() * times.length)],
-      date: dates[Math.floor(Math.random() * dates.length)],
-      sender: names[Math.floor(Math.random() * names.length)],
+      time: timeString,
+      date: today,
+      sender: wallets[Math.floor(Math.random() * wallets.length)],
       amount: amounts[Math.floor(Math.random() * amounts.length)],
-      receiver: names[Math.floor(Math.random() * names.length)],
+      receiver: wallets[Math.floor(Math.random() * wallets.length)],
       txid: txids[Math.floor(Math.random() * txids.length)]
     };
   }, []);
@@ -421,7 +435,7 @@ function Sidebar({
                     name="sender"
                     value={formData.sender}
                     onChange={handleInputChange}
-                    placeholder="Sender name"
+                    placeholder="Wallet address"
                   />
                   <button 
                     className="input__button" 
@@ -462,7 +476,7 @@ function Sidebar({
                     name="receiver"
                     value={formData.receiver}
                     onChange={handleInputChange}
-                    placeholder="Receiver name"
+                    placeholder="Wallet address"
                   />
                   <button 
                     className="input__button" 
