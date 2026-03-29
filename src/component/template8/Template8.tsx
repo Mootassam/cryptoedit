@@ -91,7 +91,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             height: 14.375px;
             right: 34.375px;
             bottom: 11.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/iG0WNOzkgh.png) no-repeat center;
+            background: url(/template8/iG0WNOzkgh.png) no-repeat center;
             background-size: cover;
             z-index: 48;
         }
@@ -102,7 +102,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             height: 13.125px;
             right: 66.25px;
             bottom: 11.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/kFJiTQqjQh.png) no-repeat center;
+            background: url(/template8/kFJiTQqjQh.png) no-repeat center;
             background-size: cover;
             z-index: 49;
         }
@@ -113,7 +113,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             height: 13.75px;
             right: 278.75px;
             bottom: 11.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/42pQHRWzCv.png) no-repeat center;
+            background: url(/template8/42pQHRWzCv.png) no-repeat center;
             background-size: cover;
             z-index: 52;
         }
@@ -124,7 +124,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             height: 10px;
             right: 259.375px;
             bottom: 13.125px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/R8rmhQBaio.png) no-repeat center;
+            background: url(/template8/R8rmhQBaio.png) no-repeat center;
             background-size: cover;
             z-index: 51;
         }
@@ -162,7 +162,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             height: 12.5px;
             right: 13.125px;
             bottom: 10px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/RiVeOcB2A4.png) no-repeat center;
+            background: url(/template8/RiVeOcB2A4.png) no-repeat center;
             background-size: cover;
             z-index: 44;
         }
@@ -173,7 +173,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             height: 10px;
             right: 333.125px;
             bottom: 11.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/9BN5H2wvw3.png) no-repeat center;
+            background: url(/template8/9BN5H2wvw3.png) no-repeat center;
             background-size: cover;
             z-index: 46;
         }
@@ -231,7 +231,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             position: relative;
             width: 12.5px;
             height: 11.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/6q22e3hWd3.png) no-repeat center;
+            background: url(/template8/6q22e3hWd3.png) no-repeat center;
             background-size: cover;
             z-index: 41;
         }
@@ -386,7 +386,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             height: 11.25px;
             right: 0;
             bottom: 16.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/f67YyS34ws.png) no-repeat center;
+            background: url(/template8/f67YyS34ws.png) no-repeat center;
             background-size: cover;
             z-index: 31;
         }
@@ -493,7 +493,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             position: relative;
             width: 10.625px;
             height: 10.625px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/epYNUnQLk7.png) no-repeat center;
+            background: url(/template8/epYNUnQLk7.png) no-repeat center;
             background-size: cover;
             z-index: 26;
         }
@@ -720,7 +720,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             height: 11.25px;
             right: 201.875px;
             bottom: 11.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/6ckR8Ndn4m.png) no-repeat center;
+            background: url(/template8/6ckR8Ndn4m.png) no-repeat center;
             background-size: cover;
             z-index: 10;
         }
@@ -787,7 +787,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             width: 85.625px;
             height: 3.125px;
             margin: 18.125px 0 0 136.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/BmSwgtXRFJ.png) no-repeat center;
+            background: url(/template8/BmSwgtXRFJ.png) no-repeat center;
             background-size: cover;
             z-index: 2;
         }

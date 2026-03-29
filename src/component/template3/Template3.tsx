@@ -115,7 +115,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 13.125px;
           right: 28.125px;
           bottom: 8.75px;
-          background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/iFBk3mpHKY.png)
+          background: url(/template3/iFBk3mpHKY.png)
             no-repeat center;
           background-size: cover;
           z-index: 51;
@@ -126,7 +126,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 12.5px;
           right: 84.375px;
           bottom: 9.375px;
-          background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/5SBUOOKqf8.png)
+          background: url(/template3/5SBUOOKqf8.png)
             no-repeat center;
           background-size: cover;
           z-index: 53;
@@ -162,7 +162,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 13.75px;
           right: 18.75px;
           bottom: 11.875px;
-          background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/2WpsDYMZXr.png)
+          background: url(/template3/2WpsDYMZXr.png)
             no-repeat center;
           background-size: cover;
           z-index: 47;
@@ -173,7 +173,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 10px;
           right: 336.875px;
           bottom: 13.75px;
-          background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/wPCxEMPJXr.png)
+          background: url(/template3/wPCxEMPJXr.png)
             no-repeat center;
           background-size: cover;
           z-index: 49;
@@ -227,7 +227,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           position: relative;
           width: 15.625px;
           height: 15px;
-          background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/0cayj6xxzs.png)
+          background: url(/template3/0cayj6xxzs.png)
             no-repeat center;
           background-size: cover;
           z-index: 44;
@@ -282,7 +282,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           width: 369.375px;
           height: 1.875px;
           margin: -0.63px 0 0 0;
-          background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/ja0A2fk3DE.png)
+          background: url(/template3/ja0A2fk3DE.png)
             no-repeat center;
           background-size: cover;
           z-index: 39;
@@ -346,7 +346,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 11.875px;
           right: 14.375px;
           bottom: 37.5px;
-          background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/eAVgFbQxa2.png)
+          background: url(/template3/eAVgFbQxa2.png)
             no-repeat center;
           background-size: cover;
           z-index: 27;
@@ -618,7 +618,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 11.25px;
           right: 0;
           bottom: 3.125px;
-          background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/2gHAqx7RqX.png)
+          background: url(/template3/2gHAqx7RqX.png)
             no-repeat center;
           background-size: cover;
           z-index: 34;
@@ -739,7 +739,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           width: 131.875px;
           height: 4.375px;
           margin: 26.875px 0 0 118.75px;
-          background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/3K4fuVtH6T.png)
+          background: url(/template3/3K4fuVtH6T.png)
             no-repeat center;
           background-size: cover;
           z-index: 4;

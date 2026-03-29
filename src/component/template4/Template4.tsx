@@ -111,7 +111,7 @@ button {
   position: relative;
   width: 13.125px;
   height: 13.125px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/KgYDUWXRGS.png)
+  background: url(/template4/KgYDUWXRGS.png)
     no-repeat center;
   background-size: cover;
   z-index: 48;
@@ -121,7 +121,7 @@ button {
   position: relative;
   width: 11.25px;
   height: 2.5px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/O8jBViusSL.png)
+  background: url(/template4/O8jBViusSL.png)
     no-repeat center;
   background-size: cover;
   z-index: 47;
@@ -132,7 +132,7 @@ button {
   height: 13.75px;
   right: 70px;
   bottom: 0;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/wUYhEpjzno.png)
+  background: url(/template4/wUYhEpjzno.png)
     no-repeat center;
   background-size: cover;
   z-index: 44;
@@ -143,7 +143,7 @@ button {
   height: 12.5px;
   right: 28.125px;
   bottom: 0.63px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/UTU0xbDJg7.png)
+  background: url(/template4/UTU0xbDJg7.png)
     no-repeat center;
   background-size: cover;
   z-index: 42;
@@ -154,7 +154,7 @@ button {
   height: 11.25px;
   right: 48.75px;
   bottom: 1.25px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/b935FGOkft.png)
+  background: url(/template4/b935FGOkft.png)
     no-repeat center;
   background-size: cover;
   z-index: 43;
@@ -165,7 +165,7 @@ button {
   height: 10.625px;
   right: 0;
   bottom: 1.875px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/Csz6Hu90EL.png)
+  background: url(/template4/Csz6Hu90EL.png)
     no-repeat center;
   background-size: cover;
   z-index: 41;
@@ -198,7 +198,7 @@ button {
   width: 14.375px;
   height: 11.25px;
   margin: 13.75px 0 0 16.875px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/PkDU1qOMOQ.png)
+  background: url(/template4/PkDU1qOMOQ.png)
     no-repeat center;
   background-size: cover;
   z-index: 39;
@@ -217,7 +217,7 @@ button {
   width: 203.125px;
   height: 96.875px;
   margin: 7.5px 0 0 72.5px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/m5aGjk88kR.png)
+  background: url(/template4/m5aGjk88kR.png)
     no-repeat center;
   background-size: cover;
   z-index: 35;
@@ -228,7 +228,7 @@ button {
   width: 140.625px;
   height: 88.125px;
   margin: 6.875px 0 0 60.625px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/F9Gfip4u3A.png)
+  background: url(/template4/F9Gfip4u3A.png)
     no-repeat center;
   background-size: cover;
   z-index: 36;
@@ -239,7 +239,7 @@ button {
   width: 82.5px;
   height: 83.125px;
   margin: 4.375px 0 0 1.875px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/2qntO54J4p.png)
+  background: url(/template4/2qntO54J4p.png)
     no-repeat center;
   background-size: cover;
   z-index: 37;
@@ -404,7 +404,7 @@ button {
   height: 16.25px;
   right: 16.25px;
   bottom: 8.75px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/e5zEBDqz0f.png)
+  background: url(/template4/e5zEBDqz0f.png)
     no-repeat center;
   background-size: cover;
   z-index: 23;
@@ -542,7 +542,7 @@ button {
   height: 38.75px;
   right: 18.125px;
   bottom: 22.5px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/YOhzfXQXKQ.png)
+  background: url(/template4/YOhzfXQXKQ.png)
     no-repeat center;
   background-size: cover;
   z-index: 15;
@@ -606,7 +606,7 @@ button {
   height: 19.375px;
   right: 88.75px;
   bottom: 11.875px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/2wj3h7FgKP.png)
+  background: url(/template4/2wj3h7FgKP.png)
     no-repeat center;
   background-size: cover;
   z-index: 8;
@@ -617,7 +617,7 @@ button {
   height: 16.25px;
   right: 13.125px;
   bottom: 13.75px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/iQ2SiM8xDu.png)
+  background: url(/template4/iQ2SiM8xDu.png)
     no-repeat center;
   background-size: cover;
   z-index: 7;
@@ -628,7 +628,7 @@ button {
   height: 14.375px;
   right: 171.25px;
   bottom: 14.375px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/zpctWvnWXH.png)
+  background: url(/template4/zpctWvnWXH.png)
     no-repeat center;
   background-size: cover;
   z-index: 9;
@@ -650,7 +650,7 @@ button {
   height: 1.875px;
   right: 0;
   bottom: 458.125px;
-  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/kPXw9uwTgi.png)
+  background: url(/template4/kPXw9uwTgi.png)
     no-repeat center;
   background-size: cover;
   z-index: 30;

@@ -92,7 +92,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 12.5px;
             right: 115.625px;
             bottom: 6.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/7kcjh6cG81.png) no-repeat center;
+            background: url(/template13/7kcjh6cG81.png) no-repeat center;
             background-size: cover;
             z-index: 50;
         }
@@ -103,7 +103,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 11.875px;
             right: 295.625px;
             bottom: 6.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/ozYcmhiMML.png) no-repeat center;
+            background: url(/template13/ozYcmhiMML.png) no-repeat center;
             background-size: cover;
             z-index: 54;
         }
@@ -114,7 +114,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 10.625px;
             right: 25px;
             bottom: 7.5px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/qzLGwJnqKc.png) no-repeat center;
+            background: url(/template13/qzLGwJnqKc.png) no-repeat center;
             background-size: cover;
             z-index: 46;
         }
@@ -125,7 +125,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 11.875px;
             right: 53.75px;
             bottom: 6.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/JsSm6XpCub.png) no-repeat center;
+            background: url(/template13/JsSm6XpCub.png) no-repeat center;
             background-size: cover;
             z-index: 47;
         }
@@ -136,7 +136,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 11.25px;
             right: 73.75px;
             bottom: 6.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/yZbrXFeLyk.png) no-repeat center;
+            background: url(/template13/yZbrXFeLyk.png) no-repeat center;
             background-size: cover;
             z-index: 48;
         }
@@ -147,7 +147,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 10.625px;
             right: 94.375px;
             bottom: 6.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/ybZF5RbVzK.png) no-repeat center;
+            background: url(/template13/ybZF5RbVzK.png) no-repeat center;
             background-size: cover;
             z-index: 49;
         }
@@ -158,7 +158,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 10.625px;
             right: 261.25px;
             bottom: 6.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/smL6JYsG7U.png) no-repeat center;
+            background: url(/template13/smL6JYsG7U.png) no-repeat center;
             background-size: cover;
             z-index: 52;
         }
@@ -169,7 +169,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 10.625px;
             right: 16.25px;
             bottom: 6.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/xFbrJaepWB.png) no-repeat center;
+            background: url(/template13/xFbrJaepWB.png) no-repeat center;
             background-size: cover;
             z-index: 45;
         }
@@ -180,7 +180,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 10px;
             right: 278.125px;
             bottom: 6.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/K0rvRGfqFS.png) no-repeat center;
+            background: url(/template13/K0rvRGfqFS.png) no-repeat center;
             background-size: cover;
             z-index: 53;
         }
@@ -191,7 +191,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 2.5px;
             right: 244.375px;
             bottom: 11.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/tUGQSQuvvK.png) no-repeat center;
+            background: url(/template13/tUGQSQuvvK.png) no-repeat center;
             background-size: cover;
             z-index: 51;
         }
@@ -211,7 +211,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 20.625px;
             right: 12.5px;
             bottom: 8.125px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/nYyYPXEWLk.png) no-repeat center;
+            background: url(/template13/nYyYPXEWLk.png) no-repeat center;
             background-size: cover;
             z-index: 41;
         }
@@ -222,7 +222,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 16.875px;
             right: 345.625px;
             bottom: 10px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/t7We2mt97t.png) no-repeat center;
+            background: url(/template13/t7We2mt97t.png) no-repeat center;
             background-size: cover;
             z-index: 43;
         }
@@ -270,7 +270,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             width: 44.375px;
             height: 44.375px;
             margin: 35.625px 0 0 162.5px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/uPPLa8bYYt.png) no-repeat center;
+            background: url(/template13/uPPLa8bYYt.png) no-repeat center;
             background-size: cover;
             z-index: 39;
         }
@@ -395,7 +395,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             position: relative;
             width: 25px;
             height: 20px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/yuLSD5NB7m.png) no-repeat center;
+            background: url(/template13/yuLSD5NB7m.png) no-repeat center;
             background-size: cover;
             z-index: 28;
         }
@@ -424,7 +424,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             width: 245.625px;
             height: 6.25px;
             margin: 4.375px 0 0 77.5px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/yyPhTZMzTR.png) no-repeat center;
+            background: url(/template13/yyPhTZMzTR.png) no-repeat center;
             background-size: cover;
             z-index: 27;
         }
@@ -449,7 +449,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             width: 246.25px;
             height: 5.625px;
             margin: 14.375px 0 0 76.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/dEvBTV6ZJp.png) no-repeat center;
+            background: url(/template13/dEvBTV6ZJp.png) no-repeat center;
             background-size: cover;
             z-index: 26;
         }
@@ -566,7 +566,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             width: 238.125px;
             height: 3.75px;
             margin: 65px 0 0 86.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/Htsdcx2fSc.png) no-repeat center;
+            background: url(/template13/Htsdcx2fSc.png) no-repeat center;
             background-size: cover;
             z-index: 20;
         }
@@ -691,7 +691,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 9.375px;
             right: 1.875px;
             bottom: 0;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/oWEBAZBJVH.png) no-repeat center;
+            background: url(/template13/oWEBAZBJVH.png) no-repeat center;
             background-size: cover;
             z-index: 11;
         }
@@ -729,7 +729,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 9.375px;
             right: 179.375px;
             bottom: 17.5px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/qA55rMytmc.png) no-repeat center;
+            background: url(/template13/qA55rMytmc.png) no-repeat center;
             background-size: cover;
             z-index: 4;
         }
@@ -740,7 +740,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 9.375px;
             right: 96.25px;
             bottom: 17.5px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/ucJ80tkWJ5.png) no-repeat center;
+            background: url(/template13/ucJ80tkWJ5.png) no-repeat center;
             background-size: cover;
             z-index: 3;
         }
@@ -751,7 +751,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 8.125px;
             right: 264.375px;
             bottom: 18.125px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/ybzY3LjuYx.png) no-repeat center;
+            background: url(/template13/ybzY3LjuYx.png) no-repeat center;
             background-size: cover;
             z-index: 5;
         }
@@ -773,7 +773,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             height: 44.375px;
             right: 0;
             bottom: 0;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/pNvV6cRc1L.png) no-repeat center;
+            background: url(/template13/pNvV6cRc1L.png) no-repeat center;
             background-size: cover;
             z-index: 1;
         }`}</style>

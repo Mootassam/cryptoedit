@@ -122,7 +122,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             height: 12.5px;
             right: 13.75px;
             bottom: 9.375px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/O2nYhPEHhv.png) no-repeat center;
+            background: url(/template9/O2nYhPEHhv.png) no-repeat center;
             background-size: cover;
             z-index: 47;
         }
@@ -133,7 +133,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             height: 10.625px;
             right: 63.125px;
             bottom: 10px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/OjDXYAnEgS.png) no-repeat center;
+            background: url(/template9/OjDXYAnEgS.png) no-repeat center;
             background-size: cover;
             z-index: 49;
         }
@@ -163,7 +163,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             width: 7.5px;
             height: 16.25px;
             margin: 17.5px 0 0 23.75px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/wszEYqNHbR.png) no-repeat center;
+            background: url(/template9/wszEYqNHbR.png) no-repeat center;
             background-size: cover;
             z-index: 45;
         }
@@ -183,7 +183,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             width: 39.375px;
             height: 39.375px;
             margin: 7.5px 0 0 165px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/EmrGi4Mp4j.png) no-repeat center;
+            background: url(/template9/EmrGi4Mp4j.png) no-repeat center;
             background-size: cover;
             z-index: 43;
         }
@@ -234,7 +234,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             height: 31.25px;
             right: 314.375px;
             bottom: 21.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/HRQ96FoKzA.png) no-repeat center;
+            background: url(/template9/HRQ96FoKzA.png) no-repeat center;
             background-size: cover;
             z-index: 39;
         }
@@ -348,7 +348,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             width: 11.875px;
             height: 11.875px;
             margin: -6.25px 0 0 331.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/KVwRCpYOzD.png) no-repeat center;
+            background: url(/template9/KVwRCpYOzD.png) no-repeat center;
             background-size: cover;
             z-index: 30;
         }
@@ -419,7 +419,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             height: 13.75px;
             right: 291.875px;
             bottom: 20.625px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/k6zCPATNEx.png) no-repeat center;
+            background: url(/template9/k6zCPATNEx.png) no-repeat center;
             background-size: cover;
             z-index: 27;
         }
@@ -475,7 +475,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             height: 15px;
             right: 121.875px;
             bottom: 19.375px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/eWVkqCexs4.png) no-repeat center;
+            background: url(/template9/eWVkqCexs4.png) no-repeat center;
             background-size: cover;
             z-index: 23;
         }
@@ -576,7 +576,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             height: 12.5px;
             right: 25.625px;
             bottom: 20.625px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/cFCpPQbbT9.png) no-repeat center;
+            background: url(/template9/cFCpPQbbT9.png) no-repeat center;
             background-size: cover;
             z-index: 15;
         }
@@ -726,7 +726,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             width: 131.875px;
             height: 5px;
             margin: 21.875px 0 0 118.75px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/n7XDdPfQKH.png) no-repeat center;
+            background: url(/template9/n7XDdPfQKH.png) no-repeat center;
             background-size: cover;
             z-index: 2;
         }

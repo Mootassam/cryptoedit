@@ -83,7 +83,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 12.5px;
             right: 14.375px;
             bottom: 11.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/Q9jOZWnLsQ.png) no-repeat center;
+            background: url(/tempalate1/Q9jOZWnLsQ.png) no-repeat center;
             background-size: cover;
             z-index: 38;
         }
@@ -112,7 +112,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 11.25px;
             right: 43.125px;
             bottom: 11.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/FO8o9jBY5k.png) no-repeat center;
+            background: url(/tempalate1/FO8o9jBY5k.png) no-repeat center;
             background-size: cover;
             z-index: 39;
         }
@@ -123,7 +123,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 10.625px;
             right: 63.125px;
             bottom: 11.875px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/MLBMGXJ0ai.png) no-repeat center;
+            background: url(/tempalate1/MLBMGXJ0ai.png) no-repeat center;
             background-size: cover;
             z-index: 40;
         }
@@ -161,7 +161,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 15.625px;
             right: 18.75px;
             bottom: 9.375px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/NymmjhJuQx.png) no-repeat center;
+            background: url(/tempalate1/NymmjhJuQx.png) no-repeat center;
             background-size: cover;
             z-index: 34;
         }
@@ -172,7 +172,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 11.875px;
             right: 336.25px;
             bottom: 11.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/zqRA8nKray.png) no-repeat center;
+            background: url(/tempalate1/zqRA8nKray.png) no-repeat center;
             background-size: cover;
             z-index: 36;
         }
@@ -231,7 +231,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             position: relative;
             width: 15px;
             height: 15px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/gqTwxEswFV.png) no-repeat center;
+            background: url(/tempalate1/gqTwxEswFV.png) no-repeat center;
             background-size: cover;
             z-index: 31;
         }
@@ -308,7 +308,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             width: 31.875px;
             height: 20px;
             margin: 3.125px 0 0 2.5px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/nmkSCnhphG.png) no-repeat center;
+            background: url(/tempalate1/nmkSCnhphG.png) no-repeat center;
             background-size: cover;
             z-index: 25;
         }
@@ -383,7 +383,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 11.875px;
             right: 0;
             bottom: 23.125px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/KGZRJamQOK.png) no-repeat center;
+            background: url(/tempalate1/KGZRJamQOK.png) no-repeat center;
             background-size: cover;
             z-index: 21;
         }
@@ -441,7 +441,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 11.875px;
             right: 17.5px;
             bottom: 27.5px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/9d7XRQmpwL.png) no-repeat center;
+            background: url(/tempalate1/9d7XRQmpwL.png) no-repeat center;
             background-size: cover;
             z-index: 18;
         }
@@ -578,7 +578,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 37.5px;
             right: 0;
             bottom: 1.25px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/cSjqdWrB24.png) no-repeat center;
+            background: url(/tempalate1/cSjqdWrB24.png) no-repeat center;
             background-size: cover;
             z-index: 8;
         }
@@ -633,7 +633,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 3.125px;
             right: 25.625px;
             bottom: 0;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/B2nEcnbCgU.png) no-repeat center;
+            background: url(/tempalate1/B2nEcnbCgU.png) no-repeat center;
             background-size: cover;
             z-index: 7;
         }
@@ -644,7 +644,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 3.125px;
             right: 13.125px;
             bottom: 0;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/KZfPN1bZCN.png) no-repeat center;
+            background: url(/tempalate1/KZfPN1bZCN.png) no-repeat center;
             background-size: cover;
             z-index: 6;
         }
@@ -655,7 +655,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             height: 3.125px;
             right: 0;
             bottom: 0;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/q23esefv8g.png) no-repeat center;
+            background: url(/tempalate1/q23esefv8g.png) no-repeat center;
             background-size: cover;
             z-index: 5;
         }
@@ -665,7 +665,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             width: 131.875px;
             height: 4.375px;
             margin: 238.125px 0 0 118.75px;
-            background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/bcLjYNQKv1.png) no-repeat center;
+            background: url(/tempalate1/bcLjYNQKv1.png) no-repeat center;
             background-size: cover;
             z-index: 1;
         }
