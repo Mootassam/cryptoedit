@@ -397,11 +397,12 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
             color: #c0c1c3;
             font-family: Inter, var(--default-font-family);
             font-size: 13.125px;
-            font-weight: 400;
+            font-weight: 700;
             line-height: 15px;
             text-align: left;
             white-space: nowrap;
             z-index: 26;
+        
         }
 
         .groups-f {
