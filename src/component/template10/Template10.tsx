@@ -165,10 +165,11 @@ button {
   z-index: 45;
 }
 .usdt {
-  display: block;
+  display: flex;
+  justify-content: center;
   position: relative;
   height: 16.25px;
-  margin: 8.125px 0 0 147.5px;
+  margin: 8.125px 0 0 0px;
   color: #cfcfd1;
   font-family: Inter, var(--default-font-family);
   font-size: 15px;

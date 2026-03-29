@@ -235,12 +235,12 @@ button {
 .flex-row-ea {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   position: relative;
   width: 291.25px;
   height: 45.625px;
-  margin: 41.25px 0 0 15.625px;
+  margin: 41.25px 0 0 0px;
   z-index: 20;
+  gap:5px;
 }
 .plus-amount {
   flex-shrink: 0;
@@ -461,67 +461,67 @@ button {
 }`}</style>
 
 
-    <div className="main-container">
-      <div className="root">
-        <div className="groups">
-          <div className="groups-1">
-            <span className="time">{formData.time || "08:43"}</span>
-            <div className="image"></div>
-            <div className="image-2"></div>
-            <div className="image-3"></div>
-            <div className="image-4"></div>
+      <div className="main-container">
+        <div className="root">
+          <div className="groups">
+            <div className="groups-1">
+              <span className="time">{formData.time || "08:43"}</span>
+              <div className="image"></div>
+              <div className="image-2"></div>
+              <div className="image-3"></div>
+              <div className="image-4"></div>
+            </div>
+            <div className="groups-5"><div className="image-6"></div></div>
+            <span className="usdt-dep">USDT (ERC20) Deposit</span>
+            <div className="groups-7">
+              <span className="processed">Processed</span
+              ><span className="date-time">{formData.date || "Aug 24,2024 at 8:45:10 PM"}</span>
+            </div>
           </div>
-          <div className="groups-5"><div className="image-6"></div></div>
-          <span className="usdt-dep">USDT (ERC20) Deposit</span>
-          <div className="groups-7">
-            <span className="processed">Processed</span
-            ><span className="date-time">{formData.date || "Aug 24,2024 at 8:45:10 PM"}</span>
-          </div>
-        </div>
-        <div className="groups-8">
-          <div className="background">
-            <div className="groups-9">
-              <div className="groups-a">
-                <div className="flex-row-ea">
-                  <span className="plus-amount">{formData.amount ? `+${formData.amount}` : "+35,985.00"}</span
-                  ><span className="usdt">USDT</span>
+          <div className="groups-8">
+            <div className="background">
+              <div className="groups-9">
+                <div className="groups-a">
+                  <div className="flex-row-ea">
+                    <span className="plus-amount">{formData.amount ? `+${formData.amount}` : "+35,985.00"}</span
+                    ><span className="usdt">USDT</span>
+                  </div>
+                  <div className="button">
+                    <div className="background-b">
+                      <span className="usd-amount">+$35,921.03USD</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="button">
-                  <div className="background-b">
-                    <span className="usd-amount">+$35,921.03USD</span>
+                <div className="groups-c">
+                  <span className="deposit-details">Deposit details</span>
+                </div>
+                <div className="groups-d">
+                  <div className="background-e"></div>
+                  <div className="flex-row-e">
+                    <span className="deposit-from">Deposit from</span
+                    ><span className="oxobbded"
+                    >{formData.sender || "OxOB341b8dEd2598bd9fA3D"}<br />{formData.receiver || "6Df3d8A29B542ebc6a8"}</span
+                    >
+                  </div>
+                </div>
+                <div className="groups-f">
+                  <div className="groups-10">
+                    <span className="network-type">Network Type</span
+                    ><span className="erc20">ERC20</span>
                   </div>
                 </div>
               </div>
-              <div className="groups-c">
-                <span className="deposit-details">Deposit details</span>
-              </div>
-              <div className="groups-d">
-                <div className="background-e"></div>
-                <div className="flex-row-e">
-                  <span className="deposit-from">Deposit from</span
-                  ><span className="oxobbded"
-                    >{formData.sender || "OxOB341b8dEd2598bd9fA3D"}<br />{formData.receiver || "6Df3d8A29B542ebc6a8"}</span
-                  >
-                </div>
-              </div>
-              <div className="groups-f">
-                <div className="groups-10">
-                  <span className="network-type">Network Type</span
-                  ><span className="erc20">ERC20</span>
-                </div>
-              </div>
+              <div className="background-11"></div>
             </div>
-            <div className="background-11"></div>
           </div>
         </div>
+        <div className="background-12"></div>
       </div>
-      <div className="background-12"></div>
-    </div>
 
 
 
 
-</>
+    </>
   )
 }
 

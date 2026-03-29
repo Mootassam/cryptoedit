@@ -2,13 +2,13 @@ import React from 'react'
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template9Props {
-  formData: FormData;
+    formData: FormData;
 }
 
 const Template9: React.FC<Template9Props> = ({ formData }) => {
-  return (
-    <>
-    <style>{`
+    return (
+        <>
+            <style>{`
     
       :root {
             --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -189,10 +189,11 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
         }
 
         .withdrawn {
-            display: block;
+            display: flex;
+            justify-content: center;
             position: relative;
             height: 25px;
-            margin: 8.75px 0 0 56.25px;
+            margin: 8.75px 0 0 0px;
             color: #d9d9d9;
             font-family: Inter, var(--default-font-family);
             font-size: 22.5px;
@@ -732,77 +733,77 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
 
 
 `}</style>
-    
-    <div className="main-container">
-        <div className="flex-row-ee">
-            <div className="groups">
-                <div className="button">
-                    <div className="background"><span className="time">{formData.time || "9:37"}</span></div>
+
+            <div className="main-container">
+                <div className="flex-row-ee">
+                    <div className="groups">
+                        <div className="button">
+                            <div className="background"><span className="time">{formData.time || "9:37"}</span></div>
+                        </div>
+                        <span className="network-4g">4G</span>
+                        <div className="image"></div>
+                        <div className="image-1"></div>
+                    </div>
+                    <div className="groups-2">
+                        <div className="groups-3">
+                            <div className="image-4"></div>
+                        </div>
+                        <div className="groups-5">
+                            <div className="image-6"></div>
+                            <span className="withdrawn">Withdrawn {formData.amount || "700.7"} USDT</span><span className="withdrawn-amount">~$700.84</span>
+                        </div>
+                        <div className="groups-7">
+                            <div className="image-8"></div>
+                            <span className="completed">Completed</span><span className="status">Status</span>
+                        </div>
+                        <div className="background-9"></div>
+                    </div>
                 </div>
-                <span className="network-4g">4G</span>
-                <div className="image"></div>
-                <div className="image-1"></div>
-            </div>
-            <div className="groups-2">
-                <div className="groups-3">
-                    <div className="image-4"></div>
+                <div className="groups-a">
+                    <div className="groups-b">
+                        <div className="flex-row-bb">
+                            <span className="address">Address</span><span className="tnypi-aof-twsxv">{formData.receiver || "TNyp9iAoFtWS5xv5YCC"}</span>
+                        </div>
+                        <div className="image-c"></div>
+                        <span className="qwwhgqntqkcp">{formData.sender || "Q7WWhG3Qn1tQKCp"}</span>
+                    </div>
+                    <div className="groups-d">
+                        <span className="price">Price</span><span className="usdt">$1/USDT</span>
+                        <div className="image-e"></div>
+                    </div>
+                    <div className="groups-f">
+                        <span className="tron-trc">Tron (TRC20)</span><span className="network">Network</span>
+                        <div className="image-10"></div>
+                    </div>
+                    <div className="groups-11">
+                        <span className="network-fee">Network fee</span><span className="usdt-12">2.3 USDT</span>
+                    </div>
+                    <div className="groups-13">
+                        <span className="transaction-id">Transaction ID</span><span className="transaction-id-text">{formData.txid || "3dcb4...50100"}</span>
+                        <div className="image-14"></div>
+                    </div>
+                    <div className="groups-15">
+                        <span className="submitted-time">Submitted time</span><span className="submitted-time-text">{formData.date || "Oct 19,20259:35 PM"}</span>
+                    </div>
                 </div>
-                <div className="groups-5">
-                    <div className="image-6"></div>
-                    <span className="withdrawn">Withdrawn {formData.amount || "700.7"} USDT</span><span className="withdrawn-amount">~$700.84</span>
+                <div className="flex-row-b">
+                    <div className="button-16">
+                        <div className="background-17">
+                            <span className="view-blockchain-explorer">View on blockchain explorer</span>
+                        </div>
+                    </div>
+                    <div className="groups-18">
+                        <div className="image-19"></div>
+                        <div className="image-1a"></div>
+                        <span className="transaction-arrived">Why hasn't my transaction arrived?</span>
+                    </div>
                 </div>
-                <div className="groups-7">
-                    <div className="image-8"></div>
-                    <span className="completed">Completed</span><span className="status">Status</span>
-                </div>
-                <div className="background-9"></div>
+                <div className="background-1b"></div>
+                <div className="image-1c"></div>
+                <div className="image-1d"></div>
             </div>
-        </div>
-        <div className="groups-a">
-            <div className="groups-b">
-                <div className="flex-row-bb">
-                    <span className="address">Address</span><span className="tnypi-aof-twsxv">{formData.receiver || "TNyp9iAoFtWS5xv5YCC"}</span>
-                </div>
-                <div className="image-c"></div>
-                <span className="qwwhgqntqkcp">{formData.sender || "Q7WWhG3Qn1tQKCp"}</span>
-            </div>
-            <div className="groups-d">
-                <span className="price">Price</span><span className="usdt">$1/USDT</span>
-                <div className="image-e"></div>
-            </div>
-            <div className="groups-f">
-                <span className="tron-trc">Tron (TRC20)</span><span className="network">Network</span>
-                <div className="image-10"></div>
-            </div>
-            <div className="groups-11">
-                <span className="network-fee">Network fee</span><span className="usdt-12">2.3 USDT</span>
-            </div>
-            <div className="groups-13">
-                <span className="transaction-id">Transaction ID</span><span className="transaction-id-text">{formData.txid || "3dcb4...50100"}</span>
-                <div className="image-14"></div>
-            </div>
-            <div className="groups-15">
-                <span className="submitted-time">Submitted time</span><span className="submitted-time-text">{formData.date || "Oct 19,20259:35 PM"}</span>
-            </div>
-        </div>
-        <div className="flex-row-b">
-            <div className="button-16">
-                <div className="background-17">
-                    <span className="view-blockchain-explorer">View on blockchain explorer</span>
-                </div>
-            </div>
-            <div className="groups-18">
-                <div className="image-19"></div>
-                <div className="image-1a"></div>
-                <span className="transaction-arrived">Why hasn't my transaction arrived?</span>
-            </div>
-        </div>
-        <div className="background-1b"></div>
-        <div className="image-1c"></div>
-        <div className="image-1d"></div>
-    </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default Template9

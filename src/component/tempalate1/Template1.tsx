@@ -2,13 +2,13 @@ import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template1Props {
-  formData: FormData;
+    formData: FormData;
 }
 
 const Template1: React.FC<Template1Props> = ({ formData }) => {
-  return (
-    <>
-      <style>{`
+    return (
+        <>
+            <style>{`
         :root {
             --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                 Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
@@ -199,10 +199,11 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
         }
 
         .plus-usdt {
-            display: block;
+            display: flex;
+            justify-content: center;
             position: relative;
             height: 31.875px;
-            margin: 13.75px 0 0 106.25px;
+            margin: 13.75px 0 0 0px;
             color: #3c3f46;
             font-family: Inter, var(--default-font-family);
             font-size: 25.625px;
@@ -214,14 +215,15 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
         }
 
         .flex-row-c {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            width: 91.25px;
-            height: 16.875px;
-            margin: 13.125px 0 0 140.625px;
-            z-index: 31;
+       display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: max-content;
+    height: 16.875px;
+    margin: 13.125px 0 0 140.625px;
+    z-index: 31;
+    gap: 6px;
         }
 
         .image-8 {
@@ -669,72 +671,72 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
         }
       `}</style>
 
-      <div className="main-container">
-        <div className="root">
-          <div className="groups">
-            <span className="time">{formData.time || "8:03"}</span>
-            <div className="image"><span className="number">80</span></div>
-            <div className="image-1"></div>
-            <div className="image-2"></div>
-          </div>
-          <div className="groups-3">
-            <span className="deposit-details">Deposit Details</span>
-            <div className="image-4"></div>
-            <div className="image-5"></div>
-          </div>
-          <div className="groups-6">
-            <div className="groups-7">
-              <span className="plus-usdt">{formData.amount ? `+${formData.amount} USDT` : "+1,033 USDT"}</span>
-              <div className="flex-row-c">
-                <div className="image-8"></div>
-                <span className="completed">Completed</span>
-              </div>
-            </div>
-            <div className="background"></div>
-            <div className="groups-9">
-              <div className="flex-row-c-a">
-                <span className="network">Network</span>
-                <div className="button">
-                  <div className="background-b"><span className="trx">TRX</span></div>
+            <div className="main-container">
+                <div className="root">
+                    <div className="groups">
+                        <span className="time">{formData.time || "8:03"}</span>
+                        <div className="image"><span className="number">80</span></div>
+                        <div className="image-1"></div>
+                        <div className="image-2"></div>
+                    </div>
+                    <div className="groups-3">
+                        <span className="deposit-details">Deposit Details</span>
+                        <div className="image-4"></div>
+                        <div className="image-5"></div>
+                    </div>
+                    <div className="groups-6">
+                        <div className="groups-7">
+                            <span className="plus-usdt">{formData.amount ? `+${formData.amount} USDT` : "+1,033 USDT"}</span>
+                            <div className="flex-row-c">
+                                <div className="image-8"></div>
+                                <span className="completed">Completed</span>
+                            </div>
+                        </div>
+                        <div className="background"></div>
+                        <div className="groups-9">
+                            <div className="flex-row-c-a">
+                                <span className="network">Network</span>
+                                <div className="button">
+                                    <div className="background-b"><span className="trx">TRX</span></div>
+                                </div>
+                            </div>
+                            <div className="flex-row-ffa">
+                                <span className="tyfdwdhhzigjrc">{formData.sender || "TYF8dWd5HHZiGjrcVGVEUq1N4LpLnRDdix"}</span><span
+                                    className="address">Address</span>
+                                <div className="image-c"></div>
+                            </div>
+                            <div className="groups-d">
+                                <span className="internal-transfer">{formData.receiver || "Internal transfer 132554919104"}</span><span
+                                    className="txid">Txid</span>
+                                <div className="image-e"></div>
+                            </div>
+                            <div className="flex-row-f">
+                                <span className="deposit-wallet">Deposit Wallet</span><span className="spot-wallet">Spot Wallet</span>
+                            </div>
+                            <div className="flex-row-d">
+                                <span className="date">Date</span><span className="text-f">{formData.date || "2023-03-16"}</span>
+                            </div>
+                        </div>
+                        <div className="groups-f">
+                            <div className="background-10">
+                                <div className="flex-row-bab">
+                                    <span className="btc-usdt">BTC/USDT</span>
+                                    <div className="image-11"></div>
+                                    <span className="number-text">43,018.81</span><span className="percentage-text">-0.38%</span>
+                                </div>
+                                <div className="flex-row-a">
+                                    <div className="background-12"></div>
+                                    <div className="background-13"></div>
+                                    <div className="background-14"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="background-15"></div>
                 </div>
-              </div>
-              <div className="flex-row-ffa">
-                <span className="tyfdwdhhzigjrc">{formData.sender || "TYF8dWd5HHZiGjrcVGVEUq1N4LpLnRDdix"}</span><span
-                  className="address">Address</span>
-                <div className="image-c"></div>
-              </div>
-              <div className="groups-d">
-                <span className="internal-transfer">{formData.receiver || "Internal transfer 132554919104"}</span><span
-                  className="txid">Txid</span>
-                <div className="image-e"></div>
-              </div>
-              <div className="flex-row-f">
-                <span className="deposit-wallet">Deposit Wallet</span><span className="spot-wallet">Spot Wallet</span>
-              </div>
-              <div className="flex-row-d">
-                <span className="date">Date</span><span className="text-f">{formData.date || "2023-03-16"}</span>
-              </div>
             </div>
-            <div className="groups-f">
-              <div className="background-10">
-                <div className="flex-row-bab">
-                  <span className="btc-usdt">BTC/USDT</span>
-                  <div className="image-11"></div>
-                  <span className="number-text">43,018.81</span><span className="percentage-text">-0.38%</span>
-                </div>
-                <div className="flex-row-a">
-                  <div className="background-12"></div>
-                  <div className="background-13"></div>
-                  <div className="background-14"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="background-15"></div>
-        </div>
-      </div>
-    </>
-  );
+        </>
+    );
 };
 
 export default Template1;

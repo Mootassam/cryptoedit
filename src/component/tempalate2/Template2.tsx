@@ -2,13 +2,13 @@ import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template2Props {
-  formData: FormData;
+    formData: FormData;
 }
 
 const Template2: React.FC<Template2Props> = ({ formData }) => {
-  return (
-    <>
-      <style>{`
+    return (
+        <>
+            <style>{`
         :root {
             --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                 Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
@@ -427,7 +427,6 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
 
         .flex-column-f {
             position: absolute;
-            width: 215px;
             height: 48.125px;
             right: 32.5px;
             bottom: 15px;
@@ -439,7 +438,8 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
             display: block;
             position: relative;
             height: 16.25px;
-            margin: 0 0 0 0;
+                      margin: 0px 0 0 17.5px;
+
             color: #cecfd0;
             font-family: Inter, var(--default-font-family);
             font-size: 12.5px;
@@ -720,86 +720,86 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
         }
       `}</style>
 
-      <div className="main-container">
-        <div className="root">
-          <div className="groups">
-            <div className="groups-1">
-              <div className="text">
-                <div className="background">
-                  <div className="image"></div>
-                  <div className="image-2"></div>
+            <div className="main-container">
+                <div className="root">
+                    <div className="groups">
+                        <div className="groups-1">
+                            <div className="text">
+                                <div className="background">
+                                    <div className="image"></div>
+                                    <div className="image-2"></div>
+                                </div>
+                            </div>
+                            <span className="time">{formData.time || "5:21"}</span>
+                            <div className="image-3"></div>
+                            <div className="image-4"></div>
+                            <div className="image-5"></div>
+                            <div className="image-6"></div>
+                        </div>
+                        <div className="flex-row-fd">
+                            <div className="image-7"></div>
+                            <span className="transaction-details">Transaction Details</span>
+                        </div>
+                        <span className="send">Send</span>
+                        <div className="groups-8">
+                            <div className="groups-9">
+                                <div className="background-a">
+                                    <div className="flex-column-e">
+                                        <span className="usdt">{formData.amount ? `-${formData.amount}USDT` : "-9USDT"}</span><span className="trc-trnh-jl">TRC20 TR7NH...jLj6t</span>
+                                    </div>
+                                    <div className="image-b"></div>
+                                </div>
+                            </div>
+                            <div className="groups-c">
+                                <div className="background-d">
+                                    <div className="flex-row-da">
+                                        <span className="status">Status</span><span className="pending">Pending</span>
+                                    </div>
+                                    <div className="flex-row">
+                                        <span className="time-e">Time</span><span className="text-9">{formData.date || "2024-04-0317:20:48"}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="groups-f">
+                                <div className="background-10">
+                                    <div className="flex-column-f">
+                                        <span className="thybkhr-my">{formData.sender || "TH98ybKh1R2...myLFwpEzMHV"}</span><span
+                                            className="txoy-kdfan-y">{formData.receiver || "TXoy99Kdfan...3Yhc3usLGYa"}</span>
+                                    </div>
+                                    <div className="flex-column-ccc">
+                                        <span className="from">From</span><span className="to">To</span>
+                                    </div>
+                                    <div className="flex-column-f-11">
+                                        <div className="image-12"></div>
+                                        <div className="image-13"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="groups-14">
+                                <div className="background-15">
+                                    <div className="flex-row-e">
+                                        <span className="txid">TxID</span><span className="dba-cf">{formData.txid || "8d53ba...c9954f"}</span>
+                                        <div className="image-16"></div>
+                                    </div>
+                                    <div className="flex-row-ff">
+                                        <span className="height">Height</span><span className="text-11">60512630</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="groups-17">
+                                <div className="background-18">
+                                    <span className="view-on-blockcha">View on Blockchain Explorer</span>
+                                    <div className="image-19"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="background-1a"></div>
                 </div>
-              </div>
-              <span className="time">{formData.time || "5:21"}</span>
-              <div className="image-3"></div>
-              <div className="image-4"></div>
-              <div className="image-5"></div>
-              <div className="image-6"></div>
+                <div className="image-1b"></div>
             </div>
-            <div className="flex-row-fd">
-              <div className="image-7"></div>
-              <span className="transaction-details">Transaction Details</span>
-            </div>
-            <span className="send">Send</span>
-            <div className="groups-8">
-              <div className="groups-9">
-                <div className="background-a">
-                  <div className="flex-column-e">
-                    <span className="usdt">{formData.amount ? `-${formData.amount}USDT` : "-9USDT"}</span><span className="trc-trnh-jl">TRC20 TR7NH...jLj6t</span>
-                  </div>
-                  <div className="image-b"></div>
-                </div>
-              </div>
-              <div className="groups-c">
-                <div className="background-d">
-                  <div className="flex-row-da">
-                    <span className="status">Status</span><span className="pending">Pending</span>
-                  </div>
-                  <div className="flex-row">
-                    <span className="time-e">Time</span><span className="text-9">{formData.date || "2024-04-0317:20:48"}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="groups-f">
-                <div className="background-10">
-                  <div className="flex-column-f">
-                    <span className="thybkhr-my">{formData.sender || "TH98ybKh1R2...myLFwpEzMHV"}</span><span
-                      className="txoy-kdfan-y">{formData.receiver || "TXoy99Kdfan...3Yhc3usLGYa"}</span>
-                  </div>
-                  <div className="flex-column-ccc">
-                    <span className="from">From</span><span className="to">To</span>
-                  </div>
-                  <div className="flex-column-f-11">
-                    <div className="image-12"></div>
-                    <div className="image-13"></div>
-                  </div>
-                </div>
-              </div>
-              <div className="groups-14">
-                <div className="background-15">
-                  <div className="flex-row-e">
-                    <span className="txid">TxID</span><span className="dba-cf">{formData.txid || "8d53ba...c9954f"}</span>
-                    <div className="image-16"></div>
-                  </div>
-                  <div className="flex-row-ff">
-                    <span className="height">Height</span><span className="text-11">60512630</span>
-                  </div>
-                </div>
-              </div>
-              <div className="groups-17">
-                <div className="background-18">
-                  <span className="view-on-blockcha">View on Blockchain Explorer</span>
-                  <div className="image-19"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="background-1a"></div>
-        </div>
-        <div className="image-1b"></div>
-      </div>
-    </>
-  );
+        </>
+    );
 };
 
 export default Template2;

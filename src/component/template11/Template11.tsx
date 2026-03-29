@@ -190,10 +190,11 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
         }
 
         .withdrawn {
-            display: block;
+            display: flex;
+            justify-content: center;
             position: relative;
             height: 16.875px;
-            margin: 6.25px 0 0 71.25px;
+            margin: 6.25px 0 0 0px;
             color: #2a2a2a;
             font-family: Inter, var(--default-font-family);
             font-size: 15px;

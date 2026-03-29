@@ -9,7 +9,6 @@ const optionBank = [
   // Withdraw templates
   { name: "Template 3", value: "template3", type: "withdraw" },
   { name: "Template 6", value: "template6", type: "withdraw" },
-  { name: "Template 7", value: "template7", type: "withdraw" },
   { name: "Template 8", value: "template8", type: "withdraw" },
   { name: "Template 9", value: "template9", type: "withdraw" },
   { name: "Template 10", value: "template10", type: "withdraw" },

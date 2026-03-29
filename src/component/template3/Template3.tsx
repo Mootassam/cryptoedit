@@ -198,10 +198,11 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           overflow: visible auto;
         }
         .minus-usdt {
-          display: block;
+          display: flex;
           position: relative;
           height: 25px;
-          margin: 20px 0 0 86.25px;
+          justify-content: center;
+          margin: 20px 0 0 0px;
           color: #c7cbd2;
           font-family: Inter, var(--default-font-family);
           font-size: 23.125px;

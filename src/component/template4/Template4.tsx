@@ -8,7 +8,7 @@ interface Template4Props {
 const Template4: React.FC<Template4Props> = ({ formData }) => {
   return (
     <>
-    <style>{`    :root {
+      <style>{`    :root {
   --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
     "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
@@ -259,10 +259,11 @@ button {
   z-index: 34;
 }
 .usdt {
-  display: block;
+  display: flex;
   position: relative;
   height: 28.75px;
-  margin: 18.125px 0 0 69.375px;
+  margin: 18.125px 0 0 0px;
+  justify-content: center;
   color: #cfd2d8;
   font-family: Inter, var(--default-font-family);
   font-size: 25px;
@@ -654,86 +655,86 @@ button {
   background-size: cover;
   z-index: 30;
 }`}</style>
-    
-  <div className="main-container">
-      <div className="groups">
-        <div className="groups-1">
-          <span className="span">3.25</span>
-          <div className="flex-row-e">
-            <span className="colon">{formData.time || "6:03"}</span>
-            <div className="regroup">
-              <div className="image"></div>
-              <div className="image-2"></div>
+
+      <div className="main-container">
+        <div className="groups">
+          <div className="groups-1">
+            <span className="span">3.25</span>
+            <div className="flex-row-e">
+              <span className="colon">{formData.time || "6:03"}</span>
+              <div className="regroup">
+                <div className="image"></div>
+                <div className="image-2"></div>
+              </div>
+              <div className="image-3"></div>
+              <div className="image-4"></div>
+              <div className="image-5"></div>
+              <div className="image-6"></div>
             </div>
-            <div className="image-3"></div>
-            <div className="image-4"></div>
-            <div className="image-5"></div>
-            <div className="image-6"></div>
+            <span className="kb-s">KB/s</span>
           </div>
-          <span className="kb-s">KB/s</span>
-        </div>
-        <div className="groups-7"><div className="image-8"></div></div>
-        <div className="groups-9">
-          <div className="image-a">
-            <div className="image-b"><div className="image-c"></div></div>
-          </div>
-          <span className="payment-successf">Payment Successful</span
-          ><span className="usdt">{formData.amount || "0.0080046"}USDT</span
-          ><span className="the-recipient-ca"
+          <div className="groups-7"><div className="image-8"></div></div>
+          <div className="groups-9">
+            <div className="image-a">
+              <div className="image-b"><div className="image-c"></div></div>
+            </div>
+            <span className="payment-successf">Payment Successful</span
+            ><span className="usdt">{formData.amount || "0.0080046"}USDT</span
+            ><span className="the-recipient-ca"
             >The recipient can check the balance in the Funding<br />Account</span
-          >
-        </div>
-        <div className="groups-d">
-          <div className="groups-e">
-            <div className="flex-row-d">
-              <span className="span-to">To</span
-              ><span className="span-nickname-muneeb">Nickname: {formData.sender || "Muneeb-h4u6m"}</span>
-            </div>
-            <span className="span-940266562">{formData.receiver || "940266562"}</span
-            ><span className="span-add-alias">Add Alias</span>
-            <div className="groups-f">
-              <span className="span-411263337551249408">{formData.sender || "411263337551249408"}</span>
-              <div className="image-10"></div>
-              <span className="span-order-id">Order ID</span>
-            </div>
+            >
           </div>
-          <div className="flex-row-fd">
-            <span className="span-payment-method">Payment Method</span
-            ><span className="spot-account">Spot Account</span>
-          </div>
-          <div className="flex-row-e-11">
-            <span className="paid-with">Paid With</span
-            ><span className="usdt-12">{formData.amount || "0.0080046"}USDT</span>
-          </div>
-          <div className="groups-13">
-            <div className="background">
-              <span className="enjoy-up-to"
-                >Enjoy Up to 50% Off in Hot<br />Deals</span
-              >
-              <div className="image-14"></div>
-            </div>
-          </div>
-          <div className="groups-15">
-            <div className="button">
-              <div className="background-16">
-                <span className="send-another-tra">Send Another Transaction</span>
+          <div className="groups-d">
+            <div className="groups-e">
+              <div className="flex-row-d">
+                <span className="span-to">To</span
+                ><span className="span-nickname-muneeb">Nickname: {formData.sender || "Muneeb-h4u6m"}</span>
+              </div>
+              <span className="span-940266562">{formData.receiver || "940266562"}</span
+              ><span className="span-add-alias">Add Alias</span>
+              <div className="groups-f">
+                <span className="span-411263337551249408">{formData.sender || "411263337551249408"}</span>
+                <div className="image-10"></div>
+                <span className="span-order-id">Order ID</span>
               </div>
             </div>
-            <div className="groups-17">
-              <div className="image-18"></div>
-              <div className="image-19"></div>
-              <div className="image-1a"></div>
+            <div className="flex-row-fd">
+              <span className="span-payment-method">Payment Method</span
+              ><span className="spot-account">Spot Account</span>
+            </div>
+            <div className="flex-row-e-11">
+              <span className="paid-with">Paid With</span
+              ><span className="usdt-12">{formData.amount || "0.0080046"}USDT</span>
+            </div>
+            <div className="groups-13">
+              <div className="background">
+                <span className="enjoy-up-to"
+                >Enjoy Up to 50% Off in Hot<br />Deals</span
+                >
+                <div className="image-14"></div>
+              </div>
+            </div>
+            <div className="groups-15">
+              <div className="button">
+                <div className="background-16">
+                  <span className="send-another-tra">Send Another Transaction</span>
+                </div>
+              </div>
+              <div className="groups-17">
+                <div className="image-18"></div>
+                <div className="image-19"></div>
+                <div className="image-1a"></div>
+              </div>
             </div>
           </div>
         </div>
+        <div className="image-1b"></div>
+        <div className="image-1c"></div>
+        <div className="image-1d"></div>
+        <div className="background-1e"></div>
       </div>
-      <div className="image-1b"></div>
-      <div className="image-1c"></div>
-      <div className="image-1d"></div>
-      <div className="background-1e"></div>
-    </div>
-    
-    
+
+
     </>
   )
 }

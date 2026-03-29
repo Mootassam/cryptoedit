@@ -241,10 +241,12 @@ const Template12: React.FC<Template12Props> = ({ formData }) => {
         }
 
         .deposited-usd {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             height: 17.5px;
-            margin: 6.875px 0 0 100.625px;
+            margin: 6.875px 0 0 0px;
             color: #282828;
             font-family: Inter, var(--default-font-family);
             font-size: 16.25px;

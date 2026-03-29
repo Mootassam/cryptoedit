@@ -2,11 +2,11 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./sidebar.css";
 import optionBank from "../../data/OptionBank";
 import { FormData } from "../../shared/FormDataContext";
-import { 
-  FaEraser, 
-  FaUndo, 
-  FaCamera, 
-  FaTimes, 
+import {
+  FaEraser,
+  FaUndo,
+  FaCamera,
+  FaTimes,
   FaEdit,
   FaClock,
   FaCalendar,
@@ -29,7 +29,7 @@ const CoinIcon = ({ type }) => {
   };
 
   return (
-    <div 
+    <div
       className="coin__icon-placeholder"
       style={coinStyles[type]}
     >
@@ -61,7 +61,7 @@ function Sidebar({
   const [language, setLanguage] = useState("english");
   const [randomData, setRandomData] = useState(false);
   const [isScreenshotAnimating, setIsScreenshotAnimating] = useState(false);
-  
+
   // formData is now received from props (global state from App.tsx)
 
   // Coin options
@@ -87,16 +87,16 @@ function Sidebar({
       "0x1234567890abcdef1234567890abcdef12345678",
       "0xabcdef1234567890abcdef1234567890abcdef12"
     ];
-    
+
     // Get current time
     const now = new Date();
-    const timeString = now.toLocaleTimeString('en-US', { 
-      hour: '2-digit', 
+    const timeString = now.toLocaleTimeString('en-US', {
+      hour: '2-digit',
       minute: '2-digit',
-      hour12: false 
+      hour12: false
     });
     const today = new Date().toISOString().split('T')[0];
-    
+
     return {
       time: timeString,
       date: today,
@@ -115,7 +115,7 @@ function Sidebar({
         setFormData(generateRandomData());
       }, 3000);
     }
-    
+
     return () => {
       if (interval) clearInterval(interval);
     };
@@ -132,10 +132,10 @@ function Sidebar({
   // Set current time
   const setCurrentTime = () => {
     const now = new Date();
-    const timeString = now.toLocaleTimeString('en-US', { 
-      hour: '2-digit', 
+    const timeString = now.toLocaleTimeString('en-US', {
+      hour: '2-digit',
       minute: '2-digit',
-      hour12: false 
+      hour12: false
     });
     setFormData(prev => ({ ...prev, time: timeString }));
   };
@@ -194,10 +194,10 @@ function Sidebar({
 
   const handleScreenshot = () => {
     setIsScreenshotAnimating(true);
-    
+
     // Trigger screenshot function
     screenshot();
-    
+
     // Reset animation after 300ms
     setTimeout(() => {
       setIsScreenshotAnimating(false);
@@ -208,52 +208,17 @@ function Sidebar({
     <>
       <div className="app__sidebar">
         {/* Coin Selection */}
-        <div className="coin__selection">
-          <label htmlFor="coin">Select Coin</label>
-          <div className="coin__options">
-            {coinOptions.map((coin) => (
-              <button
-                key={coin.id}
-                className={`coin__option ${selectedCoin === coin.id ? 'selected' : ''}`}
-                onClick={() => setSelectedCoin(coin.id)}
-                style={{
-                  borderColor: selectedCoin === coin.id ? coin.color : undefined
-                }}
-              >
-                {/* Try to use image, fallback to SVG if not available */}
-                {coin.icon ? (
-                  <img 
-                    src={coin.icon} 
-                    alt={coin.name}
-                    className="coin__icon"
-                    onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                      // If image fails to load, show fallback
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const nextSibling = target.nextElementSibling as HTMLElement;
-                      if (nextSibling) {
-                        nextSibling.style.display = 'flex';
-                      }
-                    }}
-                  />
-                ) : (
-                  <CoinIcon type={coin.id.toLowerCase()} />
-                )}
-                <span className="coin__name">{coin.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+
 
         {/* Transaction Type Selector */}
         <div className="transaction__type">
-          <button 
+          <button
             className={`type__btn ${transactionType === 'deposit' ? 'active' : ''}`}
             onClick={() => setTransactionType('deposit')}
           >
             Deposit
           </button>
-          <button 
+          <button
             className={`type__btn ${transactionType === 'withdraw' ? 'active' : ''}`}
             onClick={() => setTransactionType('withdraw')}
           >
@@ -354,13 +319,13 @@ function Sidebar({
         <div className="language__selector">
           <span className="language__label">Language</span>
           <div className="language__buttons">
-            <button 
+            <button
               className={`language__btn ${language === 'english' ? 'active' : ''}`}
               onClick={() => setLanguage('english')}
             >
               English
             </button>
-            <button 
+            <button
               className={`language__btn ${language === 'chinese' ? 'active' : ''}`}
               onClick={() => setLanguage('chinese')}
             >
@@ -370,8 +335,8 @@ function Sidebar({
         </div>
 
         {/* Screenshot Button */}
-        <button 
-          className="app__screenshot" 
+        <button
+          className="app__screenshot"
           onClick={handleScreenshot}
           style={{
             transform: isScreenshotAnimating ? 'scale(0.98)' : 'scale(1)',
@@ -393,7 +358,7 @@ function Sidebar({
                 <FaTimes />
               </button>
             </div>
-            
+
             <div className="modal__form">
               {/* Time Input */}
               <div className="input__group">
@@ -436,8 +401,8 @@ function Sidebar({
                     onChange={handleInputChange}
                     placeholder="Wallet address"
                   />
-                  <button 
-                    className="input__button" 
+                  <button
+                    className="input__button"
                     onClick={() => pasteFromClipboard('sender')}
                     title="Paste from clipboard"
                   >
@@ -457,8 +422,8 @@ function Sidebar({
                     placeholder="Amount"
                     step="0.01"
                   />
-                  <button 
-                    className="input__button" 
+                  <button
+                    className="input__button"
                     onClick={() => pasteFromClipboard('amount')}
                     title="Paste from clipboard"
                   >
@@ -477,8 +442,8 @@ function Sidebar({
                     onChange={handleInputChange}
                     placeholder="Wallet address"
                   />
-                  <button 
-                    className="input__button" 
+                  <button
+                    className="input__button"
                     onClick={() => pasteFromClipboard('receiver')}
                     title="Paste from clipboard"
                   >
@@ -497,15 +462,15 @@ function Sidebar({
                     onChange={handleInputChange}
                     placeholder="Transaction ID (TXID)"
                   />
-                  <button 
-                    className="input__button" 
+                  <button
+                    className="input__button"
                     onClick={() => pasteFromClipboard('txid')}
                     title="Paste from clipboard"
                   >
                     <FaPaste size={14} />
                   </button>
-                  <button 
-                    className="input__button" 
+                  <button
+                    className="input__button"
                     onClick={generateRandomTxid}
                     title="Generate random TXID"
                     style={{ minWidth: '42px' }}
@@ -520,8 +485,8 @@ function Sidebar({
                 <div className="random__toggle">
                   <span className="random__label">Generate Random Data</span>
                   <label className="toggle__switch">
-                    <input 
-                      type="checkbox" 
+                    <input
+                      type="checkbox"
                       checked={randomData}
                       onChange={handleRandomToggle}
                     />

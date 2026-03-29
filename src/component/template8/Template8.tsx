@@ -200,10 +200,11 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
         }
 
         .usdt {
-            display: block;
+            display: flex;
+            justify-content: center;
             position: relative;
             height: 23.75px;
-            margin: 12.5px 0 0 130px;
+            margin: 12.5px 0 0 0px;
             color: #1f1f1f;
             font-family: Inter, var(--default-font-family);
             font-size: 21.875px;
