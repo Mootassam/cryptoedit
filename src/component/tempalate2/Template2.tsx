@@ -439,11 +439,10 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
             position: relative;
             height: 16.25px;
                       margin: 0px 0 0 17.5px;
-
             color: #cecfd0;
             font-family: Inter, var(--default-font-family);
             font-size: 12.5px;
-            font-weight: 400;
+            font-weight: 700;
             line-height: 15.128px;
             text-align: left;
             white-space: nowrap;
@@ -458,7 +457,8 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
             color: #cbcccd;
             font-family: Inter, var(--default-font-family);
             font-size: 13.75px;
-            font-weight: 400;
+                    font-weight: 700;
+
             line-height: 16.25px;
             text-align: left;
             white-space: nowrap;

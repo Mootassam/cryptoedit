@@ -750,8 +750,6 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           top: 0;
           right: 0;
           left: 0;
-          background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/ZtdRcQO8EN.png)
-            no-repeat center;
           background-size: cover;
           z-index: 3;
         }
