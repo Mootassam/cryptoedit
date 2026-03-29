@@ -797,8 +797,8 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
                 ><span className="amount">Amount</span>
               </div>
               <div className="groups-e">
-                <span className="usdt-f">1USDT</span
-                ><span className="network-fee">Network fee</span>
+                <span className="usdt-f">1USDT</span>
+                <span className="network-fee">Network fee</span>
               </div>
               <div className="groups-10">
                 <span className="withdrawal-wallet">Withdrawal Wallet</span
