@@ -19,6 +19,9 @@ import Template10 from "./component/template10/Template10";
 import Template11 from "./component/template11/Template11";
 import Template12 from "./component/template12/Template12";
 import Template13 from "./component/template13/Template13";
+import Template14 from "./component/template14/Template14";
+import Template15 from "./component/template15/Template15";
+
 
 function App() {
   const divRef = useRef<HTMLDivElement>(null);
@@ -103,6 +106,11 @@ function App() {
               {value === "template11" && <Template11 formData={formData} />}
               {value === "template12" && <Template12 formData={formData} />}
               {value === "template13" && <Template13 formData={formData} />}
+              {value === "template14" && <Template14 formData={formData} />}
+              {value === "Template15" && <Template15 formData={formData} />}
+
+              
+
             </FormDataProvider>
           </div>
         </main>
