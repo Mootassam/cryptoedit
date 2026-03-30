@@ -56,6 +56,132 @@ function Sidebar({
   formData,
   setFormData,
 }) {
+  // Template field label mappings
+  const templateFieldLabels = {
+    template1: {
+      sender: 'Address',
+      receiver: 'Txid',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time'
+    },
+    template2: {
+      sender: 'From',
+      receiver: 'To',
+      txid: 'TxID',
+      amount: 'Amount',
+      date: 'Date/Time',
+      time: 'Time'
+    },
+    template3: {
+      sender: 'Txid',
+      receiver: 'Address',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Network fee'
+    },
+    template4: {
+      sender: 'Nickname',
+      receiver: 'Receiver ID',
+      amount: 'Amount',
+      time: 'Time'
+    },
+    template5: {
+      sender: 'Deposit from',
+      receiver: 'Receiver',
+      amount: 'Amount',
+      date: 'Date/Time',
+      time: 'Time'
+    },
+    template6: {
+      receiver: 'Withdraw to',
+      amount: 'Amount',
+      date: 'Date/Time',
+      time: 'Time',
+      fee: 'Fee'
+    },
+    template7: {
+      sender: 'Address',
+      receiver: 'Txid',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Network fee'
+    },
+    template8: {
+      sender: 'From',
+      receiver: 'To',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Network fee'
+    },
+    template9: {
+      sender: 'Address',
+      receiver: 'Txid',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Network fee'
+    },
+    template10: {
+      sender: 'From',
+      receiver: 'To',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Fees'
+    },
+    template11: {
+      sender: 'Address',
+      receiver: 'Txid',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Network fee',
+      referenceNo: 'Reference no.'
+    },
+    template12: {
+      sender: 'From',
+      receiver: 'To',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time'
+    },
+    template13: {
+      sender: 'From',
+      receiver: 'To',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Gas Fee',
+      txid: 'TxID'
+    },
+    template14: {
+      sender: 'From',
+      receiver: 'To',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Network fee'
+    },
+    Template15: {
+      sender: 'Address',
+      receiver: 'Txid',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Network fee'
+    }
+  };
+
+  // Get current template field labels
+  const getCurrentFieldLabels = () => {
+    return templateFieldLabels[value] || templateFieldLabels.template1;
+  };
+
+  const fieldLabels = getCurrentFieldLabels();
   const [selectedCoin, setSelectedCoin] = useState("USDT");
   const [showEditModal, setShowEditModal] = useState(false);
   const [language, setLanguage] = useState("english");
@@ -103,7 +229,9 @@ function Sidebar({
       sender: wallets[Math.floor(Math.random() * wallets.length)],
       amount: amounts[Math.floor(Math.random() * amounts.length)],
       receiver: wallets[Math.floor(Math.random() * wallets.length)],
-      txid: txids[Math.floor(Math.random() * txids.length)]
+      txid: txids[Math.floor(Math.random() * txids.length)],
+      fee: "0.15",
+      referenceNo: "372620932"
     };
   }, []);
 
@@ -368,7 +496,7 @@ function Sidebar({
                     name="time"
                     value={formData.time}
                     onChange={handleInputChange}
-                    placeholder="Time (HH:MM)"
+                    placeholder={fieldLabels.time || "Time (HH:MM)"}
                   />
                   <button className="input__button" onClick={setCurrentTime} title="Set current time">
                     <FaClock size={14} />
@@ -377,108 +505,163 @@ function Sidebar({
               </div>
 
               {/* Date Input */}
-              <div className="input__group">
-                <div className="input__with__buttons">
-                  <input
-                    type="date"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleInputChange}
-                  />
-                  <button className="input__button" onClick={setCurrentDate} title="Set today's date">
-                    <FaCalendar size={14} />
-                  </button>
+              {fieldLabels.date && (
+                <div className="input__group">
+                  <div className="input__with__buttons">
+                    <input
+                      type="date"
+                      name="date"
+                      value={formData.date}
+                      onChange={handleInputChange}
+                      placeholder={fieldLabels.date}
+                    />
+                    <button className="input__button" onClick={setCurrentDate} title="Set today's date">
+                      <FaCalendar size={14} />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Sender Input */}
-              <div className="input__group">
-                <div className="input__with__buttons">
-                  <input
-                    type="text"
-                    name="sender"
-                    value={formData.sender}
-                    onChange={handleInputChange}
-                    placeholder="Wallet address"
-                  />
-                  <button
-                    className="input__button"
-                    onClick={() => pasteFromClipboard('sender')}
-                    title="Paste from clipboard"
-                  >
-                    <FaPaste size={14} />
-                  </button>
+              {fieldLabels.sender && (
+                <div className="input__group">
+                  <div className="input__with__buttons">
+                    <input
+                      type="text"
+                      name="sender"
+                      value={formData.sender}
+                      onChange={handleInputChange}
+                      placeholder={fieldLabels.sender}
+                    />
+                    <button
+                      className="input__button"
+                      onClick={() => pasteFromClipboard('sender')}
+                      title="Paste from clipboard"
+                    >
+                      <FaPaste size={14} />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Amount Input */}
-              <div className="input__group">
-                <div className="input__with__buttons">
-                  <input
-                    type="number"
-                    name="amount"
-                    value={formData.amount}
-                    onChange={handleInputChange}
-                    placeholder="Amount"
-                    step="0.01"
-                  />
-                  <button
-                    className="input__button"
-                    onClick={() => pasteFromClipboard('amount')}
-                    title="Paste from clipboard"
-                  >
-                    <FaPaste size={14} />
-                  </button>
+              {fieldLabels.amount && (
+                <div className="input__group">
+                  <div className="input__with__buttons">
+                    <input
+                      type="number"
+                      name="amount"
+                      value={formData.amount}
+                      onChange={handleInputChange}
+                      placeholder={fieldLabels.amount}
+                      step="0.01"
+                    />
+                    <button
+                      className="input__button"
+                      onClick={() => pasteFromClipboard('amount')}
+                      title="Paste from clipboard"
+                    >
+                      <FaPaste size={14} />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Receiver Input */}
-              <div className="input__group">
-                <div className="input__with__buttons">
-                  <input
-                    type="text"
-                    name="receiver"
-                    value={formData.receiver}
-                    onChange={handleInputChange}
-                    placeholder="Wallet address"
-                  />
-                  <button
-                    className="input__button"
-                    onClick={() => pasteFromClipboard('receiver')}
-                    title="Paste from clipboard"
-                  >
-                    <FaPaste size={14} />
-                  </button>
+              {fieldLabels.receiver && (
+                <div className="input__group">
+                  <div className="input__with__buttons">
+                    <input
+                      type="text"
+                      name="receiver"
+                      value={formData.receiver}
+                      onChange={handleInputChange}
+                      placeholder={fieldLabels.receiver}
+                    />
+                    <button
+                      className="input__button"
+                      onClick={() => pasteFromClipboard('receiver')}
+                      title="Paste from clipboard"
+                    >
+                      <FaPaste size={14} />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* TXID Input - New Field */}
-              <div className="input__group">
-                <div className="input__with__buttons">
-                  <input
-                    type="text"
-                    name="txid"
-                    value={formData.txid}
-                    onChange={handleInputChange}
-                    placeholder="Transaction ID (TXID)"
-                  />
-                  <button
-                    className="input__button"
-                    onClick={() => pasteFromClipboard('txid')}
-                    title="Paste from clipboard"
-                  >
-                    <FaPaste size={14} />
-                  </button>
-                  <button
-                    className="input__button"
-                    onClick={generateRandomTxid}
-                    title="Generate random TXID"
-                    style={{ minWidth: '42px' }}
-                  >
-                    <FaRandom size={14} />
-                  </button>
+              {fieldLabels.txid && (
+                <div className="input__group">
+                  <div className="input__with__buttons">
+                    <input
+                      type="text"
+                      name="txid"
+                      value={formData.txid}
+                      onChange={handleInputChange}
+                      placeholder={fieldLabels.txid}
+                    />
+                    <button
+                      className="input__button"
+                      onClick={() => pasteFromClipboard('txid')}
+                      title="Paste from clipboard"
+                    >
+                      <FaPaste size={14} />
+                    </button>
+                    <button
+                      className="input__button"
+                      onClick={generateRandomTxid}
+                      title="Generate random TXID"
+                      style={{ minWidth: '42px' }}
+                    >
+                      <FaRandom size={14} />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Fee Input */}
+              {fieldLabels.fee && (
+                <div className="input__group">
+                  <div className="input__with__buttons">
+                    <input
+                      type="text"
+                      name="fee"
+                      value={formData.fee || ''}
+                      onChange={handleInputChange}
+                      placeholder={fieldLabels.fee}
+                    />
+                    <button
+                      className="input__button"
+                      onClick={() => pasteFromClipboard('fee')}
+                      title="Paste from clipboard"
+                    >
+                      <FaPaste size={14} />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Reference No. Input */}
+              {fieldLabels.referenceNo && (
+                <div className="input__group">
+                  <div className="input__with__buttons">
+                    <input
+                      type="text"
+                      name="referenceNo"
+                      value={formData.referenceNo || ''}
+                      onChange={handleInputChange}
+                      placeholder={fieldLabels.referenceNo}
+                    />
+                    <button
+                      className="input__button"
+                      onClick={() => pasteFromClipboard('referenceNo')}
+                      title="Paste from clipboard"
+                    >
+                      <FaPaste size={14} />
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {/* Random Data Option */}
               <div className="random__option">

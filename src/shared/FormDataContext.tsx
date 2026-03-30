@@ -7,6 +7,8 @@ export interface FormData {
   amount: string;
   receiver: string;
   txid: string;
+  fee?: string;
+  referenceNo?: string;
 }
 
 interface FormDataContextType {

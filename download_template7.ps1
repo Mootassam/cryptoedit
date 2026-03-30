@@ -1,35 +1,15 @@
-# PowerShell script to download images and update component files
+# PowerShell script to download images from Template7
 
 # Define the base URLs and paths
-$baseUrl = "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-01-28/"
+$baseUrl = "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-03-30/"
 $publicBasePath = "public"
-$srcBasePath = "src/component"
+$template7File = "src/component/template7/Template7.tsx"
 
-# Template folders mapping
-$templateFolders = @{
-    "tempalate1" = "tempalate1"
-    "tempalate2" = "tempalate2"
-    "template3" = "template3"
-    "template4" = "template4"
-    "template5" = "template5"
-    "template6" = "template6"
-    "template7" = "template7"
-    "template8" = "template8"
-    "template9" = "template9"
-    "template10" = "template10"
-    "template11" = "template11"
-    "template12" = "template12"
-    "template13" = "template13"
-    
-}
-
-# Create public folders for each template
-foreach ($folder in $templateFolders.Values) {
-    $publicFolder = Join-Path $publicBasePath $folder
-    if (!(Test-Path $publicFolder)) {
-        New-Item -ItemType Directory -Path $publicFolder -Force | Out-Null
-        Write-Host "Created folder: $publicFolder"
-    }
+# Create public folder for template7 if it doesn't exist
+$publicFolder = Join-Path $publicBasePath "template7"
+if (!(Test-Path $publicFolder)) {
+    New-Item -ItemType Directory -Path $publicFolder -Force | Out-Null
+    Write-Host "Created folder: $publicFolder"
 }
 
 # Function to download image
@@ -55,20 +35,15 @@ function Download-Image {
     }
 }
 
-# Process each template file
-$templateFiles = Get-ChildItem -Path $srcBasePath -Recurse -Filter "Template*.tsx"
-
-foreach ($file in $templateFiles) {
-    $templateName = $file.Directory.Name
-    $publicFolder = Join-Path $publicBasePath $templateName
-    
-    Write-Host "`nProcessing: $($file.FullName)"
+# Process Template7
+if (Test-Path $template7File) {
+    Write-Host "`nProcessing: $template7File"
     
     # Read file content
-    $content = Get-Content -Path $file.FullName -Raw
+    $content = Get-Content -Path $template7File -Raw
     
     # Find all image URLs in the file
-    $pattern = 'https://codia-f2c\.s3\.us-west-1\.amazonaws\.com/image/2026-01-28/([a-zA-Z0-9]+\.png)'
+    $pattern = 'https://codia-f2c\.s3\.us-west-1\.amazonaws\.com/image/2026-03-30/([a-zA-Z0-9]+\.png)'
     $matches = [regex]::Matches($content, $pattern)
     
     $downloadedImages = @{}
@@ -76,7 +51,7 @@ foreach ($file in $templateFiles) {
     foreach ($match in $matches) {
         $fullUrl = $match.Value
         $imageName = $match.Groups[1].Value
-        $localPath = Join-Path $publicFolder $imageName
+        $localPath = "$publicBasePath\template7\$imageName"
         
         # Download image if not already downloaded
         if (!$downloadedImages.ContainsKey($imageName)) {
@@ -91,14 +66,14 @@ foreach ($file in $templateFiles) {
     $newContent = $content
     foreach ($imageName in $downloadedImages.Keys) {
         $oldUrl = "$baseUrl$imageName"
-        $newUrl = "/$templateName/$imageName"
+        $newUrl = "/template7/$imageName"
         $newContent = $newContent -replace [regex]::Escape($oldUrl), $newUrl
     }
     
     # Save updated content
     if ($newContent -ne $content) {
-        Set-Content -Path $file.FullName -Value $newContent -NoNewline
-        Write-Host "Updated: $($file.FullName)"
+        Set-Content -Path $template7File -Value $newContent -NoNewline
+        Write-Host "Updated: $template7File"
     }
 }
 

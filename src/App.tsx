@@ -44,7 +44,9 @@ function App() {
     sender: "",
     amount: "",
     receiver: "",
-    txid: ""
+    txid: "",
+    fee: "",
+    referenceNo: ""
   });
   
   // Set canvas dimensions based on template

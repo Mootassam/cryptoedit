@@ -576,21 +576,21 @@ button {
   border-radius: 6.25px;
 }
 .send-another-tra {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  height: 18.125px;
-  right: 68.75px;
-  bottom: 15px;
-  color: #816727;
-  font-family: Inter, var(--default-font-family);
-  font-size: 14.375px;
-  font-weight: 400;
-  line-height: 17.397px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 12;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    height: 18.125px;
+    right: 68.75px;
+    bottom: 15px;
+    color: #1F2630;
+    font-family: Inter, var(--default-font-family);
+    font-size: 14.375px;
+    font-weight: 500;
+    line-height: 17.397px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 12;
 }
 .groups-17 {
   position: relative;
