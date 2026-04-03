@@ -43,8 +43,8 @@ const Template15: React.FC<Template15Props> = ({ formData }) => {
   const dateTimeDisplay = formData.date || "Today at 6:11AM";
   
   // Network fee (could also derive from amount * small rate, but keep as is)
-  const feeDisplay = formData.fee ? `${formData.fee} TRX($${formData.feeUsd || '0.00'})` : "0 TRX($0.00)";
-  
+  const feeDisplay = formData.fee ? `${formData.fee} TRX($0.00)` : "0 TRX($0.00)";
+
   // Time in status bar (top right)
   const timeDisplay = formData.time || "9:44";
   
