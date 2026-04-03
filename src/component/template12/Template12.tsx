@@ -1,13 +1,57 @@
-import React from 'react'
+import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template12Props {
-  formData: FormData;
+    formData: FormData;
 }
+
+// Helper: truncate a string to show first N and last M characters
+const truncateString = (str: string, startChars: number, endChars: number): string => {
+    if (!str) return '';
+    if (str.length <= startChars + endChars) return str;
+    const start = str.slice(0, startChars);
+    const end = str.slice(-endChars);
+    return `${start}...${end}`;
+};
+
+// Format txid: first 5, last 5 → "Ox14f...97d0a"
+const formatTxid = (txid: string) => truncateString(txid, 5, 5);
+
+// Format USD amount with commas and 2 decimals
+const formatUSD = (amount: number): string => {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(amount);
+};
+
+// Small exchange rate USDT → USD (realistic variation)
+const USDT_TO_USD_RATE = 0.999; // slightly below 1
+
 const Template12: React.FC<Template12Props> = ({ formData }) => {
-  return (
-    <>
-    <style>{`
+    // Parse amount
+    const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 210;
+    const amountDisplay = formData.amount ? `Deposited ${formData.amount}USDT` : "Deposited 210USDT";
+    const usdValue = rawAmount * USDT_TO_USD_RATE;
+    const usdEquivalent = formatUSD(usdValue);
+
+    // Format txid
+    const txidFormatted = formatTxid(formData.txid || "Ox14f97d0a");
+
+    // Receiver address: no truncation, but will wrap naturally via CSS (word break)
+    const receiverAddress = formData.receiver || "0x507e7c8da475463ff743b6b7b65333ac8dc22f26";
+
+    // Combine date and time
+    const dateTimeDisplay = `${formData.date || "Nov 9,2025"}, ${formData.time || "8:15 PM"}`;
+
+    // Status bar time
+    const timeDisplay = formData.time || "10:31";
+
+    return (
+        <>
+            <style>{`
        :root {
             --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                 Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
@@ -69,7 +113,7 @@ const Template12: React.FC<Template12Props> = ({ formData }) => {
             color: #353535;
             font-family: Inter, var(--default-font-family);
             font-size: 14.375px;
-            font-weight: 400;
+            font-weight: 700;
             line-height: 15.625px;
             text-align: left;
             white-space: nowrap;
@@ -540,9 +584,13 @@ const Template12: React.FC<Template12Props> = ({ formData }) => {
             font-weight: 400;
             line-height: 15.049px;
             text-align: right;
-            text-overflow: initial;
+            /* Allow wrapping */
+            white-space: normal;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            text-overflow: unset;
+            overflow: visible;
             z-index: 14;
-            overflow: hidden;
         }
 
         .text-e {
@@ -625,7 +673,7 @@ const Template12: React.FC<Template12Props> = ({ formData }) => {
             height: 251.25px;
             right: 0;
             bottom: 548.75px;
-             background:#fff;
+            background:#fff;
             background-size: cover;
             z-index: 1;
         }
@@ -636,73 +684,79 @@ const Template12: React.FC<Template12Props> = ({ formData }) => {
             height: 555.625px;
             right: 0;
             bottom: 0;
-   background:#fff;
+            background:#fff;
             background-size: cover;
             z-index: 2;
         }
         `}</style>
 
-         <div className="main-container">
-        <div className="root">
-            <div className="groups">
-                <span className="time">{formData.time || "10:31"}</span>
-                <div className="image"></div>
-                <div className="image-1"></div>
-                <div className="image-2"></div>
-                <div className="image-3"></div>
-                <div className="image-4"></div>
-            </div>
-            <div className="button">
-                <div className="background">
-                    <span className="view-blockchain-explorer">View on blockchain explorer</span>
+            <div className="main-container">
+                <div className="root">
+                    <div className="groups">
+                        <span className="time">{timeDisplay}</span>
+                        <div className="image"></div>
+                        <div className="image-1"></div>
+                        <div className="image-2"></div>
+                        <div className="image-3"></div>
+                        <div className="image-4"></div>
+                    </div>
+                    <div className="button">
+                        <div className="background">
+                            <span className="view-blockchain-explorer">View on blockchain explorer</span>
+                        </div>
+                    </div>
+                    <div className="background-5"></div>
+                    <div className="groups-6">
+                        <div className="image-7"></div>
+                    </div>
+                    <div className="groups-8">
+                        <div className="groups-9">
+                            <div className="groups-a">
+                                <div className="image-b"></div>
+                                <span className="deposited-usd">{amountDisplay}</span>
+                                <span className="dollar-amount">{usdEquivalent}</span>
+                            </div>
+                            <div className="groups-c">
+                                <div className="image-d"></div>
+                                <span className="completed">Completed</span>
+                                <span className="status">Status</span>
+                            </div>
+                        </div>
+                        <div className="background-e"></div>
+                        <div className="groups-f">
+                            <div className="groups-10">
+                                <span className="price-amount">$0.99/USDT</span>
+                                <span className="price">Price</span>
+                                <div className="image-11"></div>
+                            </div>
+                            <div className="groups-12">
+                                <span className="ethereum-erc">Ethereum (ERC20)</span>
+                                <span className="network">Network</span>
+                                <div className="image-13"></div>
+                            </div>
+                            <div className="groups-14">
+                                <span className="transaction-id">Transaction ID</span>
+                                <span className="oxf-ada">{txidFormatted}</span>
+                                <div className="image-15"></div>
+                            </div>
+                            <div className="groups-16">
+                                <span className="text-d">{receiverAddress}</span>
+                                <span className="text-e">Address</span>
+                                <div className="img-8"></div>
+                            </div>
+                            <div className="box-4">
+                                <span className="text-f">{dateTimeDisplay}</span>
+                                <span className="text-10">Time</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div className="img-9"></div>
+                <div className="img-a"></div>
             </div>
-            <div className="background-5"></div>
-            <div className="groups-6">
-                <div className="image-7"></div>
-            </div>
-            <div className="groups-8">
-                <div className="groups-9">
-                    <div className="groups-a">
-                        <div className="image-b"></div>
-                        <span className="deposited-usd">{formData.amount ? `Deposited ${formData.amount}USDT` : "Deposited 210USDT"}</span><span className="dollar-amount">{formData.amount ? `~${formData.amount}` : "~$209.8"}</span>
-                    </div>
-                    <div className="groups-c">
-                        <div className="image-d"></div>
-                        <span className="completed">Completed</span><span className="status">Status</span>
-                    </div>
-                </div>
-                <div className="background-e"></div>
-                <div className="groups-f">
-                    <div className="groups-10">
-                        <span className="price-amount">$0.99/USDT</span><span className="price">Price</span>
-                        <div className="image-11"></div>
-                    </div>
-                    <div className="groups-12">
-                        <span className="ethereum-erc">Ethereum (ERC20)</span><span className="network">Network</span>
-                        <div className="image-13"></div>
-                    </div>
-                    <div className="groups-14">
-                        <span className="transaction-id">Transaction ID</span><span className="oxf-ada">{formData.txid || "Ox14f...97d0a"}</span>
-                        <div className="image-15"></div>
-                    </div>
-                    <div className="groups-16">
-                        <span className="text-d">{formData.receiver || "0x507e7c8da475463ff743"}<br />{"b6b7b65333ac8dc22f26"}</span><span
-                            className="text-e">Address</span>
-                        <div className="img-8"></div>
-                    </div>
-                    <div className="box-4">
-                        <span className="text-f">{formData.date || "Nov 9,2025"},{formData.time || "8:15 PM"}</span><span className="text-10">Time</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div className="img-9"></div>
-        <div className="img-a"></div>
-    </div>
-    
-    </>
-  )
-}
 
-export default Template12
+        </>
+    );
+};
+
+export default Template12;
