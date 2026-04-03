@@ -854,7 +854,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
                                 <div className="background-f">
                                     <div className="background-10"></div>
                                     <div className="groups-11">
-                                        <span className="tmo-ndcon-hwznhbmb">{formData.receiver || "TMoNDConHwznhbmBUWf43vxqbkRorjrL"}</span>
+                                        <span className="tmo-ndcon-hwznhbmb">{formData.receiver || "TMoNDConHwznhbmBUWf43vxqbkRorjrLd8"}</span>
                                         <span className="to">To</span>
                                     </div>
                                 </div>
@@ -862,7 +862,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
                             <div className="groups-12">
                                 <div className="background-13">
                                     <div className="flex-column-aa">
-                                        <span className="text-10">{formData.txid || "4bf991290fdd5d4286ace1820665f91864"}</span>
+                                        <span className="text-10">{formData.txid || "4bf991290fdd5d4286ace1820665f91864cd61d5033b48f180676ece8ad38cd8"}</span>
                                         <span className="see-details">See details</span>
                                         <div className="image-14"></div>
                                     </div>

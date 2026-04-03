@@ -5,7 +5,30 @@ interface Template2Props {
     formData: FormData;
 }
 
+// Helper: truncate a string to show first N and last M characters
+const truncateString = (str: string, startChars: number, endChars: number): string => {
+    if (!str) return '';
+    if (str.length <= startChars + endChars) return str;
+    const start = str.slice(0, startChars);
+    const end = str.slice(-endChars);
+    return `${start}...${end}`;
+};
+
+// Specific truncations based on your examples
+const formatSender = (sender: string) => truncateString(sender, 10, 10);   // "TH98ybKh1R2...myLFwpEzMHV"
+const formatReceiver = (receiver: string) => truncateString(receiver, 10, 10);
+const formatTxid = (txid: string) => truncateString(txid, 6, 6);           // "8d53ba...c9954f"
+const formatTokenAddress = (address: string) => truncateString(address, 5, 5); // "TR7NH...jLj6t"
+
 const Template2: React.FC<Template2Props> = ({ formData }) => {
+    // Prepare formatted values with fallbacks
+    const senderFormatted = formatSender(formData.sender || "TH98ybKh1R2myLFwpEzMHV");
+    const receiverFormatted = formatReceiver(formData.receiver || "TXoy99Kdfan3Yhc3usLGYa");
+    const txidFormatted = formatTxid(formData.txid || "8d53bac9954f");
+    // Token address: we use formData.sender again (as you requested) or fallback to "TR7NHjLj6t"
+    const tokenAddress = formatTokenAddress(formData.sender || "TR7NHjLj6t");
+    const tokenDisplay = `TRC20 ${tokenAddress}`;
+
     return (
         <>
             <style>{`
@@ -402,7 +425,6 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
             text-align: left;
             white-space: nowrap;
             z-index: 26;
-        
         }
 
         .groups-f {
@@ -439,7 +461,7 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
             display: block;
             position: relative;
             height: 16.25px;
-                      margin: 0px 0 0 17.5px;
+            margin: 0px 0 0 17.5px;
             color: #cecfd0;
             font-family: Inter, var(--default-font-family);
             font-size: 12.5px;
@@ -458,8 +480,7 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
             color: #cbcccd;
             font-family: Inter, var(--default-font-family);
             font-size: 13.75px;
-                    font-weight: 700;
-
+            font-weight: 700;
             line-height: 16.25px;
             text-align: left;
             white-space: nowrap;
@@ -746,7 +767,8 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
                             <div className="groups-9">
                                 <div className="background-a">
                                     <div className="flex-column-e">
-                                        <span className="usdt">{formData.amount ? `-${formData.amount}USDT` : "-9USDT"}</span><span className="trc-trnh-jl">TRC20 TR7NH...jLj6t</span>
+                                        <span className="usdt">{formData.amount ? `-${formData.amount}USDT` : "-9USDT"}</span>
+                                        <span className="trc-trnh-jl">{tokenDisplay}</span>
                                     </div>
                                     <div className="image-b"></div>
                                 </div>
@@ -764,8 +786,8 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
                             <div className="groups-f">
                                 <div className="background-10">
                                     <div className="flex-column-f">
-                                        <span className="thybkhr-my">{formData.sender || "TH98ybKh1R2...myLFwpEzMHV"}</span><span
-                                            className="txoy-kdfan-y">{formData.receiver || "TXoy99Kdfan...3Yhc3usLGYa"}</span>
+                                        <span className="thybkhr-my">{senderFormatted}</span>
+                                        <span className="txoy-kdfan-y">{receiverFormatted}</span>
                                     </div>
                                     <div className="flex-column-ccc">
                                         <span className="from">From</span><span className="to">To</span>
@@ -779,7 +801,8 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
                             <div className="groups-14">
                                 <div className="background-15">
                                     <div className="flex-row-e">
-                                        <span className="txid">TxID</span><span className="dba-cf">{formData.txid || "8d53ba...c9954f"}</span>
+                                        <span className="txid">TxID</span>
+                                        <span className="dba-cf">{txidFormatted}</span>
                                         <div className="image-16"></div>
                                     </div>
                                     <div className="flex-row-ff">
