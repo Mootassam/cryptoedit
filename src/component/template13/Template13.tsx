@@ -4,7 +4,11 @@ import { FormData } from '../../shared/FormDataContext';
 interface Template13Props {
   formData: FormData;
 }
+
 const Template13: React.FC<Template13Props> = ({ formData }) => {
+
+    
+    
   return (
     <>
     <style>{`
@@ -248,7 +252,8 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
         .groups-5 {
             position: relative;
             width: 369.375px;
-            height: 583.75px;
+            height: auto;
+            min-height: 583.75px;
             margin: 3.125px 0 0 0;
             background: rgba(0, 0, 0, 0);
             z-index: 8;
@@ -457,12 +462,11 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
         .flex-row-d {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             position: relative;
-            width: 140.625px;
             height: 15px;
             margin: 14.375px 0 0 20.625px;
             z-index: 30;
+            gap: 14px;
         }
 
         .gas-fee {
@@ -496,7 +500,8 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
         .groups-d {
             position: relative;
             width: 347.5px;
-            height: 135px;
+            height: auto;
+            min-height: 135px;
             margin: 10px 0 0 10.625px;
             background: rgba(0, 0, 0, 0);
             z-index: 15;
@@ -505,20 +510,23 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
         .groups-e {
             position: absolute;
             width: 341.25px;
-            height: 67.5px;
+            min-height: 67.5px;
+            height: auto;
             right: 3.125px;
             bottom: 64.375px;
             background: rgba(0, 0, 0, 0);
             z-index: 21;
         }
 
+        /* Sender field - allows wrapping */
         .tmsmmtkye-ahss {
             display: flex;
             align-items: center;
             justify-content: flex-start;
             position: absolute;
             width: 237.5px;
-            height: 33px;
+            min-height: 33px;
+            height: auto;
             right: 21.875px;
             bottom: 13.25px;
             color: #454545;
@@ -527,9 +535,10 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             font-weight: 400;
             line-height: 16.064px;
             text-align: left;
-            text-overflow: initial;
+            white-space: normal;
+            word-break: break-word;
+            overflow: visible;
             z-index: 22;
-            overflow: hidden;
         }
 
         .from {
@@ -553,7 +562,8 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
         .background-f {
             position: absolute;
             width: 340.625px;
-            height: 129.375px;
+            min-height: 129.375px;
+            height: auto;
             right: 3.125px;
             bottom: 1.25px;
             background: #fefefe;
@@ -574,19 +584,22 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
         .groups-11 {
             position: relative;
             width: 341.25px;
-            height: 63.125px;
+            min-height: 63.125px;
+            height: auto;
             margin: -1.875px 0 0 -0.63px;
             background: rgba(0, 0, 0, 0);
             z-index: 17;
         }
 
+        /* Receiver field - allows wrapping */
         .tmo-ndcon-hwznhbmb {
             display: flex;
             align-items: center;
             justify-content: flex-start;
             position: absolute;
             width: 243.75px;
-            height: 32px;
+            min-height: 32px;
+            height: auto;
             right: 15.625px;
             bottom: 14.875px;
             color: #3e3e3e;
@@ -595,9 +608,10 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             font-weight: 400;
             line-height: 15.938px;
             text-align: left;
-            text-overflow: initial;
+            white-space: normal;
+            word-break: break-word;
+            overflow: visible;
             z-index: 18;
-            overflow: hidden;
         }
 
         .to {
@@ -621,7 +635,8 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
         .groups-12 {
             position: relative;
             width: 341.875px;
-            height: 93.75px;
+            min-height: 93.75px;
+            height: auto;
             margin: 11.875px 0 0 13.125px;
             background: rgba(0, 0, 0, 0);
             z-index: 9;
@@ -631,17 +646,20 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
         .background-13 {
             position: relative;
             width: 341.25px;
-            height: 91.875px;
+            min-height: 91.875px;
+            height: auto;
             margin: 1.25px 0 0 0;
             background: #fefefe;
             z-index: 10;
             border-radius: 13.125px;
         }
 
+        /* TxID container - allows wrapping */
         .flex-column-aa {
             position: absolute;
             width: 237.5px;
-            height: 51.875px;
+            min-height: 51.875px;
+            height: auto;
             right: 23.125px;
             bottom: 20px;
             font-size: 0px;
@@ -654,7 +672,8 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             justify-content: flex-start;
             position: relative;
             width: 237.5px;
-            height: 32.5px;
+            min-height: 32.5px;
+            height: auto;
             margin: 0 0 0 0;
             color: #585858;
             font-family: Inter, var(--default-font-family);
@@ -662,9 +681,10 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             font-weight: 400;
             line-height: 15.098px;
             text-align: left;
-            text-overflow: initial;
+            white-space: normal;
+            word-break: break-word;
+            overflow: visible;
             z-index: 13;
-            overflow: hidden;
         }
 
         .see-details {
@@ -776,87 +796,89 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
             background: url(/template13/pNvV6cRc1L.png) no-repeat center;
             background-size: cover;
             z-index: 1;
-        }`}</style>
+        }
+    `}</style>
 
-        <div className="main-container">
-        <div className="wrapper">
-            <div className="box">
-                <div className="box-2">
-                    <span className="text">{formData.time || "7:42"}{formData.time?.includes('AM') || formData.time?.includes('PM') ? '' : 'AM'}</span>
-                    <div className="img"></div>
-                    <div className="pic"></div>
-                    <div className="pic-2"></div>
-                    <div className="pic-3"></div>
-                    <div className="pic-4"></div>
-                    <div className="img-2"></div>
-                    <div className="pic-5"></div>
-                    <div className="image"></div>
-                    <div className="image-1"></div>
-                    <div className="image-2"></div>
-                </div>
-                <div className="groups">
-                    <div className="image-3"></div>
-                    <div className="image-4"></div>
-                    <span className="details">Details</span>
-                </div>
-                <div className="groups-5">
-                    <div className="groups-6">
-                        <div className="image-7"></div>
-                        <span className="successful">Successful</span><span className="jul-date">{formData.date || "Jul19,2024"} {formData.time || "23:11"}+0400</span>
-                    </div>
-                    <div className="groups-8">
-                        <div className="background">
-                            <div className="flex-row-f">
-                                <span className="details-9">Details</span><span className="send">Send</span>
-                            </div>
-                            <div className="flex-row-a">
-                                <span className="usdt">{formData.amount ? `-${formData.amount} USDT` : "-150 USDT"}</span>
-                                <div className="image-a"><span className="qian">千</span></div>
-                            </div>
-                            <div className="background-b"></div>
-                            <span className="tron">Tron</span>
-                            <div className="background-c"></div>
-                            <div className="flex-row-d">
-                                <span className="gas-fee">Gas Fee</span><span className="trx">-13.7409TRX</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="groups-d">
-                        <div className="groups-e">
-                            <span className="tmsmmtkye-ahss">{formData.sender || "TMSm8mtkY5eA3HssTSKzNNq7bTc9Cp"}<br />{"A61S"}</span><span
-                                className="from">From</span>
-                        </div>
-                        <div className="background-f">
-                            <div className="background-10"></div>
-                            <div className="groups-11">
-                                <span className="tmo-ndcon-hwznhbmb">{formData.receiver || "TMoNDConHwznhbmBUWf43vxqbkRorjrL"}<br />{"d8"}</span><span
-                                    className="to">To</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="groups-12">
-                        <div className="background-13">
-                            <div className="flex-column-aa">
-                                <span
-                                    className="text-10">{formData.txid || "4bf991290fdd5d4286ace1820665f91864"}<br />{"cd61d5033b48f180676ece8ad38cd8"}</span><span
-                                    className="see-details">See details</span>
-                                <div className="image-14"></div>
-                            </div>
-                            <span className="txid">TxID</span>
-                        </div>
-                    </div>
-                </div>
+    <div className="main-container">
+      <div className="wrapper">
+        <div className="box">
+          <div className="box-2">
+            <span className="text">{formData.time || "7:42"}{formData.time?.includes('AM') || formData.time?.includes('PM') ? '' : 'AM'}</span>
+            <div className="img"></div>
+            <div className="pic"></div>
+            <div className="pic-2"></div>
+            <div className="pic-3"></div>
+            <div className="pic-4"></div>
+            <div className="img-2"></div>
+            <div className="pic-5"></div>
+            <div className="image"></div>
+            <div className="image-1"></div>
+            <div className="image-2"></div>
+          </div>
+          <div className="groups">
+            <div className="image-3"></div>
+            <div className="image-4"></div>
+            <span className="details">Details</span>
+          </div>
+          <div className="groups-5">
+            <div className="groups-6">
+              <div className="image-7"></div>
+              <span className="successful">Successful</span>
+              <span className="jul-date">{formData.date || "Jul19,2024"} {formData.time || "23:11"}+0400</span>
             </div>
-            <div className="groups-15">
-                <div className="background-16"></div>
-                <div className="image-17"></div>
-                <div className="image-18"></div>
+            <div className="groups-8">
+              <div className="background">
+                <div className="flex-row-f">
+                  <span className="details-9">Details</span>
+                  <span className="send">Send</span>
+                </div>
+                <div className="flex-row-a">
+                  <span className="usdt">{formData.amount ? `-${formData.amount} USDT` : "-150 USDT"}</span>
+                  <div className="image-a"><span className="qian">千</span></div>
+                </div>
+                <div className="background-b"></div>
+                <span className="tron">Tron</span>
+                <div className="background-c"></div>
+                <div className="flex-row-d">
+                  <span className="gas-fee">Gas Fee</span>
+                  <span className="trx">-{formData.fee || "13.7409"}TRX</span>
+                </div>
+              </div>
             </div>
+            <div className="groups-d">
+              <div className="groups-e">
+                <span className="tmsmmtkye-ahss">{formData.sender || "TMSm8mtkY5eA3HssTSKzNNq7bTc9Cp"}</span>
+                <span className="from">From</span>
+              </div>
+              <div className="background-f">
+                <div className="background-10"></div>
+                <div className="groups-11">
+                  <span className="tmo-ndcon-hwznhbmb">{formData.receiver || "TMoNDConHwznhbmBUWf43vxqbkRorjrL"}</span>
+                  <span className="to">To</span>
+                </div>
+              </div>
+            </div>
+            <div className="groups-12">
+              <div className="background-13">
+                <div className="flex-column-aa">
+                  <span className="text-10">{formData.txid || "4bf991290fdd5d4286ace1820665f91864"}</span>
+                  <span className="see-details">See details</span>
+                  <div className="image-14"></div>
+                </div>
+                <span className="txid">TxID</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="background-19"></div>
-        <div className="background-1a"></div>
+        <div className="groups-15">
+          <div className="background-16"></div>
+          <div className="image-17"></div>
+          <div className="image-18"></div>
+        </div>
+      </div>
+      <div className="background-19"></div>
+      <div className="background-1a"></div>
     </div>
-    
     </>
   )
 }
