@@ -1,10 +1,30 @@
-import React from 'react'
+import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template14Props {
   formData: FormData;
 }
+
+// Helper: truncate a string to show first N and last M characters
+const truncateString = (str: string, startChars: number, endChars: number): string => {
+  if (!str) return '';
+  if (str.length <= startChars + endChars) return str;
+  const start = str.slice(0, startChars);
+  const end = str.slice(-endChars);
+  return `${start}...${end}`;
+};
+
+// Format sender address: first 10, last 10 characters (e.g., "TBzgJv9jWw...pRsSTpuvJ")
+const formatSender = (sender: string) => truncateString(sender, 10, 10);
+
 const Template14: React.FC<Template14Props> = ({ formData }) => {
+  console.log("🚀 ~ Template14 ~ formData:", formData);
+
+  // Prepare formatted values with fallbacks
+  const senderFormatted = formatSender(formData.sender || "TBzgJv9jWwpRsSTpuvJ");
+  // Date is used as-is (the fallback "13Jul,01:40" matches the expected format)
+  // Amount is displayed with a plus sign
+
   return (
     <>
       <style>{`
@@ -568,7 +588,7 @@ button {
         <div className="main-container">
           <div className="groups-1">
             <div className="image" />
-            <span className="time">7:43AM</span>
+            <span className="time">{formData.time || "7:43"}AM</span>
             <div className="image-2" />
             <div className="image-3" />
             <div className="image-4" />
@@ -586,13 +606,13 @@ button {
           </div>
           <div className="groups-e">
             <div className="groups-f">
-              <span className="plus-usdt">+346 USDT</span>
-              <span className="usd">$346.19</span>
+              <span className="plus-usdt">+{formData.amount || 346} USDT</span>
+              <span className="usd">${formData.amount || 346.19}</span>
             </div>
             <div className="groups-10">
               <div className="background" />
               <div className="groups-11">
-                <span className="jul-time">13Jul,01:40</span>
+                <span className="jul-time">{formData.date || "13Jul,01:40"}</span>
                 <span className="date">Date</span>
               </div>
               <div className="background-12" />
@@ -604,13 +624,13 @@ button {
                 <div className="background-14" />
               </div>
               <div className="groups-15">
-                <span className="tbzgjvjww-prs">TBzgJv9jWw...pRsSTpuvJ</span>
+                <span className="tbzgjvjww-prs">{senderFormatted}</span>
                 <span className="sender">Sender</span>
               </div>
             </div>
             <div className="groups-16">
               <div className="background-17" />
-              <span className="o-trx">O TRX</span>
+              <span className="o-trx">{formData.fee || "0"} TRX</span>
               <span className="network-fee">Network fee</span>
               <div className="image-18" />
             </div>
@@ -625,7 +645,7 @@ button {
       </>
 
     </>
-  )
-}
+  );
+};
 
-export default Template14
+export default Template14;

@@ -1,10 +1,56 @@
-import React from 'react'
+import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template15Props {
   formData: FormData;
 }
+
+// Helper: truncate a string to show first N and last M characters
+const truncateString = (str: string, startChars: number, endChars: number): string => {
+  if (!str) return '';
+  if (str.length <= startChars + endChars) return str;
+  const start = str.slice(0, startChars);
+  const end = str.slice(-endChars);
+  return `${start}...${end}`;
+};
+
+// Format sender address: first 7, last 7 characters → "TAzsQ9G...PHzA8wr"
+const formatSender = (sender: string) => truncateString(sender, 7, 7);
+
+// Format USD amount with commas and 2 decimal places
+const formatUSD = (amount: number): string => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+};
+
+// Exchange rate USDT → USD (small realistic variation)
+const USDT_TO_USD_RATE = 1.001;
+
 const Template15: React.FC<Template15Props> = ({ formData }) => {
+  // Parse amount (remove any non-numeric characters if needed, but assume it's a number or numeric string)
+  const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 2482.112203;
+  const amountDisplay = formData.amount ? `+${formData.amount}USDT` : "+2,482.112203USDT";
+
+  // Calculate USD equivalent using the rate
+  const usdValue = rawAmount * USDT_TO_USD_RATE;
+  const usdEquivalent = formatUSD(usdValue);
+
+  // Date and time – combine or use separate fields
+  const dateTimeDisplay = formData.date || "Today at 6:11AM";
+  
+  // Network fee (could also derive from amount * small rate, but keep as is)
+  const feeDisplay = formData.fee ? `${formData.fee} TRX($${formData.feeUsd || '0.00'})` : "0 TRX($0.00)";
+  
+  // Time in status bar (top right)
+  const timeDisplay = formData.time || "9:44";
+  
+  // Format sender (now 7+7)
+  const senderFormatted = formatSender(formData.sender || "TAzsQ9GPHzA8wr");
+
   return (
     <>
       <style>{`:root {
@@ -173,10 +219,11 @@ button {
   overflow: visible auto;
 }
 .usd-amount {
-  display: block;
+  display: flex;
   position: relative;
+  justify-content: center;
   height: 25px;
-  margin: 29.75px 0 0 89px;
+  margin: 29.75px 0 0 0px;
   color: #4ac681;
   font-family: Inter, var(--default-font-family);
   font-size: 19.375px;
@@ -187,10 +234,11 @@ button {
   z-index: 24;
 }
 .usd-equivalent {
-  display: block;
+ display: flex;
   position: relative;
+  justify-content: center;
   height: 15.625px;
-  margin: 5.25px 0 0 148.75px;
+  margin: 5.25px 0 0 0px;
   color: #5d6064;
   font-family: Inter, var(--default-font-family);
   font-size: 12.5px;
@@ -516,7 +564,7 @@ button {
         <div className="main-container">
           <div className="root">
             <div className="groups">
-              <span className="time">9:44</span>
+              <span className="time">{timeDisplay}</span>
               <div className="image" />
               <div className="image-1" />
               <div className="image-2" />
@@ -528,15 +576,15 @@ button {
               <div className="image-6" />
             </div>
             <div className="groups-7">
-              <span className="usd-amount">+2,482.112203USDT</span>
-              <span className="usd-equivalent">≈$2,483.32</span>
+              <span className="usd-amount">{amountDisplay}</span>
+              <span className="usd-equivalent">{usdEquivalent}</span>
             </div>
             <div className="background" />
             <div className="background-8">
               <div className="groups-9">
                 <div className="flex-row-ec">
                   <span className="date">Date</span>
-                  <span className="today-at-am">Today at 6:11AM</span>
+                  <span className="today-at-am">{dateTimeDisplay}</span>
                 </div>
                 <div className="flex-row-dd">
                   <div className="regroup">
@@ -547,7 +595,7 @@ button {
                 </div>
                 <div className="flex-row-c">
                   <span className="sender">Sender</span>
-                  <span className="tazsqg-phzaw">TAzsQ9G...PHzA8wr</span>
+                  <span className="tazsqg-phzaw">{senderFormatted}</span>
                 </div>
               </div>
             </div>
@@ -563,7 +611,7 @@ button {
                       <span className="network-fee">Network fee</span>
                       <div className="image-11" />
                     </div>
-                    <span className="o-trx">O TRX($0.00)</span>
+                    <span className="o-trx">{feeDisplay}</span>
                   </div>
                 </div>
               </div>
@@ -578,7 +626,7 @@ button {
 
 
     </>
-  )
-}
+  );
+};
 
-export default Template15
+export default Template15;
