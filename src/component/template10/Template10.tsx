@@ -227,24 +227,22 @@ button {
 }
 .groups-9 {
   position: relative;
-  width: 368.75px;
   height: 239.375px;
   margin: 0 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 7;
 }
 .groups-a {
-  position: absolute;
-  width: 368.75px;
   height: 239.375px;
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0);
+  padding-left: 13.75px;
+  padding-right: 13.13px;
   z-index: 8;
 }
 .groups-b {
   position: relative;
-  width: 368.75px;
   height: 62.5px;
   margin: 1.875px 0 0 0;
   background: rgba(0, 0, 0, 0);
@@ -256,9 +254,8 @@ button {
   align-items: center;
   justify-content: space-between;
   position: relative;
-  width: 341.875px;
   height: 13px;
-  margin: 14.375px 0 0 13.75px;
+  margin: 14.375px 0 0 0px;
   z-index: 30;
 }
 .withdrawal-accou {
@@ -268,7 +265,7 @@ button {
   color: #78797e;
   font-family: Inter, var(--default-font-family);
   font-size: 10.625px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 12.5px;
   text-align: left;
   white-space: nowrap;
@@ -288,7 +285,6 @@ button {
   z-index: 29;
 }
 .groups-c {
-  width: 368.75px;
   height: 40px;
   margin: -4.875px 0 0 0;
   background: rgba(0, 0, 0, 0);
@@ -296,7 +292,8 @@ button {
   overflow: visible auto;
 }
 .groups-d {
-
+display: flex;
+justify-content: space-between;
   margin: 11.875px 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 26;
@@ -305,9 +302,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
   height: 12px;
-  right: 330px;
   bottom: 8px;
   color: #838388;
   font-family: Inter, var(--default-font-family);
@@ -322,7 +317,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
   height: 11.25px;
   right: 13.75px;
   bottom: 8.75px;
@@ -337,19 +331,19 @@ button {
 }
 .groups-e {
   position: relative;
-  width: 368.75px;
   height: 26.25px;
   margin: 1.875px 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 21;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .chain-type {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
-  height: 13.75px;
-  right: 296.25px;
+    height: 13.75px;
   bottom: 5.625px;
   color: #7e7e83;
   font-family: Inter, var(--default-font-family);
@@ -364,9 +358,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
   height: 12px;
-  right: 13.75px;
   bottom: 7.375px;
   color: #b7b7b9;
   font-family: Inter, var(--default-font-family);
@@ -379,7 +371,9 @@ button {
 }
 .groups-f {
   position: relative;
-  width: 368.75px;
+display: flex;
+justify-content: space-between;
+
   height: 28.125px;
   margin: 1.25px 0 0 0;
   background: rgba(0, 0, 0, 0);
@@ -389,9 +383,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
   height: 12.5px;
-  right: 13.125px;
   bottom: 8.125px;
   color: #a7a7a9;
   font-family: Inter, var(--default-font-family);
@@ -406,14 +398,12 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
   height: 11.25px;
-  right: 328.125px;
   bottom: 8.75px;
   color: #7f7e84;
   font-family: Inter, var(--default-font-family);
   font-size: 11.25px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 11.25px;
   text-align: left;
   white-space: nowrap;
@@ -421,7 +411,8 @@ button {
 }
 .groups-12 {
   position: relative;
-  width: 368.75px;
+display: flex;
+justify-content: space-between;
   height: 38.75px;
   margin: 0.63px 0 0 0;
   background: rgba(0, 0, 0, 0);
@@ -429,10 +420,9 @@ button {
 }
 .tuuuxxtmdxkfrjb {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: absolute;
-  width: 122.5px;
+  align-items: start;
+  justify-content: center;
+  gap: 2.5px;
   height: 31.875px;
   right: 27.5px;
   bottom: 1.875px;
@@ -450,21 +440,18 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
   height: 13px;
-  right: 247.5px;
   bottom: 18.875px;
   color: #7d7c82;
   font-family: Inter, var(--default-font-family);
   font-size: 10.625px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 12.859px;
   text-align: left;
   white-space: nowrap;
   z-index: 17;
 }
 .image-13 {
-  position: absolute;
   width: 10.625px;
   height: 10.625px;
   right: 14.375px;
@@ -487,7 +474,8 @@ button {
 }
 .groups-15 {
   position: relative;
-  width: 368.75px;
+display: flex;
+justify-content: space-between;
   height: 72.5px;
   margin: 1.25px 0 0 0;
   background: rgba(0, 0, 0, 0);
@@ -495,10 +483,9 @@ button {
 }
 .da {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: absolute;
-  width: 130px;
+  align-items: start;
+  justify-content: center;
+  gap: 2.5px;
   height: 60px;
   right: 26.25px;
   bottom: 5px;
@@ -516,9 +503,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
   height: 13px;
-  right: 263.125px;
   bottom: 50.125px;
   color: #78797e;
   font-family: Inter, var(--default-font-family);
@@ -530,7 +515,6 @@ button {
   z-index: 12;
 }
 .image-16 {
-  position: absolute;
   width: 10.625px;
   height: 10.625px;
   right: 14.375px;
@@ -607,71 +591,77 @@ button {
   z-index: 1;
 }`}</style>
 
- <div className="main-container">
-      <div className="groups">
-        <div className="groups-1">
-          <span className="time">{formData.time || "9:11"}</span>
-          <div className="image"></div>
-          <div className="image-2"></div>
-          <div className="image-3"></div>
-          <div className="image-4"></div>
+      <div className="main-container">
+        <div className="groups">
+          <div className="groups-1">
+            <span className="time">{formData.time || "9:11"}</span>
+            <div className="image"></div>
+            <div className="image-2"></div>
+            <div className="image-3"></div>
+            <div className="image-4"></div>
+          </div>
+          <div className="groups-5">
+            <span className="withdrawal-details">Withdrawal Details</span>
+            <div className="image-6"></div>
+          </div>
+          <span className="quantity">Quantity</span><span className="usdt">{formData.amount ? `${formData.amount} USDT` : "100 USDT"}</span><span className="withdrawal-completed">Withdrawal Completed</span>
+          <div className="image-7"></div>
         </div>
-        <div className="groups-5">
-          <span className="withdrawal-details">Withdrawal Details</span>
-          <div className="image-6"></div>
-        </div>
-        <span className="quantity">Quantity</span><span className="usdt">{formData.amount ? `${formData.amount} USDT` : "100 USDT"}</span><span className="withdrawal-completed">Withdrawal Completed</span>
-        <div className="image-7"></div>
-      </div>
-      <div className="groups-8">
-        <div className="background">
-          <div className="groups-9">
-            <div className="groups-a">
-              <div className="groups-b">
-                <div className="flex-row-a">
-                  <span className="withdrawal-accou">Withdrawal Account</span><span className="funding-account">Funding Account</span>
-                </div>
-                <div className="groups-c">
-                  <div className="groups-d">
-                    <span className="fees">Fees</span><span className="dot">1.3</span>
+        <div className="groups-8">
+          <div className="background">
+            <div className="groups-9">
+              <div className="groups-a">
+                <div className="groups-b">
+                  <div className="flex-row-a">
+                    <span className="withdrawal-accou">Withdrawal Account</span><span className="funding-account">Funding Account</span>
+                  </div>
+                  <div className="groups-c">
+                    <div className="groups-d">
+                      <span className="fees">Fees</span><span className="dot">1.3</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="groups-e">
-                <span className="chain-type">Chain Type</span                ><span className="trc">TRC20</span>
-              </div>
-              <div className="groups-f">
-                <span className="time-10">{formData.date || "2024-04-02"} {formData.time || "20:59:54"}</span                ><span className="time-11">Time</span>
-              </div>
-              <div className="groups-12">
-                <span className="tuuuxxtmdxkfrjb"
-                  >{formData.sender || "TU7uuxXtMdXkFrjbFXo"}<br />{"Cm8E2v2oxKjehxQ"}</span                ><span className="withdrawal-address">Withdrawal Address</span>
-                <div className="image-13"></div>
-                <div className="image-14"></div>
-              </div>
-              <div className="groups-15">
-                <span className="da"
-                  >{formData.txid || "32da073058657255e31"}<br />{"7e137c2c062a2af8ae55"}<br />{"129b4a586170f8cfed9d"}<br />{"f620b"}</span                ><span className="transaction-hash">Transaction Hash</span>
-                <div className="image-16"></div>
+                <div className="groups-e">
+                  <span className="chain-type">Chain Type</span                ><span className="trc">TRC20</span>
+                </div>
+                <div className="groups-f">
+               <span className="time-11">Time</span>   <span className="time-10">{formData.date || "2024-04-02"} {formData.time || "20:59:54"}</span                >
+                </div>
+                <div className="groups-12">
+                  <span className="withdrawal-address">Withdrawal Address</span>
+                  <span className="tuuuxxtmdxkfrjb"
+                  >{formData.sender || "TU7uuxXtMdXkFrjbFXo"}<br />{"Cm8E2v2oxKjehxQ"}
+                  <div className="image-13"></div>
+                  
+                  
+                  </span                >
+               
+                </div>
+                <div className="groups-15">
+                  
+                  <span className="transaction-hash">Transaction Hash</span>
+                  <span className="da"
+                  >{formData.txid || "32da073058657255e31"}<br />{"7e137c2c062a2af8ae55"}<br />{"129b4a586170f8cfed9d"}<br />{"f620b"}         <div className="image-16"></div></span                >
+          
+                </div>
               </div>
             </div>
-          </div>
-          <div className="groups-17">
-            <div className="button">
-              <div className="background-18">
-                <span className="view-in-blockchain"
+            <div className="groups-17">
+              <div className="button">
+                <div className="background-18">
+                  <span className="view-in-blockchain"
                   >View in Blockchain Explorer</span                >
+                </div>
               </div>
             </div>
+            <div className="background-19"></div>
           </div>
-          <div className="background-19"></div>
         </div>
+        <div className="background-1a"></div>
       </div>
-      <div className="background-1a"></div>
+
+
     </div>
-
-
-</div>
   )
 }
 
