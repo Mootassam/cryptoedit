@@ -1,11 +1,55 @@
-import React from 'react'
+import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template9Props {
     formData: FormData;
 }
 
+// Helper: truncate a string to show first N and last M characters
+const truncateString = (str: string, startChars: number, endChars: number): string => {
+    if (!str) return '';
+    if (str.length <= startChars + endChars) return str;
+    const start = str.slice(0, startChars);
+    const end = str.slice(-endChars);
+    return `${start}...${end}`;
+};
+
+// Format txid: first 5, last 5 → "3dcb4...50100"
+const formatTxid = (txid: string) => truncateString(txid, 5, 5);
+
+// Format USD amount with commas and 2 decimal places
+const formatUSD = (amount: number): string => {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(amount);
+};
+
+// Small exchange rate USDT → USD (realistic variation)
+const USDT_TO_USD_RATE = 1.001;
+
 const Template9: React.FC<Template9Props> = ({ formData }) => {
+    // Parse amount (remove commas if any)
+    const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 700.7;
+    const amountDisplay = formData.amount ? `${formData.amount}` : "700.7";
+    const usdValue = rawAmount * USDT_TO_USD_RATE;
+    const usdFormatted = formatUSD(usdValue);
+
+    // Format txid
+    const txidFormatted = formatTxid(formData.txid || "3dcb450100");
+
+    // Address: combine receiver and a second line (you can also use sender if needed)
+    // The example shows two lines: TNyp9iAoFtWS5xv5YCC and Q7WWhG3Qn1tQKCp
+    // We'll split or just use two <br/>. For flexibility, we'll use a combination
+    // of receiver and maybe a second address from formData.sender.
+    const addressLine1 = formData.receiver || "TNyp9iAoFtWS5xv5YCC";
+    const addressMultiline = `${addressLine1}`;
+
+    // Fee display
+    const feeDisplay = formData.fee !== undefined ? `${formData.fee}` : "2.3";
+
     return (
         <>
             <style>{`
@@ -307,7 +351,8 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             align-items: center;
             justify-content: space-between;
             position: relative;
-            height: 19.375px;
+            height: auto;
+            min-height: 19.375px;
             margin: 12.5px 0 0 0px;
             z-index: 33;
         }
@@ -327,21 +372,23 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
         }
 
         .tnypi-aof-twsxv {
-flex-shrink: 0;
-    display: flex;
-    gap: 5px;
-    position: relative;
-    align-items: center;
-    height: 19.375px;
-    color: #959595;
-    font-family: Inter, var(--default-font-family);
-    font-size: 14.375px;
-    font-weight: 400;
-    line-height: 19.375px;
-    text-align: left;
-    white-space: nowrap;
-    z-index: 32;
-    padding-right: 23px;
+            flex-shrink: 0;
+            display: flex;
+            gap: 5px;
+            position: relative;
+            align-items: center;
+            color: #959595;
+            font-family: Inter, var(--default-font-family);
+            font-size: 14.375px;
+            font-weight: 400;
+            line-height: 19.375px;
+            text-align: right;
+            white-space: pre-line;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            z-index: 32;
+            padding-right: 23px;
+            max-width: 220px;
         }
 
         .image-c {
@@ -351,6 +398,7 @@ flex-shrink: 0;
             background: url(/template9/KVwRCpYOzD.png) no-repeat center;
             background-size: cover;
             z-index: 30;
+            flex-shrink: 0;
         }
 
         .qwwhgqntqkcp {
@@ -738,7 +786,8 @@ flex-shrink: 0;
                         </div>
                         <div className="groups-5">
                             <div className="image-6"></div>
-                            <span className="withdrawn">Withdrawn {formData.amount || "700.7"} USDT</span><span className="withdrawn-amount">~$700.84</span>
+                            <span className="withdrawn">Withdrawn {amountDisplay} USDT</span>
+                            <span className="withdrawn-amount">{usdFormatted}</span>
                         </div>
                         <div className="groups-7">
                             <div className="image-8"></div>
@@ -750,31 +799,32 @@ flex-shrink: 0;
                 <div className="groups-a">
                     <div className="groups-b">
                         <div className="flex-row-bb">
-                            <span className="address">Address</span><span className="tnypi-aof-twsxv">{formData.receiver || "TNyp9iAoFtWS5xv5YCC"}
-
-
+                            <span className="address">Address</span>
+                            <span className="tnypi-aof-twsxv">
+                                {addressMultiline}
                                 <div className="image-c"></div>
-
                             </span>
                         </div>
                     </div>
                     <div className="groups-d">
-                        <span className="price">Price     <div className="image-e"></div></span><span className="usdt">$1/USDT</span>
-                    
+                        <span className="price">Price     <div className="image-e"></div></span>
+                        <span className="usdt">$1/USDT</span>
                     </div>
                     <div className="groups-f">
                         <span className="tron-trc">Tron (TRC20)</span><span className="network">Network</span>
                         <div className="image-10"></div>
                     </div>
                     <div className="groups-11">
-                        <span className="network-fee">Network fee</span><span className="usdt-12">2.3 USDT</span>
+                        <span className="network-fee">Network fee</span><span className="usdt-12">{feeDisplay} USDT</span>
                     </div>
                     <div className="groups-13">
-                        <span className="transaction-id">Transaction ID</span><span className="transaction-id-text">{formData.txid || "3dcb4...50100"}</span>
+                        <span className="transaction-id">Transaction ID</span>
+                        <span className="transaction-id-text">{txidFormatted}</span>
                         <div className="image-14"></div>
                     </div>
                     <div className="groups-15">
-                        <span className="submitted-time">Submitted time</span><span className="submitted-time-text">{formData.date || "Oct 19,20259:35 PM"}</span>
+                        <span className="submitted-time">Submitted time</span>
+                        <span className="submitted-time-text">{formData.date || "Oct 19,2025 9:35 PM"}</span>
                     </div>
                 </div>
                 <div className="flex-row-b">
@@ -794,7 +844,7 @@ flex-shrink: 0;
                 <div className="image-1d"></div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Template9
+export default Template9;
