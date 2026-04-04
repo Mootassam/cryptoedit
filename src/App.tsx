@@ -21,7 +21,7 @@ import Template12 from "./component/template12/Template12";
 import Template13 from "./component/template13/Template13";
 import Template14 from "./component/template14/Template14";
 import Template15 from "./component/template15/Template15";
-import Template16 from "./component/template14/Template14";
+import Template16 from "./component/template16/Template16";
 import Template17 from "./component/template17/Template17";
 
 
