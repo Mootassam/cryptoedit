@@ -458,23 +458,27 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
         }
 
         .thybkhr-my {
-            display: block;
-            position: relative;
+           display: flex;
+    position: relative;
+    justify-content: end;
             height: 16.25px;
             margin: 0px 0 0 17.5px;
             color: #cecfd0;
             font-family: Inter, var(--default-font-family);
-            font-size: 12.5px;
+                   font-size: 13.75px;
+
             font-weight: 700;
-            line-height: 15.128px;
+                    line-height: 16.25px;
+
             text-align: left;
             white-space: nowrap;
             z-index: 22;
         }
 
         .txoy-kdfan-y {
-            display: block;
-            position: relative;
+                      display: flex;
+    position: relative;
+    justify-content: end;
             height: 16.25px;
             margin: 15.625px 0 0 17.5px;
             color: #cbcccd;
