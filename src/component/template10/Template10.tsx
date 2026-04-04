@@ -285,30 +285,25 @@ button {
   z-index: 29;
 }
 .groups-c {
-  height: 40px;
-  margin: -4.875px 0 0 0;
-  background: rgba(0, 0, 0, 0);
-  z-index: 1;
-  overflow: visible auto;
+margin-top: 16.25px;
 }
 .groups-d {
 display: flex;
 justify-content: space-between;
-  margin: 11.875px 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 26;
+
 }
 .fees {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 12px;
   bottom: 8px;
   color: #838388;
   font-family: Inter, var(--default-font-family);
-  font-size: 10px;
+  font-size: 10.625px;
   font-weight: 700;
-  line-height: 12px;
+  line-height: 12.859px;
   text-align: left;
   white-space: nowrap;
   z-index: 28;
@@ -331,13 +326,12 @@ justify-content: space-between;
 }
 .groups-e {
   position: relative;
-  height: 26.25px;
-  margin: 1.875px 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 21;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 10px;
 }
 .chain-type {
   display: flex;
@@ -374,10 +368,9 @@ justify-content: space-between;
 display: flex;
 justify-content: space-between;
 
-  height: 28.125px;
-  margin: 1.25px 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 18;
+  margin:15px 0 16px 0px;
 }
 .time-10 {
   display: flex;
