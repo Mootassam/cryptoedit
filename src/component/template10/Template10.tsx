@@ -1,12 +1,25 @@
-import React from 'react'
+import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template10Props {
   formData: FormData;
 }
+
 const Template10: React.FC<Template10Props> = ({ formData }) => {
+  // Prepare formatted date/time
+  const dateTimeDisplay = `${formData.date || "2024-04-02"} ${formData.time || "20:59:54"}`;
+  
+  // Amount and fee display
+  const amountDisplay = formData.amount ? `${formData.amount} USDT` : "100 USDT";
+  const feeDisplay = formData.fee !== undefined ? `${formData.fee}` : "1.3";
+  
+  // Withdrawal address and transaction hash – will wrap naturally via CSS
+  const withdrawalAddress = formData.sender || "TU7uuxXtMdXkFrjbFXoCm8E2v2oxKjehxQ";
+  const txHash = formData.txid || "32da073058657255e317e137c2c062a2af8ae55129b4a586170f8cfed9df620b";
+
   return (
-    <div><style>{`   :root {
+    <div>
+      <style>{`   :root {
   --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
     "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
@@ -406,7 +419,7 @@ justify-content: space-between;
   position: relative;
 display: flex;
 justify-content: space-between;
-  height: 38.75px;
+  min-height: 38.75px;
   margin: 0.63px 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 13;
@@ -416,7 +429,7 @@ justify-content: space-between;
   align-items: start;
   justify-content: center;
   gap: 2.5px;
-  height: 31.875px;
+  min-height: 31.875px;
   right: 27.5px;
   bottom: 1.875px;
   color: #bababc;
@@ -425,9 +438,12 @@ justify-content: space-between;
   font-weight: 700;
   line-height: 15px;
   text-align: right;
-  text-overflow: initial;
+  white-space: pre-line;
+  word-break: break-all;
+  overflow-wrap: break-word;
   z-index: 16;
-  overflow: hidden;
+  overflow: visible;
+  max-width: 125px;
 }
 .withdrawal-address {
   display: flex;
@@ -453,6 +469,7 @@ justify-content: space-between;
     no-repeat center;
   background-size: cover;
   z-index: 15;
+  flex-shrink: 0;
 }
 .image-14 {
   position: absolute;
@@ -469,7 +486,7 @@ justify-content: space-between;
   position: relative;
 display: flex;
 justify-content: space-between;
-  height: 72.5px;
+  min-height: 72.5px;
   margin: 1.25px 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 9;
@@ -479,7 +496,7 @@ justify-content: space-between;
   align-items: start;
   justify-content: center;
   gap: 2.5px;
-  height: 60px;
+  min-height: 60px;
   right: 26.25px;
   bottom: 5px;
   color: #b6b6b8;
@@ -488,9 +505,12 @@ justify-content: space-between;
   font-weight: 700;
   line-height: 14.779px;
   text-align: right;
-  text-overflow: initial;
+  white-space: pre-line;
+  word-break: break-all;
+  overflow-wrap: break-word;
   z-index: 11;
-  overflow: hidden;
+  overflow: visible;
+  max-width: 125px;
 }
 .transaction-hash {
   display: flex;
@@ -516,6 +536,7 @@ justify-content: space-between;
     no-repeat center;
   background-size: cover;
   z-index: 10;
+  flex-shrink: 0;
 }
 .groups-17 {
   position: relative;
@@ -597,7 +618,9 @@ justify-content: space-between;
             <span className="withdrawal-details">Withdrawal Details</span>
             <div className="image-6"></div>
           </div>
-          <span className="quantity">Quantity</span><span className="usdt">{formData.amount ? `${formData.amount} USDT` : "100 USDT"}</span><span className="withdrawal-completed">Withdrawal Completed</span>
+          <span className="quantity">Quantity</span>
+          <span className="usdt">{amountDisplay}</span>
+          <span className="withdrawal-completed">Withdrawal Completed</span>
           <div className="image-7"></div>
         </div>
         <div className="groups-8">
@@ -606,44 +629,44 @@ justify-content: space-between;
               <div className="groups-a">
                 <div className="groups-b">
                   <div className="flex-row-a">
-                    <span className="withdrawal-accou">Withdrawal Account</span><span className="funding-account">Funding Account</span>
+                    <span className="withdrawal-accou">Withdrawal Account</span>
+                    <span className="funding-account">Funding Account</span>
                   </div>
                   <div className="groups-c">
                     <div className="groups-d">
-                      <span className="fees">Fees</span><span className="dot">1.3</span>
+                      <span className="fees">Fees</span>
+                      <span className="dot">{feeDisplay}</span>
                     </div>
                   </div>
                 </div>
                 <div className="groups-e">
-                  <span className="chain-type">Chain Type</span                ><span className="trc">TRC20</span>
+                  <span className="chain-type">Chain Type</span>
+                  <span className="trc">TRC20</span>
                 </div>
                 <div className="groups-f">
-               <span className="time-11">Time</span>   <span className="time-10">{formData.date || "2024-04-02"} {formData.time || "20:59:54"}</span                >
+                  <span className="time-11">Time</span>
+                  <span className="time-10">{dateTimeDisplay}</span>
                 </div>
                 <div className="groups-12">
                   <span className="withdrawal-address">Withdrawal Address</span>
-                  <span className="tuuuxxtmdxkfrjb"
-                  >{formData.sender || "TU7uuxXtMdXkFrjbFXo"}<br />{"Cm8E2v2oxKjehxQ"}
-                  <div className="image-13"></div>
-                  
-                  
-                  </span                >
-               
+                  <span className="tuuuxxtmdxkfrjb">
+                    {withdrawalAddress}
+                    <div className="image-13"></div>
+                  </span>
                 </div>
                 <div className="groups-15">
-                  
                   <span className="transaction-hash">Transaction Hash</span>
-                  <span className="da"
-                  >{formData.txid || "32da073058657255e31"}<br />{"7e137c2c062a2af8ae55"}<br />{"129b4a586170f8cfed9d"}<br />{"f620b"}         <div className="image-16"></div></span                >
-          
+                  <span className="da">
+                    {txHash}
+                    <div className="image-16"></div>
+                  </span>
                 </div>
               </div>
             </div>
             <div className="groups-17">
               <div className="button">
                 <div className="background-18">
-                  <span className="view-in-blockchain"
-                  >View in Blockchain Explorer</span                >
+                  <span className="view-in-blockchain">View in Blockchain Explorer</span>
                 </div>
               </div>
             </div>
@@ -652,10 +675,8 @@ justify-content: space-between;
         </div>
         <div className="background-1a"></div>
       </div>
-
-
     </div>
-  )
-}
+  );
+};
 
-export default Template10
+export default Template10;
