@@ -21,6 +21,7 @@ import Template12 from "./component/template12/Template12";
 import Template13 from "./component/template13/Template13";
 import Template14 from "./component/template14/Template14";
 import Template15 from "./component/template15/Template15";
+import Template16 from "./component/template14/Template14";
 
 
 function App() {
@@ -48,10 +49,10 @@ function App() {
     fee: "",
     referenceNo: ""
   });
-  
+
   // Set canvas dimensions based on template
   const getCanvasDimensions = () => {
-    switch(value) {
+    switch (value) {
       case "completed":
         return { width: 470, height: 801 };
       case "green":
@@ -110,8 +111,8 @@ function App() {
               {value === "template13" && <Template13 formData={formData} />}
               {value === "template14" && <Template14 formData={formData} />}
               {value === "Template15" && <Template15 formData={formData} />}
+              {value === "template16" && <Template16 formData={formData} />}
 
-              
 
             </FormDataProvider>
           </div>

@@ -580,66 +580,66 @@ button {
   z-index: 1;
 }
   `}</style>
-  
-  
-    <div className="main-container">
-      <div className="groups">
-        <div className="groups-1">
-          <span className="time">{formData.time || "12:19"}</span>
-          <div className="image"></div>
-          <div className="image-2"></div>
-          <div className="image-3"></div>
+
+
+      <div className="main-container">
+        <div className="groups">
+          <div className="groups-1">
+            <span className="time">{formData.time || "12:19"}</span>
+            <div className="image"></div>
+            <div className="image-2"></div>
+            <div className="image-3"></div>
+          </div>
+          <div className="groups-4"><div className="image-5"></div></div>
+          <span className="withdraw-usdt">Withdraw USDT (Eth)</span>
+          <div className="groups-6">
+            <span className="pending">Pending</span>
+            <span className="time-info">{formData.date || "Jul9,2024at12:17:32PM"}</span>
+          </div>
         </div>
-        <div className="groups-4"><div className="image-5"></div></div>
-        <span className="withdraw-usdt">Withdraw USDT (Eth)</span>
-        <div className="groups-6">
-          <span className="pending">Pending</span>
-          <span className="time-info">{formData.date || "Jul9,2024at12:17:32PM"}</span>
-        </div>
-      </div>
-      <div className="groups-7">
-        <div className="groups-8">
-          <div className="groups-9">
-            <div className="flex-column-f">
-              <span className="number-info">{formData.amount || "12,496.31"}</span>
-              <div className="button">
-                <div className="background">
-                  <span className="amount">{formData.amount ? `${formData.amount}` : "12,296.93"}</span><span className="currency">USD</span><span className="symbol">$</span>
+        <div className="groups-7">
+          <div className="groups-8">
+            <div className="groups-9">
+              <div className="flex-column-f">
+                <span className="number-info">{formData.amount || "12,496.31"}</span>
+                <div className="button">
+                  <div className="background">
+                    <span className="amount">{formData.amount ? `${formData.amount}` : "12,296.93"}</span><span className="currency">USD</span><span className="symbol">$</span>
+                  </div>
+                </div>
+                <span className="withdrawal-details">Withdrawal details</span>
+              </div>
+              <span className="crypto">USDT</span>
+            </div>
+            <div className="groups-a">
+              <div className="groups-b">
+                <div className="background-c"></div>
+                <div className="flex-row">
+                  <span className="sending">Sending</span><span className="usdt">{formData.amount ? `${formData.amount}USDT` : "12,486.31USDT"}</span>
                 </div>
               </div>
-              <span className="withdrawal-details">Withdrawal details</span>
-            </div>
-            <span className="crypto">USDT</span>
-          </div>
-          <div className="groups-a">
-            <div className="groups-b">
-              <div className="background-c"></div>
-              <div className="flex-row">
-                <span className="sending">Sending</span><span className="usdt">{formData.amount ? `${formData.amount}USDT` : "12,486.31USDT"}</span>
+              <div className="groups-d">
+                <span className="xbae">{formData.receiver || "0xB6755A53889e71cc0F721\n23d018E0c1f4A7DB8b9"}</span><span className="withdraw-to">Withdraw to</span>
+              </div>
+              <div className="flex-row-e">
+                <span className="network-type">Network Type</span><span className="erc">ERC20</span>
+              </div>
+              <div className="flex-row-cca">
+                <span className="fee">Fee</span><span className="usdt-e">10.00 USDT</span>
+              </div>
+              <div className="groups-f">
+                <span className="usdt-10">{formData.amount ? `${formData.amount}USDT` : "12,496.31USDT"}</span><span className="total">Total</span>
               </div>
             </div>
-            <div className="groups-d">
-              <span className="xbae">{formData.receiver || "0xB6755A53889e71cc0F721\n23d018E0c1f4A7DB8b9"}</span><span className="withdraw-to">Withdraw to</span>
-            </div>
-            <div className="flex-row-e">
-              <span className="network-type">Network Type</span><span className="erc">ERC20</span>
-            </div>
-            <div className="flex-row-cca">
-              <span className="fee">Fee</span><span className="usdt-e">10.00 USDT</span>
-            </div>
-            <div className="groups-f">
-              <span className="usdt-10">{formData.amount ? `${formData.amount}USDT` : "12,496.31USDT"}</span><span className="total">Total</span>
-            </div>
           </div>
+          <div className="background-11"></div>
         </div>
-        <div className="background-11"></div>
+        <div className="background-12"></div>
+        <div className="background-13"></div>
       </div>
-      <div className="background-12"></div>
-      <div className="background-13"></div>
-    </div>
-  
-  
-  </>
+
+
+    </>
   )
 }
 

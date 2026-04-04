@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
-interface Template14Props {
+interface Template16Props {
   formData: FormData;
 }
 
@@ -17,8 +17,7 @@ const truncateString = (str: string, startChars: number, endChars: number): stri
 // Format sender address: first 10, last 10 characters (e.g., "TBzgJv9jWw...pRsSTpuvJ")
 const formatSender = (sender: string) => truncateString(sender, 10, 10);
 
-const Template14: React.FC<Template14Props> = ({ formData }) => {
-  console.log("🚀 ~ Template14 ~ formData:", formData);
+const Template16: React.FC<Template16Props> = ({ formData }) => {
 
   // Prepare formatted values with fallbacks
   const senderFormatted = formatSender(formData.sender || "TBzgJv9jWwpRsSTpuvJ");
@@ -28,7 +27,7 @@ const Template14: React.FC<Template14Props> = ({ formData }) => {
   return (
     <>
       <style>{`
-      :root {
+  :root {
   --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
     "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
@@ -53,599 +52,622 @@ button {
 
 .main-container {
   position: relative;
-  width: 369.375px;
-  height: 756.25px;
+  width: 359.375px;
+  height: 800px;
   margin: 0 auto;
   background: rgba(0, 0, 0, 0);
+  overflow: hidden;
 }
-.groups-1 {
-  position: relative;
-  width: 369.375px;
-  height: 29.375px;
-  margin: 0 0 0 0;
-  background: rgba(0, 0, 0, 0);
-  z-index: 31;
-}
-.image {
+.root {
   position: absolute;
-  width: 13.125px;
-  height: 13.75px;
-  right: 115.625px;
-  bottom: 5.625px;
-  background: url(/template14/W4R2eKq28g.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 37;
+  height: 800px;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: #ffffff;
+}
+.groups {
+  position: absolute;
+  width: 359.375px;
+  height: 45.625px;
+  right: 0;
+  bottom: 754.375px;
+  background: rgba(0, 0, 0, 0);
+  z-index: 42;
 }
 .time {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   position: absolute;
-  height: 14px;
-  right: 309.375px;
-  bottom: 5.375px;
-  color: #747474;
+  height: 17px;
+  right: 292.5px;
+  bottom: 11.125px;
+  color: #1e1e1e;
   font-family: Inter, var(--default-font-family);
-  font-size: 11.25px;
-  font-weight: 700;
-  line-height: 13.615px;
+  font-size: 13.75px;
+  font-weight: 500;
+  line-height: 16.641px;
   text-align: left;
   white-space: nowrap;
-  z-index: 42;
+  z-index: 50;
+}
+.image {
+  position: absolute;
+  width: 28.75px;
+  height: 14.375px;
+  right: 31.25px;
+  bottom: 11.875px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/HOf3KcPPTz.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 43;
+}
+.image-1 {
+  position: absolute;
+  width: 21.875px;
+  height: 13.125px;
+  right: 89.375px;
+  bottom: 12.5px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/vRAZdwWOrD.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 45;
 }
 .image-2 {
   position: absolute;
-  width: 11.875px;
-  height: 11.875px;
-  right: 295.625px;
-  bottom: 6.875px;
-  background: url(/template14/vqkmDdEyua.png)
+  width: 16.875px;
+  height: 13.125px;
+  right: 66.25px;
+  bottom: 12.5px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/Jur70QaNWP.png)
     no-repeat center;
   background-size: cover;
-  z-index: 41;
+  z-index: 44;
 }
 .image-3 {
   position: absolute;
-  width: 23.75px;
-  height: 10.625px;
-  right: 25px;
-  bottom: 7.5px;
-  background: url(/template14/P8j0LB397o.png)
+  width: 13.125px;
+  height: 13.125px;
+  right: 253.75px;
+  bottom: 11.875px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/Az1PchX9Zr.png)
     no-repeat center;
   background-size: cover;
-  z-index: 33;
+  z-index: 48;
 }
 .image-4 {
   position: absolute;
-  width: 15.625px;
-  height: 11.875px;
-  right: 53.75px;
-  bottom: 6.25px;
-  background: url(/template14/ksPTGBECCH.png)
+  width: 13.125px;
+  height: 11.25px;
+  right: 273.75px;
+  bottom: 12.5px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/3xrdxSygwh.png)
     no-repeat center;
   background-size: cover;
-  z-index: 34;
+  z-index: 49;
 }
 .image-5 {
   position: absolute;
-  width: 6.875px;
+  width: 13.75px;
   height: 10px;
-  right: 16.25px;
-  bottom: 7.5px;
-  background: url(/template14/9Ww1SeYZpW.png)
+  right: 233.125px;
+  bottom: 13.75px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/9i3GRkcd2o.png)
     no-repeat center;
   background-size: cover;
-  z-index: 32;
+  z-index: 47;
 }
 .image-6 {
   position: absolute;
-  width: 16.875px;
-  height: 10.625px;
-  right: 73.75px;
-  bottom: 6.875px;
-  background: url(/template14/znEg0RPqh6.png)
+  width: 4.375px;
+  height: 4.375px;
+  right: 218.125px;
+  bottom: 16.875px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/0HgyTOTZAX.png)
     no-repeat center;
   background-size: cover;
-  z-index: 35;
+  z-index: 46;
 }
-.image-7 {
+.flex-row-fcd {
   position: absolute;
-  width: 16.25px;
-  height: 10.625px;
-  right: 94.375px;
-  bottom: 6.875px;
-  background: url(/template14/xudRRowgBH.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 36;
+  width: 351.25px;
+  height: 800px;
+  right: 0;
+  bottom: 0;
+  z-index: 24;
 }
-.image-8 {
+.background {
   position: absolute;
-  width: 11.875px;
-  height: 10.625px;
-  right: 261.25px;
-  bottom: 6.875px;
-  background: url(/template14/GMYGh33Z1A.png)
+  width: 1.25px;
+  height: 800px;
+  right: 0;
+  bottom: 0;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/XP5UdfRb2j.png)
     no-repeat center;
   background-size: cover;
-  z-index: 39;
+  z-index: 2;
 }
-.image-9 {
+.background-7 {
   position: absolute;
-  width: 11.875px;
-  height: 10px;
-  right: 278.125px;
-  bottom: 6.875px;
-  background: url(/template14/462aEoSiV0.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 40;
+  width: 340px;
+  height: 118.75px;
+  right: 10px;
+  bottom: 510.625px;
+  background: #f4f4f6;
+  border: 3.75px solid #ffffff;
+  z-index: 24;
 }
-.image-a {
-  position: absolute;
-  width: 6.875px;
-  height: 2.5px;
-  right: 244.375px;
-  bottom: 11.25px;
-  background: url(/template14/i5PJvjBKef.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 38;
-}
-.groups-b {
+.groups-8 {
   position: relative;
-  width: 369.375px;
-  height: 35.625px;
-  margin: 0.63px 0 0 0;
+  width: 336.25px;
+  height: 115px;
+  margin: 1.875px 0 0 1.875px;
   background: rgba(0, 0, 0, 0);
-  z-index: 27;
+  z-index: 23;
 }
-.transfer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+.flex-column {
   position: absolute;
-  height: 16.875px;
-  right: 151.875px;
-  bottom: 9.375px;
-  color: #3e3e3e;
+  width: 133.75px;
+  height: 91.875px;
+  right: 12.5px;
+  bottom: 11.875px;
+  font-size: 0px;
+  z-index: 32;
+}
+.mar-10-31-pm {
+  display: block;
+  position: relative;
+  height: 18.125px;
+  margin: 0 0 0 10px;
+  color: #464648;
   font-family: Inter, var(--default-font-family);
   font-size: 15.625px;
-  font-weight: 700;
-  line-height: 16.875px;
+  font-weight: 600;
+  line-height: 18.125px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 32;
+}
+.completed {
+  display: block;
+  position: relative;
+  height: 18px;
+  margin: 20px 0 0 53.75px;
+  color: #3d3d3f;
+  font-family: Inter, var(--default-font-family);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 18px;
   text-align: left;
   white-space: nowrap;
   z-index: 29;
 }
-.image-c {
-  position: absolute;
-  width: 15.625px;
-  height: 16.875px;
-  right: 19.375px;
-  bottom: 8.75px;
-  background: url(/template14/VE69gVPLft.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 28;
-}
-.image-d {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  right: 335.625px;
-  bottom: 10px;
-  background: url(/template14/3emDB8jydc.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 30;
-}
-.groups-e {
-  position: relative;
-  width: 369.375px;
-  height: 351.25px;
-  margin: 6.25px 0 0 0;
-  background: rgba(0, 0, 0, 0);
-  z-index: 1;
-  overflow: visible auto;
-}
-.groups-f {
-  position: relative;
-  width: 369.375px;
-  height: 73.125px;
-  margin: 0 0 0 0;
-  font-size: 0px;
-  background: rgba(0, 0, 0, 0);
-  z-index: 24;
-  overflow: visible auto;
-}
-.plus-usdt {
+.xaf {
   display: block;
   position: relative;
-  height: 26.25px;
-  margin: 14.375px 0 0 121.25px;
-  color: #343434;
+  height: 16.25px;
+  margin: 19.5px 0 0 0;
+  color: #444446;
   font-family: Inter, var(--default-font-family);
-  font-size: 23.125px;
-  font-weight: 700;
-  line-height: 26.25px;
-  text-align: left;
+  font-size: 14.375px;
+  font-weight: 600;
+  line-height: 16.25px;
+  text-align: right;
   white-space: nowrap;
   z-index: 26;
 }
-.usd {
-  display: block;
-  position: relative;
-  height: 16.25px;
-  margin: 5.625px 0 0 152.5px;
-  color: #787878;
-  font-family: Inter, var(--default-font-family);
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 16.25px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 25;
-}
-.groups-10 {
-  position: relative;
-  width: 346.25px;
-  height: 123.75px;
-  margin: 8.75px 0 0 11.25px;
-  background: rgba(0, 0, 0, 0);
-  z-index: 11;
-}
-.background {
+.flex-column-fb {
   position: absolute;
-  width: 346.875px;
-  height: 121.875px;
-  right: 0;
-  bottom: -0.63px;
-  background: #f4f4f6;
-  border: 1.875px solid #ffffff;
-  z-index: 12;
-}
-.groups-11 {
-  position: absolute;
-  width: 346.25px;
-  height: 40px;
-  right: 1.25px;
-  bottom: 80px;
-  background: rgba(0, 0, 0, 0);
-  z-index: 21;
-}
-.jul-time {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  height: 15.625px;
-  right: 14.375px;
-  bottom: 11.875px;
-  color: #5d5c5e;
-  font-family: Inter, var(--default-font-family);
-  font-size: 11.875px;
-  font-weight: 400;
-  line-height: 14.371px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 22;
+  width: 68.125px;
+  height: 92.5px;
+  right: 253.75px;
+  bottom: 10px;
+  font-size: 0px;
+  z-index: 33;
 }
 .date {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  height: 13.125px;
-  right: 303.625px;
-  bottom: 13.75px;
-  color: #908f91;
+  display: block;
+  position: relative;
+  height: 15px;
+  margin: 0 0 0 0.63px;
+  color: #7d7d7f;
   font-family: Inter, var(--default-font-family);
-  font-size: 11.875px;
-  font-weight: 400;
-  line-height: 13.125px;
+  font-size: 13.75px;
+  font-weight: 500;
+  line-height: 15px;
   text-align: left;
   white-space: nowrap;
-  z-index: 23;
-}
-.background-12 {
-  position: absolute;
-  width: 320.625px;
-  height: 1.875px;
-  right: 11.875px;
-  bottom: 79.375px;
-  background: #f4f4f6;
-  z-index: 20;
-}
-.groups-13 {
-  position: absolute;
-  width: 343.125px;
-  height: 41.875px;
-  right: 1.875px;
-  bottom: 38.125px;
-  background: rgba(0, 0, 0, 0);
-  z-index: 16;
-}
-.flex-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  width: 313.75px;
-  height: 15.625px;
-  margin: 12.5px 0 0 15.625px;
-  z-index: 19;
+  z-index: 33;
 }
 .status {
-  flex-shrink: 0;
+  display: block;
   position: relative;
-  height: 13.75px;
-  color: #919193;
+  height: 15px;
+  margin: 22.5px 0 0 0;
+  color: #858587;
   font-family: Inter, var(--default-font-family);
-  font-size: 11.875px;
-  font-weight: 400;
-  line-height: 13.75px;
+  font-size: 14.375px;
+  font-weight: 500;
+  line-height: 15px;
   text-align: left;
   white-space: nowrap;
-  z-index: 19;
+  z-index: 30;
 }
-.completed {
-  flex-shrink: 0;
+.recipient {
+  display: block;
   position: relative;
-  height: 15.625px;
-  color: #5a5a5c;
+  height: 17.5px;
+  margin: 22.5px 0 0 0.63px;
+  color: #78787a;
   font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
-  font-weight: 400;
-  line-height: 15.625px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 17.5px;
   text-align: left;
   white-space: nowrap;
-  z-index: 18;
+  z-index: 27;
 }
-.background-14 {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-  width: 319.375px;
-  height: 1.875px;
-  margin: 9.375px 0 0 13.125px;
-  background: #f4f4f6;
-  z-index: -Infinity;
-}
-.groups-15 {
+.groups-9 {
   position: absolute;
-  width: 346.875px;
-  height: 41.25px;
-  right: 0.63px;
-  bottom: -1.25px;
+  width: 341.875px;
+  height: 306.875px;
+  right: 9.375px;
+  bottom: 320.625px;
   background: rgba(0, 0, 0, 0);
-  z-index: 13;
-}
-.tbzgjvjww-prs {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  height: 16.25px;
-  right: 15px;
-  bottom: 13.125px;
-  color: #4a494b;
-  font-family: Inter, var(--default-font-family);
-  font-size: 11.25px;
-  font-weight: 700;
-  line-height: 13.615px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 14;
-}
-.sender {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  height: 13.75px;
-  right: 290.25px;
-  bottom: 15px;
-  color: #8d8d8f;
-  font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
-  font-weight: 400;
-  line-height: 13.75px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 15;
-}
-.groups-16 {
-  position: relative;
-  width: 348.125px;
-  height: 42.5px;
-  margin: 27.5px 0 0 8.75px;
-  background: rgba(0, 0, 0, 0);
-  z-index: 6;
-}
-.background-17 {
-  position: absolute;
-  width: 341.25px;
-  height: 40px;
-  right: 1.875px;
-  bottom: 1.875px;
-  background: #f3f3f5;
-  border: 0.63px solid #f7f7f8;
-  z-index: 7;
-  border-radius: 4.375px;
-}
-.o-trx {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  height: 14px;
-  right: 17.5px;
-  bottom: 15.375px;
-  color: #525153;
-  font-family: Inter, var(--default-font-family);
-  font-size: 11.25px;
-  font-weight: 400;
-  line-height: 13.615px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 9;
-}
-.network-fee {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  height: 13.75px;
-  right: 256.875px;
-  bottom: 15px;
-  color: #939395;
-  font-family: Inter, var(--default-font-family);
-  font-size: 11.875px;
-  font-weight: 400;
-  line-height: 13.75px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 10;
-}
-.image-18 {
-  position: absolute;
-  width: 11.25px;
-  height: 10.625px;
-  right: 241.25px;
-  bottom: 16.25px;
-  background: url(/template14/Zncap9nYSo.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 8;
-}
-.groups-19 {
-  position: relative;
-  width: 349.375px;
-  height: 50px;
-  margin: 25.625px 0 0 8.75px;
-  background: rgba(0, 0, 0, 0);
-  z-index: 2;
-}
-.background-1a {
-  position: absolute;
-  width: 340.625px;
-  height: 45px;
-  right: 3.125px;
-  bottom: 3.125px;
-  background: #f3f3f6;
   z-index: 3;
-  border-radius: 4.375px;
+}
+.groups-a {
+  position: relative;
+  width: 341.875px;
+  height: 48.125px;
+  margin: 258.75px 0 0 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 4;
+  overflow: visible auto;
+}
+.background-b {
+  position: relative;
+  width: 333.125px;
+  height: 38.75px;
+  margin: 4.375px 0 0 5px;
+  background: #f3f3f6;
+  z-index: 5;
+  border-radius: 3.75px;
 }
 .more-details {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   position: absolute;
-  height: 15px;
-  right: 256.25px;
-  bottom: 18.75px;
-  color: #6f6e70;
+  height: 16.25px;
+  right: 230.625px;
+  bottom: 11.875px;
+  color: #454547;
   font-family: Inter, var(--default-font-family);
-  font-size: 11.875px;
-  font-weight: 400;
-  line-height: 14.371px;
+  font-size: 14.375px;
+  font-weight: 500;
+  line-height: 16.25px;
   text-align: left;
   white-space: nowrap;
-  z-index: 5;
+  z-index: 8;
 }
-.image-1b {
+.image-c {
   position: absolute;
-  width: 7.5px;
-  height: 11.25px;
-  right: 24.375px;
-  bottom: 20px;
-  background: url(/template14/hQPmQ54btP.png)
+  width: 6.25px;
+  height: 9.375px;
+  right: 18.75px;
+  bottom: 15px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/yyd3UmszA0.png)
     no-repeat center;
   background-size: cover;
-  z-index: 4;
+  z-index: 7;
 }
-.background-1c {
+.background-d {
   position: absolute;
-  width: 369.375px;
-  height: 756.25px;
+  width: 340.625px;
+  height: 101.875px;
   right: 0;
-  bottom: 0;
-  background: #fefefe;
+  bottom: 68.75px;
+  background: #f4f4f6;
+  border: 3.75px solid #fefefe;
 }
+.groups-e {
+  position: absolute;
+  width: 336.875px;
+  height: 102.5px;
+  right: 2.5px;
+  bottom: 65.625px;
+  background: rgba(0, 0, 0, 0);
+  z-index: 9;
+}
+.groups-f {
+  position: relative;
+  width: 333.125px;
+  height: 56.875px;
+  margin: -0.25px 0 0 2.375px;
+  background: rgba(0, 0, 0, 0);
+  z-index: 16;
+}
+.span-dot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  width: 181.875px;
+  height: 43.75px;
+  right: 9.375px;
+  bottom: 3.75px;
+  color: #424244;
+  font-family: Inter, var(--default-font-family);
+  font-size: 14.375px;
+  font-weight: 600;
+  line-height: 20.464px;
+  text-align: right;
+  z-index: 19;
+}
+.span-network-fee {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  height: 16.25px;
+  right: 231.25px;
+  bottom: 18.125px;
+  color: #777779;
+  font-family: Inter, var(--default-font-family);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 16.25px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 22;
+}
+.image-10 {
+  position: absolute;
+  width: 11.25px;
+  height: 11.25px;
+  right: 216.25px;
+  bottom: 20px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/ke2pqinpsj.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 21;
+}
+.groups-11 {
+  position: relative;
+  width: 333.125px;
+  height: 45.625px;
+  margin: -1.625px 0 0 1.875px;
+  background: rgba(0, 0, 0, 0);
+  z-index: 11;
+}
+.span-nonce {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  height: 15px;
+  right: 271.75px;
+  bottom: 13.875px;
+  color: #808082;
+  font-family: Inter, var(--default-font-family);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 15px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 15;
+}
+.span-50 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  height: 15px;
+  right: 11.875px;
+  bottom: 13.875px;
+  color: #4d4d4f;
+  font-family: Inter, var(--default-font-family);
+  font-size: 14.375px;
+  font-weight: 600;
+  line-height: 15px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 14;
+}
+.background-12 {
+  position: absolute;
+  width: 85.625px;
+  height: 3.125px;
+  right: 136.875px;
+  bottom: 8.125px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/tfbAV3Ggps.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 1;
+}
+.groups-13 {
+  position: absolute;
+  width: 359.375px;
+  height: 39.375px;
+  right: 0;
+  bottom: 708.75px;
+  background: rgba(0, 0, 0, 0);
+  z-index: 38;
+}
+.span-transfer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  height: 17.5px;
+  right: 143.125px;
+  bottom: 10.625px;
+  color: #3e3e3e;
+  font-family: Inter, var(--default-font-family);
+  font-size: 17.5px;
+  font-weight: 700;
+  line-height: 17.5px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 40;
+}
+.image-14 {
+  position: absolute;
+  width: 13.125px;
+  height: 14.375px;
+  right: 16.25px;
+  bottom: 11.875px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/6bZqKkooQ7.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 39;
+}
+.image-15 {
+  position: absolute;
+  width: 16.25px;
+  height: 13.75px;
+  right: 328.75px;
+  bottom: 11.875px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/jtJKXkn8xt.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 41;
+}
+.groups-16 {
+  position: absolute;
+  width: 359.375px;
+  height: 67.5px;
+  right: 0;
+  bottom: 638.125px;
+  font-size: 0px;
+  background: rgba(0, 0, 0, 0);
+  z-index: 34;
+}
+.usdt {
+  display: block;
+  position: relative;
+  height: 26.875px;
+  margin: 11.875px 0 0 63.125px;
+  color: #383838;
+  font-family: Inter, var(--default-font-family);
+  font-size: 25.625px;
+  font-weight: 700;
+  line-height: 26.875px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 37;
+}
+.flex-row-e {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 76.25px;
+  height: 16.875px;
+  margin: 3.125px 0 0 142.5px;
+  z-index: 36;
+}
+.image-17 {
+  flex-shrink: 0;
+  position: relative;
+  width: 8.125px;
+  height: 6.875px;
+  background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-04/Vtz0Vutge4.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 36;
+}
+.dollar {
+  flex-shrink: 0;
+  position: relative;
+  height: 16.875px;
+  color: #727272;
+  font-family: Inter, var(--default-font-family);
+  font-size: 15.625px;
+  font-weight: 700;
+  line-height: 16.875px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 35;
+}
+
 
         `}</style>
 
-      <>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Generated by Codia AI</title>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-        />
-        <link rel="stylesheet" href="index.css" />
-        <div className="main-container">
-          <div className="groups-1">
-            <div className="image" />
-            <span className="time">{formData.time || "7:43"}AM</span>
-            <div className="image-2" />
-            <div className="image-3" />
-            <div className="image-4" />
-            <div className="image-5" />
-            <div className="image-6" />
-            <div className="image-7" />
-            <div className="image-8" />
-            <div className="image-9" />
-            <div className="image-a" />
+    
+       <>
+
+  <div className="main-container">
+    <div className="root">
+      <div className="groups">
+        <span className="time">12:18</span>
+        <div className="image" />
+        <div className="image-1" />
+        <div className="image-2" />
+        <div className="image-3" />
+        <div className="image-4" />
+        <div className="image-5" />
+        <div className="image-6" />
+      </div>
+      <div className="flex-row-fcd">
+        <div className="background" />
+        <div className="background-7">
+          <div className="groups-8">
+            <div className="flex-column">
+              <span className="mar-10-31-pm">Mar 23,10:31PM</span>
+              <span className="completed">Completed</span>
+              <span className="xaf">0x98aF7...097534</span>
+            </div>
+            <div className="flex-column-fb">
+              <span className="date">Date</span>
+              <span className="status">Status</span>
+              <span className="recipient">Recipient</span>
+            </div>
           </div>
-          <div className="groups-b">
-            <span className="transfer">Transfer</span>
-            <div className="image-c" />
-            <div className="image-d" />
+        </div>
+        <div className="groups-9">
+          <div className="groups-a">
+            <div className="background-b">
+              <span className="more-details">More Details</span>
+              <div className="image-c" />
+            </div>
           </div>
+          <div className="background-d" />
           <div className="groups-e">
             <div className="groups-f">
-              <span className="plus-usdt">+{formData.amount || 346} USDT</span>
-              <span className="usd">${formData.amount || 346.19}</span>
+              <span className="span-dot">0.30 ETH ($0.11)</span>
+              <span className="span-network-fee">Network fee</span>
+              <div className="image-10" />
             </div>
-            <div className="groups-10">
-              <div className="background" />
-              <div className="groups-11">
-                <span className="jul-time">{formData.date || "13Jul,01:40"}</span>
-                <span className="date">Date</span>
-              </div>
-              <div className="background-12" />
-              <div className="groups-13">
-                <div className="flex-row">
-                  <span className="status">Status</span>
-                  <span className="completed">Completed</span>
-                </div>
-                <div className="background-14" />
-              </div>
-              <div className="groups-15">
-                <span className="tbzgjvjww-prs">{senderFormatted}</span>
-                <span className="sender">Sender</span>
-              </div>
-            </div>
-            <div className="groups-16">
-              <div className="background-17" />
-              <span className="o-trx">{formData.fee || "0"} TRX</span>
-              <span className="network-fee">Network fee</span>
-              <div className="image-18" />
-            </div>
-            <div className="groups-19">
-              <div className="background-1a" />
-              <span className="more-details">More Details</span>
-              <div className="image-1b" />
+            <div className="groups-11">
+              <span className="span-nonce">Nonce</span>
+              <span className="span-50">50</span>
             </div>
           </div>
-          <div className="background-1c" />
         </div>
-      </>
+        <div className="background-12" />
+      </div>
+      <div className="groups-13">
+        <span className="span-transfer">Transfer</span>
+        <div className="image-14" />
+        <div className="image-15" />
+      </div>
+      <div className="groups-16">
+        <span className="usdt">-307.331805USDT</span>
+        <div className="flex-row-e">
+          <div className="image-17" />
+          <span className="dollar">$307.27</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</>
+
 
     </>
   );
 };
 
-export default Template14;
+export default Template16;
