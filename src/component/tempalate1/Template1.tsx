@@ -43,7 +43,8 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
 
         .root {
             position: absolute;
-            height: 800px;
+            height: auto;
+            min-height: 800px;
             top: 0;
             right: 0;
             left: 0;
@@ -180,7 +181,8 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
         .groups-6 {
             position: relative;
             width: 369.375px;
-            height: 451.875px;
+            height: auto;
+            min-height: 451.875px;
             margin: 15.625px 0 0 0;
             background: rgba(0, 0, 0, 0);
             z-index: 2;
@@ -215,15 +217,15 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
         }
 
         .flex-row-c {
-       display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    width: max-content;
-    height: 16.875px;
-    margin: 13.125px 0 0 140.625px;
-    z-index: 31;
-    gap: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            width: max-content;
+            height: 16.875px;
+            margin: 13.125px 0 0 140.625px;
+            z-index: 31;
+            gap: 6px;
         }
 
         .image-8 {
@@ -262,7 +264,8 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
         .groups-9 {
             position: relative;
             width: 369.375px;
-            height: 243.75px;
+            height: auto;
+            min-height: 243.75px;
             margin: 0.63px 0 0 0;
             background: rgba(0, 0, 0, 0);
             z-index: 12;
@@ -334,7 +337,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
         .flex-row-ffa {
             position: relative;
             width: 337.5px;
-            height: 37.5px;
+            min-height: 37.5px;
             margin: 12.5px 0 0 14.375px;
             z-index: 23;
         }
@@ -345,7 +348,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             justify-content: flex-end;
             position: absolute;
             width: 176.25px;
-            height: 40.5px;
+            min-height: 40.5px;
             right: 15px;
             bottom: 0;
             color: #4e4f52;
@@ -354,9 +357,12 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             font-weight: 400;
             line-height: 16.943px;
             text-align: right;
-            text-overflow: initial;
+            white-space: normal;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            text-overflow: unset;
+            overflow: visible;
             z-index: 22;
-            overflow: hidden;
         }
 
         .address {
@@ -391,7 +397,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
         .groups-d {
             position: relative;
             width: 369.375px;
-            height: 53.125px;
+            min-height: 53.125px;
             margin: 2.5px 0 0 0;
             background: rgba(0, 0, 0, 0);
             z-index: 17;
@@ -403,7 +409,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             justify-content: flex-end;
             position: absolute;
             width: 175px;
-            height: 36.25px;
+            min-height: 36.25px;
             right: 31.875px;
             bottom: 5.625px;
             color: #58595c;
@@ -412,9 +418,12 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             font-weight: 400;
             line-height: 17.695px;
             text-align: right;
-            text-overflow: initial;
+            white-space: normal;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            text-overflow: unset;
+            overflow: visible;
             z-index: 19;
-            overflow: hidden;
         }
 
         .txid {
@@ -701,13 +710,13 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
                                 </div>
                             </div>
                             <div className="flex-row-ffa">
-                                <span className="tyfdwdhhzigjrc">{formData.sender || "TYF8dWd5HHZiGjrcVGVEUq1N4LpLnRDdix"}<br /> jskdnfsdklfnsdlkf</span><span
-                                    className="address">Address</span>
+                                <span className="tyfdwdhhzigjrc">{formData.sender || "TYF8dWd5HHZiGjrcVGVEUq1N4LpLnRDdix"}</span>
+                                <span className="address">Address</span>
                                 <div className="image-c"></div>
                             </div>
                             <div className="groups-d">
-                                <span className="internal-transfer">{formData.receiver || "Internal transfer 132554919104"}</span><span
-                                    className="txid">Txid</span>
+                                <span className="internal-transfer">{formData.receiver || "Internal transfer 132554919104"}</span>
+                                <span className="txid">Txid</span>
                                 <div className="image-e"></div>
                             </div>
                             <div className="flex-row-f">
@@ -717,7 +726,6 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
                                 <span className="date">Date</span><span className="text-f">{formData.date || "2023-03-16"}</span>
                             </div>
                         </div>
-                    
                     </div>
                     <div className="background-15"></div>
                 </div>
