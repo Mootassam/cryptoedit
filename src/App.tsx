@@ -22,6 +22,7 @@ import Template13 from "./component/template13/Template13";
 import Template14 from "./component/template14/Template14";
 import Template15 from "./component/template15/Template15";
 import Template16 from "./component/template14/Template14";
+import Template17 from "./component/template17/Template17";
 
 
 function App() {
@@ -112,6 +113,11 @@ function App() {
               {value === "template14" && <Template14 formData={formData} />}
               {value === "Template15" && <Template15 formData={formData} />}
               {value === "template16" && <Template16 formData={formData} />}
+
+              {value === "template17" && <Template17 formData={formData} />}
+
+
+              
 
 
             </FormDataProvider>
