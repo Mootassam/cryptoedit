@@ -1,13 +1,35 @@
-import React from 'react'
+import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template5Props {
   formData: FormData;
 }
 
+// Small exchange rate USDT → USD (realistic variation)
+const USDT_TO_USD_RATE = 1.001;
+
+// Format USD with commas and 2 decimals
+const formatUSD = (amount: number): string => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+};
+
 const Template5: React.FC<Template5Props> = ({ formData }) => {
+  // Parse amount (remove commas if any)
+  const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 35985.00;
+  const usdValue = rawAmount * USDT_TO_USD_RATE;
+  const usdFormatted = formatUSD(usdValue);
+
+  // Prepare deposit from text (combine sender and receiver with line break)
+  const depositFromText = `${formData.sender || "OxOB341b8dEd2598bd9fA3D"}`;
+
   return (
-    <><style>{`    :root {
+    <>
+      <style>{`    :root {
   --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
     "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
@@ -278,31 +300,25 @@ button {
   overflow: visible auto;
 }
 .background-b {
-  position: relative;
-  width: 126.25px;
-  height: 24.375px;
-  margin: 3.75px 0 0 3.125px;
-  background: #fafcfc;
-  border: 0.63px solid #c2c9c8;
-  z-index: 17;
-  border-radius: 2.5px;
+position: relative;
+    width: max-content;
+    background: #fafcfc;
+    border: 0.63px solid #c2c9c8;
+    z-index: 17;
+    border-radius: 2.5px;
 }
 .usd-amount {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  height: 16px;
-  right: 6.25px;
-  bottom: 4px;
-  color: #a5b8b5;
-  font-family: Inter, var(--default-font-family);
-  font-size: 13.125px;
-  font-weight: 400;
-  line-height: 15.884px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 18;
+    padding: 4.5px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a5b8b5;
+    font-family: Inter, var(--default-font-family);
+    font-size: 13.125px;
+    font-weight: 400;
+    line-height: 15.884px;
+    text-align: left;
+    white-space: nowrap;
 }
 .groups-c {
   position: relative;
@@ -318,12 +334,12 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 16.875px;
-  right: 262.5px;
+  right: 269.50px;
   bottom: 13.75px;
   color: #a3a3a3;
   font-family: Inter, var(--default-font-family);
   font-size: 12.5px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 15.128px;
   text-align: left;
   white-space: nowrap;
@@ -352,7 +368,7 @@ button {
   justify-content: space-between;
   position: relative;
   width: 340.625px;
-  height: 33.125px;
+  min-height: 33.125px;
   margin: 5.625px 0 0 15.625px;
   z-index: 11;
 }
@@ -360,10 +376,10 @@ button {
   flex-shrink: 0;
   position: relative;
   height: 16.25px;
-  color: #4a4a4c;
+  color: #000;
   font-family: Inter, var(--default-font-family);
   font-size: 12.5px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 16.25px;
   text-align: left;
   white-space: nowrap;
@@ -376,16 +392,19 @@ button {
   flex-shrink: 0;
   position: relative;
   width: 185.625px;
-  height: 33.125px;
+  min-height: 33.125px;
   color: #89aeb8;
   font-family: Inter, var(--default-font-family);
   font-size: 12.5px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 15.43px;
   text-align: right;
-  text-overflow: initial;
+  white-space: pre-line;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  text-overflow: unset;
+  overflow: visible;
   z-index: 10;
-  overflow: hidden;
 }
 .groups-f {
   position: absolute;
@@ -410,12 +429,12 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 16.25px;
-  right: 267.5px;
+  right: 277.17px;
   bottom: 13.75px;
-  color: #464648;
+  color: #000;
   font-family: Inter, var(--default-font-family);
   font-size: 12.5px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 15.128px;
   text-align: left;
   white-space: nowrap;
@@ -429,7 +448,7 @@ button {
   height: 14.375px;
   right: 14.375px;
   bottom: 15.625px;
-  color: #666666;
+  color: #1E1E1E;
   font-family: Inter, var(--default-font-family);
   font-size: 13.125px;
   font-weight: 400;
@@ -474,8 +493,8 @@ button {
             <div className="groups-5"><div className="image-6"></div></div>
             <span className="usdt-dep">USDT (ERC20) Deposit</span>
             <div className="groups-7">
-              <span className="processed">Processed</span
-              ><span className="date-time">{formData.date || "Aug 24,2024 at 8:45:10 PM"}</span>
+              <span className="processed">Processed</span>
+              <span className="date-time">{formData.date || "Aug 24,2024 at 8:45:10 PM"}</span>
             </div>
           </div>
           <div className="groups-8">
@@ -483,12 +502,12 @@ button {
               <div className="groups-9">
                 <div className="groups-a">
                   <div className="flex-row-ea">
-                    <span className="plus-amount">{formData.amount ? `+${formData.amount}` : "+35,985.00"}</span
-                    ><span className="usdt">USDT</span>
+                    <span className="plus-amount">{formData.amount ? `+${formData.amount}` : "+35,985.00"}</span>
+                    <span className="usdt">USDT</span>
                   </div>
                   <div className="button">
                     <div className="background-b">
-                      <span className="usd-amount">+$35,921.03USD</span>
+                      <span className="usd-amount">+{usdFormatted}USD</span>
                     </div>
                   </div>
                 </div>
@@ -498,16 +517,14 @@ button {
                 <div className="groups-d">
                   <div className="background-e"></div>
                   <div className="flex-row-e">
-                    <span className="deposit-from">Deposit from</span
-                    ><span className="oxobbded"
-                    >{formData.sender || "OxOB341b8dEd2598bd9fA3D"}<br />{formData.receiver || "6Df3d8A29B542ebc6a8"}</span
-                    >
+                    <span className="deposit-from">Deposit from</span>
+                    <span className="oxobbded">{depositFromText}</span>
                   </div>
                 </div>
                 <div className="groups-f">
                   <div className="groups-10">
-                    <span className="network-type">Network Type</span
-                    ><span className="erc20">ERC20</span>
+                    <span className="network-type">Network Type</span>
+                    <span className="erc20">ERC20</span>
                   </div>
                 </div>
               </div>
@@ -517,12 +534,8 @@ button {
         </div>
         <div className="background-12"></div>
       </div>
-
-
-
-
     </>
-  )
-}
+  );
+};
 
-export default Template5
+export default Template5;

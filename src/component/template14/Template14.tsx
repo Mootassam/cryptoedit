@@ -337,7 +337,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 13.125px;
-  right: 300.625px;
+  right: 303.625px;
   bottom: 13.75px;
   color: #908f91;
   font-family: Inter, var(--default-font-family);
@@ -444,7 +444,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 13.75px;
-  right: 286.25px;
+  right: 290.25px;
   bottom: 15px;
   color: #8d8d8f;
   font-family: Inter, var(--default-font-family);

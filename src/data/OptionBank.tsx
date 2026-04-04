@@ -14,8 +14,8 @@ const optionBank = [
   { name: "Template 9", value: "template9", type: "withdraw" },
   { name: "Template 10", value: "template10", type: "withdraw" },
   { name: "Template 11", value: "template11", type: "withdraw" },
-  { name: "Template 14", value: "template14", type: "deposit" },
-  { name: "Template 15", value: "Template15", type: "deposit" },
+  { name: "Template 14", value: "template14", type: "withdraw" },
+  { name: "Template 15", value: "Template15", type: "withdraw" },
 
 
 
