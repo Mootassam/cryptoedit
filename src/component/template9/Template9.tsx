@@ -277,7 +277,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
 
         .background-9 {
             position: relative;
-            width: 369.375px;
             height: 1.875px;
             margin: 0.63px 0 0 0;
             background: #080808;
@@ -286,7 +285,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
 
         .groups-a {
             position: relative;
-            width: 369.375px;
+            padding-left: 23.75px;
             height: 327.5px;
             margin: 20.625px 0 0 0;
             background: rgba(0, 0, 0, 0);
@@ -296,7 +295,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
 
         .groups-b {
             position: relative;
-            width: 369.375px;
             height: 67.5px;
             margin: 0 0 0 0;
             background: rgba(0, 0, 0, 0);
@@ -309,9 +307,8 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             align-items: center;
             justify-content: space-between;
             position: relative;
-            width: 303.75px;
             height: 19.375px;
-            margin: 12.5px 0 0 23.125px;
+            margin: 12.5px 0 0 0px;
             z-index: 33;
         }
 
@@ -330,24 +327,27 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
         }
 
         .tnypi-aof-twsxv {
-            flex-shrink: 0;
-            position: relative;
-            height: 19.375px;
-            color: #959595;
-            font-family: Inter, var(--default-font-family);
-            font-size: 14.375px;
-            font-weight: 400;
-            line-height: 19.375px;
-            text-align: left;
-            white-space: nowrap;
-            z-index: 32;
+flex-shrink: 0;
+    display: flex;
+    gap: 5px;
+    position: relative;
+    align-items: center;
+    height: 19.375px;
+    color: #959595;
+    font-family: Inter, var(--default-font-family);
+    font-size: 14.375px;
+    font-weight: 400;
+    line-height: 19.375px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 32;
+    padding-right: 23px;
         }
 
         .image-c {
             position: relative;
             width: 11.875px;
             height: 11.875px;
-            margin: -6.25px 0 0 331.875px;
             background: url(/template9/KVwRCpYOzD.png) no-repeat center;
             background-size: cover;
             z-index: 30;
@@ -370,7 +370,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
 
         .groups-d {
             position: relative;
-            width: 369.375px;
             height: 50px;
             margin: 1.875px 0 0 0;
             background: rgba(0, 0, 0, 0);
@@ -380,10 +379,10 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
         .price {
             display: flex;
             align-items: center;
+            gap:4px;
             justify-content: flex-start;
             position: absolute;
             height: 16.25px;
-            right: 308.75px;
             bottom: 20px;
             color: #d3d3d3;
             font-family: Inter, var(--default-font-family);
@@ -414,11 +413,8 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
         }
 
         .image-e {
-            position: absolute;
             width: 13.75px;
             height: 13.75px;
-            right: 291.875px;
-            bottom: 20.625px;
             background: url(/template9/k6zCPATNEx.png) no-repeat center;
             background-size: cover;
             z-index: 27;
@@ -426,7 +422,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
 
         .groups-f {
             position: relative;
-            width: 369.375px;
             height: 50.625px;
             margin: 0.63px 0 0 0;
             background: rgba(0, 0, 0, 0);
@@ -457,7 +452,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 15.625px;
-            right: 283.75px;
             bottom: 20px;
             color: #b9b9b9;
             font-family: Inter, var(--default-font-family);
@@ -482,7 +476,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
 
         .groups-11 {
             position: relative;
-            width: 369.375px;
             height: 50.625px;
             margin: 0.63px 0 0 0;
             background: rgba(0, 0, 0, 0);
@@ -495,7 +488,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 16.25px;
-            right: 256.875px;
             bottom: 20px;
             color: #d0d0d0;
             font-family: Inter, var(--default-font-family);
@@ -527,7 +519,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
 
         .groups-13 {
             position: relative;
-            width: 369.375px;
             height: 50.625px;
             margin: 0.63px 0 0 0;
             background: rgba(0, 0, 0, 0);
@@ -540,7 +531,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 16.875px;
-            right: 241.875px;
             bottom: 19.375px;
             color: #d2d2d2;
             font-family: Inter, var(--default-font-family);
@@ -583,7 +573,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
 
         .groups-15 {
             position: relative;
-            width: 369.375px;
             height: 53.125px;
             margin: 1.25px 0 0 0;
             background: rgba(0, 0, 0, 0);
@@ -596,7 +585,6 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 16.875px;
-            right: 234.375px;
             bottom: 22.5px;
             color: #cccccc;
             font-family: Inter, var(--default-font-family);
@@ -762,14 +750,17 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
                 <div className="groups-a">
                     <div className="groups-b">
                         <div className="flex-row-bb">
-                            <span className="address">Address</span><span className="tnypi-aof-twsxv">{formData.receiver || "TNyp9iAoFtWS5xv5YCC"}</span>
+                            <span className="address">Address</span><span className="tnypi-aof-twsxv">{formData.receiver || "TNyp9iAoFtWS5xv5YCC"}
+
+
+                                <div className="image-c"></div>
+
+                            </span>
                         </div>
-                        <div className="image-c"></div>
-                        <span className="qwwhgqntqkcp">{formData.sender || "Q7WWhG3Qn1tQKCp"}</span>
                     </div>
                     <div className="groups-d">
-                        <span className="price">Price</span><span className="usdt">$1/USDT</span>
-                        <div className="image-e"></div>
+                        <span className="price">Price     <div className="image-e"></div></span><span className="usdt">$1/USDT</span>
+                    
                     </div>
                     <div className="groups-f">
                         <span className="tron-trc">Tron (TRC20)</span><span className="network">Network</span>

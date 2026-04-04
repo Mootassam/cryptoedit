@@ -640,7 +640,7 @@ button {
                 </div>
               </div>
               <div className="groups-6">
-                <span className="usdt">70 USDT</span>
+                <span className="usdt">{formData.amount || 70} USDT</span>
                 <span className="amount">Amount</span>
               </div>
               <div className="groups-7">
@@ -666,7 +666,7 @@ button {
               </div>
             </div>
             <div className="groups-f">
-              <span className="usdt-10">-70 USDT</span>
+              <span className="usdt-10">-{formData.amount || 70} USDT</span>
               <div className="flex-row-f">
                 <div className="image-11" />
                 <span className="completed">Completed</span>
