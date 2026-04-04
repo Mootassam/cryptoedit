@@ -345,7 +345,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             justify-content: flex-end;
             position: absolute;
             width: 176.25px;
-            height: 37.5px;
+            height: 40.5px;
             right: 15px;
             bottom: 0;
             color: #4e4f52;
@@ -365,7 +365,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 13.75px;
-            right: 285.625px;
+            right: 289.625px;
             bottom: 21.25px;
             color: #abaeb2;
             font-family: Inter, var(--default-font-family);
@@ -423,7 +423,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 14.375px;
-            right: 328.75px;
+            right: 330.75px;
             bottom: 25.625px;
             color: #aaadb1;
             font-family: Inter, var(--default-font-family);
@@ -701,7 +701,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
                                 </div>
                             </div>
                             <div className="flex-row-ffa">
-                                <span className="tyfdwdhhzigjrc">{formData.sender || "TYF8dWd5HHZiGjrcVGVEUq1N4LpLnRDdix"}</span><span
+                                <span className="tyfdwdhhzigjrc">{formData.sender || "TYF8dWd5HHZiGjrcVGVEUq1N4LpLnRDdix"}<br /> jskdnfsdklfnsdlkf</span><span
                                     className="address">Address</span>
                                 <div className="image-c"></div>
                             </div>
@@ -717,20 +717,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
                                 <span className="date">Date</span><span className="text-f">{formData.date || "2023-03-16"}</span>
                             </div>
                         </div>
-                        <div className="groups-f">
-                            <div className="background-10">
-                                <div className="flex-row-bab">
-                                    <span className="btc-usdt">BTC/USDT</span>
-                                    <div className="image-11"></div>
-                                    <span className="number-text">43,018.81</span><span className="percentage-text">-0.38%</span>
-                                </div>
-                                <div className="flex-row-a">
-                                    <div className="background-12"></div>
-                                    <div className="background-13"></div>
-                                    <div className="background-14"></div>
-                                </div>
-                            </div>
-                        </div>
+                    
                     </div>
                     <div className="background-15"></div>
                 </div>
