@@ -1,12 +1,61 @@
-import React from 'react'
+import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template11Props {
-  formData: FormData;
+    formData: FormData;
 }
+
+// Helper: truncate a string to show first N and last M characters
+const truncateString = (str: string, startChars: number, endChars: number): string => {
+    if (!str) return '';
+    if (str.length <= startChars + endChars) return str;
+    const start = str.slice(0, startChars);
+    const end = str.slice(-endChars);
+    return `${start}...${end}`;
+};
+
+// Format txid: first 5, last 5 → "0x13b...294c4"
+const formatTxid = (txid: string) => truncateString(txid, 5, 5);
+
+// Format USD amount with commas and 2 decimal places
+const formatUSD = (amount: number): string => {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(amount);
+};
+
+// Small exchange rate USDT → USD (realistic variation)
+const USDT_TO_USD_RATE = 1.001;
+
 const Template11: React.FC<Template11Props> = ({ formData }) => {
-  return (
-    <><style>{`   :root {
+    // Parse amount (remove commas if any)
+    const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 58.860333;
+    const amountDisplay = formData.amount ? `${formData.amount}USDT` : "58.860333USDT";
+    const usdValue = rawAmount * USDT_TO_USD_RATE;
+    const usdFormatted = formatUSD(usdValue); // e.g., "$58.92"
+    const usdDisplay = usdFormatted.replace('$', '~$'); // "~$58.92" to match original style
+
+    // Format txid
+    const txidFormatted = formatTxid(formData.txid || "0x13b294c4");
+
+    // Address: allow wrapping via CSS
+    const senderAddress = formData.sender || "0x98af70c4339476438a4c47f3796726d119097534";
+
+    // Fee display
+    const feeDisplay = formData.fee !== undefined ? `${formData.fee}` : "0.15";
+
+    // Date and time combined
+    const dateTimeDisplay = `${formData.date || "Jan 18,2026"}, ${formData.time || "9:29 PM"}`;
+
+    // Reference number
+    const referenceNo = formData.referenceNo || "372620932";
+
+    return (
+        <>
+            <style>{`   :root {
             --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                 Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
                 "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
@@ -28,6 +77,16 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
         button {
             outline: 0;
         }
+
+          prices { 
+           font-family: Inter, var(--default-font-family) !important;
+            font-size: 12.5px !important;
+            font-weight: 400 !important;
+            line-height: 13.965px !important;
+            text-align: right !important;
+            
+            }
+
 
         .main-container {
             position: relative;
@@ -67,7 +126,7 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             color: #353535;
             font-family: Inter, var(--default-font-family);
             font-size: 14.375px;
-            font-weight: 400;
+            font-weight: 700;
             line-height: 15.625px;
             text-align: left;
             white-space: nowrap;
@@ -289,7 +348,8 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
         .groups-d {
             position: relative;
             width: 359.375px;
-            height: 310.625px;
+            height: auto;
+            min-height: 310.625px;
             margin: 3.75px 0 0 0;
             background: rgba(0, 0, 0, 0);
             z-index: 8;
@@ -298,20 +358,23 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
 
         .groups-e {
             position: relative;
-            width: 359.375px;
-            height: 55.625px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 55.625px;
             margin: 7.5px 0 0 0;
             background: rgba(0, 0, 0, 0);
             z-index: 31;
+            padding: 0 18.75px;
         }
 
         .xafc {
             display: flex;
-            align-items: center;
+            align-items: start;
             justify-content: flex-end;
-            position: absolute;
+            gap: 5px;
             width: 166.25px;
-            height: 33.125px;
+            min-height: 33.125px;
             right: 36.25px;
             bottom: 9.375px;
             color: #8d8d8d;
@@ -320,23 +383,24 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             font-weight: 400;
             line-height: 13.965px;
             text-align: right;
-            text-overflow: initial;
+            white-space: pre-line;
+            word-break: break-all;
+            overflow-wrap: break-word;
             z-index: 33;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .address {
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            position: absolute;
             height: 13.125px;
-            right: 291.25px;
+            right: 294.25px;
             bottom: 27.5px;
-            color: #474747;
+            font-weight: 500;
+            color: #000;
             font-family: Inter, var(--default-font-family);
             font-size: 12.5px;
-            font-weight: 400;
             line-height: 13.125px;
             text-align: left;
             white-space: nowrap;
@@ -344,7 +408,6 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
         }
 
         .image-f {
-            position: absolute;
             width: 10px;
             height: 10px;
             right: 20.625px;
@@ -352,6 +415,7 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             background: url(/template11/vjN0AqgajB.png) no-repeat center;
             background-size: cover;
             z-index: 32;
+            flex-shrink: 0;
         }
 
         .groups-10 {
@@ -362,6 +426,7 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             background: rgba(0, 0, 0, 0);
             z-index: 27;
         }
+
 
         .price {
             display: flex;
@@ -375,6 +440,7 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             font-family: Inter, var(--default-font-family);
             font-size: 11.875px;
             font-weight: 400;
+            
             line-height: 14.371px;
             text-align: left;
             white-space: nowrap;
@@ -387,12 +453,12 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 12.5px;
-            right: 310px;
+            right: 312px;
             bottom: 14.375px;
-            color: #434343;
+            font-weight: 500;
+            color: #000;
             font-family: Inter, var(--default-font-family);
             font-size: 12.5px;
-            font-weight: 400;
             line-height: 12.5px;
             text-align: left;
             white-space: nowrap;
@@ -428,11 +494,11 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             right: 18.125px;
             bottom: 13.125px;
             color: #8a8b8a;
-            font-family: Inter, var(--default-font-family);
-            font-size: 11.25px;
-            font-weight: 400;
-            line-height: 13.615px;
-            text-align: left;
+            font-family: Inter, var(--default-font-family) !important;
+            font-size: 12.5px !important;
+            font-weight: 400 !important;
+            line-height: 13.965px !important;
+            text-align: right !important;
             white-space: nowrap;
             z-index: 24;
         }
@@ -443,12 +509,13 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 12.5px;
-            right: 289.375px;
+            right: 291.375px;
             bottom: 14.375px;
-            color: #494949;
+            font-weight: 500;
+            color: #000;
             font-family: Inter, var(--default-font-family);
             font-size: 12.5px;
-            font-weight: 400;
+       
             line-height: 12.5px;
             text-align: left;
             white-space: nowrap;
@@ -459,7 +526,7 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             position: absolute;
             width: 11.875px;
             height: 11.875px;
-            right: 128.125px;
+         right: 118.125px;
             bottom: 13.75px;
             background: url(/template11/po3TdbxcBr.png) no-repeat center;
             background-size: cover;
@@ -484,11 +551,11 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             right: 18.125px;
             bottom: 14.375px;
             color: #8b8b8b;
-            font-family: Inter, var(--default-font-family);
-            font-size: 13.125px;
-            font-weight: 400;
-            line-height: 14.375px;
-            text-align: left;
+               font-family: Inter, var(--default-font-family) !important;
+            font-size: 12.5px !important;
+            font-weight: 400 !important;
+            line-height: 13.965px !important;
+            text-align: right !important;
             white-space: nowrap;
             z-index: 21;
         }
@@ -499,12 +566,13 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 13.125px;
-            right: 268.125px;
+          right: 274.125px;
             bottom: 14.375px;
-            color: #454545;
+            font-weight: 500;
+            color: #000;
             font-family: Inter, var(--default-font-family);
             font-size: 11.875px;
-            font-weight: 400;
+
             line-height: 13.125px;
             text-align: left;
             white-space: nowrap;
@@ -514,7 +582,7 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
         .groups-16 {
             position: relative;
             width: 359.375px;
-            height: 35.625px;
+            min-height: 35.625px;
             margin: 0.63px 0 0 0;
             background: rgba(0, 0, 0, 0);
             z-index: 16;
@@ -525,16 +593,18 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             align-items: center;
             justify-content: flex-start;
             position: absolute;
-            height: 13.75px;
+            height: auto;
+            min-height: 13.75px;
             right: 34.375px;
             bottom: 9.375px;
             color: #8b8b8b;
-            font-family: Inter, var(--default-font-family);
-            font-size: 11.875px;
-            font-weight: 400;
-            line-height: 13.75px;
-            text-align: left;
-            white-space: nowrap;
+            font-family: Inter, var(--default-font-family) !important;
+            font-size: 12.5px !important;
+            font-weight: 400 !important;
+            line-height: 13.965px !important;
+            text-align: right !important;
+            white-space: normal;
+            word-break: break-all;
             z-index: 18;
         }
 
@@ -544,16 +614,16 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 12.5px;
-            right: 255.625px;
+            right: 263.625px;
             bottom: 10px;
-            color: #404040;
+            font-weight: 500;
+            color: #000;
             font-family: Inter, var(--default-font-family);
-            font-size: 11.25px;
-            font-weight: 400;
-            line-height: 12.5px;
+            font-size: 11.875px;
+            line-height: 13.125px;
             text-align: left;
             white-space: nowrap;
-            z-index: 19;
+            z-index: 22;
         }
 
         .image-17 {
@@ -585,11 +655,11 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             right: 11.25px;
             bottom: 12.5px;
             color: #8e8e8e;
-            font-family: Inter, var(--default-font-family);
-            font-size: 11.875px;
-            font-weight: 400;
-            line-height: 14.371px;
-            text-align: left;
+     font-family: Inter, var(--default-font-family) !important;
+            font-size: 12.5px !important;
+            font-weight: 400 !important;
+            line-height: 13.965px !important;
+            text-align: right !important;
             white-space: nowrap;
             z-index: 14;
         }
@@ -600,12 +670,13 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 13.125px;
-            right: 241.875px;
+            right: 248.875px;
             bottom: 13.75px;
-            color: #454545;
+            font-weight: 500;
+            color: #000;
             font-family: Inter, var(--default-font-family);
-            font-size: 12.5px;
-            font-weight: 400;
+            font-size: 11.875px;
+
             line-height: 13.125px;
             text-align: left;
             white-space: nowrap;
@@ -629,12 +700,13 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             height: 13.75px;
             right: 35px;
             bottom: 15.625px;
-            color: #8e8e8e;
-            font-family: Inter, var(--default-font-family);
-            font-size: 12.5px;
-            font-weight: 400;
-            line-height: 13.75px;
-            text-align: left;
+           font-weight: 400;
+                    color: #8e8e8e;
+             font-family: Inter, var(--default-font-family) !important;
+            font-size: 12.5px !important;
+            font-weight: 400 !important;
+            line-height: 13.965px !important;
+            text-align: right !important;
             white-space: nowrap;
             z-index: 11;
         }
@@ -645,16 +717,17 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 13.125px;
-            right: 258.75px;
+            right: 266.75px;
             bottom: 15.625px;
-            color: #424242;
+   
             font-family: Inter, var(--default-font-family);
-            font-size: 11.25px;
-            font-weight: 400;
+            font-size: 11.875px;
+            font-weight: 500;
+                    color: #000;
             line-height: 13.125px;
             text-align: left;
             white-space: nowrap;
-            z-index: 12;
+            z-index: 22;
         }
 
         .image-1a {
@@ -752,83 +825,108 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
             background:#fff;
             
             z-index: 2;
-        }`}</style>
+        }
         
+        .price_usdt { 
+            display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    height: 14.375px;
+    right: 18.125px;
+    bottom: 14.375px;
+    color: #8b8b8b;
+    font-family: Inter, var(--default-font-family) !important;
+    font-size: 12.5px !important;
+    font-weight: 400 !important;
+    line-height: 13.965px !important;
+    text-align: right !important;
+    white-space: nowrap;
+    z-index: 21;
+        }
         
+      
         
-            <div className="main-container">
-        <div className="root">
-            <div className="groups">
-                <span className="time">{formData.time || "10:32"}</span>
-                <div className="image"></div>
-                <div className="image-1"></div>
-                <div className="image-2"></div>
-                <div className="image-3"></div>
-                <div className="image-4"></div>
-            </div>
-            <div className="groups-5">
-                <div className="groups-6">
-                    <div className="groups-7">
-                        <div className="image-8"></div>
-                    </div>
-                    <div className="groups-9">
-                        <div className="image-a"></div>
-                        <span className="withdrawn">{formData.amount ? `Withdrawn ${formData.amount}USDT` : "Withdrawn 58.860333USDT"}</span><span
-                            className="withdrawn-amount">{formData.amount ? `~${formData.amount}` : "~$58.8"}</span>
-                    </div>
-                    <div className="groups-b">
-                        <div className="image-c"></div>
-                        <span className="completed">Completed</span><span className="status">Status</span>
-                    </div>
-                    <div className="background"></div>
-                </div>
-                <div className="groups-d">
-                    <div className="groups-e">
-                        <span className="xafc">{formData.receiver || "0x98af70c4339476438a4c"}<br />{"47f3796726d119097534"}</span><span
-                            className="address">Address</span>
-                        <div className="image-f"></div>
-                    </div>
-                    <div className="groups-10">
-                        <span className="price">$0.99/USDT</span><span className="price-11">Price</span>
-                        <div className="image-12"></div>
-                    </div>
-                    <div className="groups-13">
-                        <span className="ethereum-network">Ethereum(ERC20)</span><span className="network">Network</span>
-                        <div className="image-14"></div>
-                    </div>
-                    <div className="groups-15">
-                        <span className="usdt">0.15USDT</span><span className="network-fee">Network fee</span>
-                    </div>
-                    <div className="groups-16">
-                        <span className="xb-c">{formData.txid || "0x13b..294c4"}</span><span className="transaction-id">Transaction ID</span>
-                        <div className="image-17"></div>
-                    </div>
-                    <div className="groups-18">
-                        <span className="jan-date">{formData.date || "Jan 18,2026"},{formData.time || "9:29 PM"}</span><span className="submitted-time">Submitted
-                            time</span>
-                    </div>
-                    <div className="groups-19">
-                        <span className="reference-no">372620932</span><span className="text-13">Reference no.</span>
-                        <div className="image-1a"></div>
-                    </div>
-                </div>
-            </div>
-            <div className="button">
-                <div className="background-1b">
-                    <span className="view-blockchain-explorer">View on blockchain explorer</span>
-                </div>
-            </div>
-            <span className="transaction-arrived">Why hasn't my transaction arrived?</span>
-            <div className="background-1c"></div>
-        </div>
-        <div className="image-1d"></div>
-        <div className="image-1e"></div>
-    </div>
-        
-        
-        
-        </>
-  )
-}
+        `}</style>
 
-export default Template11
+            <div className="main-container">
+                <div className="root">
+                    <div className="groups">
+                        <span className="time">{formData.time || "10:32"}</span>
+                        <div className="image"></div>
+                        <div className="image-1"></div>
+                        <div className="image-2"></div>
+                        <div className="image-3"></div>
+                        <div className="image-4"></div>
+                    </div>
+                    <div className="groups-5">
+                        <div className="groups-6">
+                            <div className="groups-7">
+                                <div className="image-8"></div>
+                            </div>
+                            <div className="groups-9">
+                                <div className="image-a"></div>
+                                <span className="withdrawn">Withdrawn {amountDisplay}</span>
+                                <span className="withdrawn-amount">{usdDisplay}</span>
+                            </div>
+                            <div className="groups-b">
+                                <div className="image-c"></div>
+                                <span className="completed">Completed</span>
+                                <span className="status">Status</span>
+                            </div>
+                            <div className="background"></div>
+                        </div>
+                        <div className="groups-d">
+                            <div className="groups-e">
+                                <span className="address">Address</span>
+                                <span className="xafc">
+                                    {senderAddress}
+                                    <div className="image-f"></div>
+                                </span>
+                            </div>
+                            <div className="groups-10">
+                                <span className="price_usdt">$0.99/USDT</span>
+                                <span className="price-11">Price</span>
+                                <div className="image-12"></div>
+                            </div>
+                            <div className="groups-13">
+                                <span className="ethereum-network">Ethereum(ERC20)</span>
+                                <span className="network">Network</span>
+                                <div className="image-14"></div>
+                            </div>
+                            <div className="groups-15">
+                                <span className="usdt">{feeDisplay} USDT</span>
+                                <span className="network-fee">Network fee</span>
+                            </div>
+                            <div className="groups-16">
+                                <span className="xb-c">{txidFormatted}</span>
+                                <span className="transaction-id">Transaction ID</span>
+                                <div className="image-17"></div>
+                            </div>
+                            <div className="groups-18">
+                                <span className="jan-date">{dateTimeDisplay}</span>
+                                <span className="submitted-time">Submitted time</span>
+                            </div>
+                            <div className="groups-19">
+                                <span className="reference-no prices">{referenceNo}</span>
+                                <span className="text-13">Reference no.</span>
+                                <div className="image-1a"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="button">
+                        <div className="background-1b">
+                            <span className="view-blockchain-explorer">View on blockchain explorer</span>
+                        </div>
+                    </div>
+                    <span className="transaction-arrived">Why hasn't my transaction arrived?</span>
+                    <div className="background-1c"></div>
+                </div>
+                <div className="image-1d"></div>
+                <div className="image-1e"></div>
+            </div>
+        </>
+    );
+};
+
+export default Template11;
