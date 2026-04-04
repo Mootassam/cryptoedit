@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template7Props {
@@ -6,6 +6,16 @@ interface Template7Props {
 }
 
 const Template7: React.FC<Template7Props> = ({ formData }) => {
+  // Prepare dynamic values
+  const senderAddress = formData.sender || "TA7mLh3Zy1sHj2n9u5XoV8w9e6r4q3b2c1";
+  const amountValue = formData.amount || 70;
+  const feeValue = formData.fee !== undefined ? formData.fee : 0;
+  const dateTimeDisplay = formData.date && formData.time 
+    ? `${formData.date} ${formData.time}` 
+    : (formData.date || "2026-03-24") + " " + (formData.time || "10:27:53");
+  const referenceNo = formData.referenceNo || "358056349021";
+  const txidValue = formData.txid || "358056349021";
+
   return (
     <>
 
@@ -110,7 +120,8 @@ button {
 .groups-4 {
   position: relative;
   width: 503.125px;
-  height: 160px;
+  height: auto;
+  min-height: 160px;
   margin: 1.25px 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 17;
@@ -118,29 +129,33 @@ button {
 .flex-column-b {
   position: absolute;
   width: 264.375px;
-  height: 138.75px;
-  right: 48.75px;
+  height: auto;
+  min-height: 138.75px;
+  right: 0px;
   bottom: 11.25px;
   font-size: 0px;
   z-index: 24;
+  padding-right: 18.75px;
 }
 .tnypi-ao-ft-wsxv {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
   position: relative;
-  width: 264.375px;
-  height: 49.375px;
-  margin: 0 0 0 0;
+  gap: 8.75px;
   color: #afb3bc;
   font-family: Inter, var(--default-font-family);
   font-size: 17.5px;
   font-weight: 400;
   line-height: 23.237px;
   text-align: right;
-  text-overflow: initial;
+  white-space: pre-line;
+  word-break: break-all;
+  overflow-wrap: break-word;
   z-index: 24;
-  overflow: hidden;
+  overflow: visible;
+  max-width: 246px;
+  margin-left: auto;
 }
 .save-address {
   display: block;
@@ -157,10 +172,11 @@ button {
   z-index: 22;
 }
 .off-chain-transf {
-  display: block;
+  display: flex;
   position: relative;
+  align-items: center;
+  justify-content: flex-end;
   height: 23.125px;
-  margin: 16.75px 0 0 110.625px;
   color: #a5a9b2;
   font-family: Inter, var(--default-font-family);
   font-size: 17.5px;
@@ -171,24 +187,27 @@ button {
   z-index: 20;
 }
 .text-6 {
-  display: block;
-  position: relative;
-  height: 23.125px;
-  margin: 0 0 0 131.25px;
-  color: #a6aab3;
-  font-family: Inter, var(--default-font-family);
-  font-size: 17.5px;
-  font-weight: 400;
-  line-height: 21.179px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 19;
+    display: block;
+    position: relative;
+    height: 23.125px;
+    margin: 0px;
+    color: #a6aab3;
+    font-family: Inter, var(--default-font-family);
+    font-size: 17.5px;
+    font-weight: 400;
+    line-height: 21.179px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 19;
+    display: flex;
+    justify-content: flex-end;
 }
 .flex-column {
   position: absolute;
   width: 70px;
-  height: 108.75px;
-  right: 413.125px;
+  height: auto;
+  min-height: 108.75px;
+  right: 406.125px;
   bottom: 38.125px;
   font-size: 0px;
   z-index: 25;
@@ -233,17 +252,16 @@ button {
   position: relative;
   width: 18.125px;
   height: 18.125px;
-  margin: 0 0 0 0;
   background: url(/template7/8Qnv2RNFk2.png)
     no-repeat center;
   background-size: cover;
   z-index: 23;
+  flex-shrink: 0;
 }
 .image-5 {
   position: relative;
   width: 18.125px;
   height: 18.75px;
-  margin: 84.375px 0 0 0;
   background: url(/template7/f0KgnrPDuU.png)
     no-repeat center;
   background-size: cover;
@@ -280,7 +298,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 18.75px;
-  right: 416.25px;
+  right: 414.75px;
   bottom: 13.75px;
   color: #79808a;
   font-family: Inter, var(--default-font-family);
@@ -305,7 +323,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 22.5px;
-  right: 376.875px;
+  right: 378.875px;
   bottom: 14.375px;
   color: #727983;
   font-family: Inter, var(--default-font-family);
@@ -529,11 +547,11 @@ button {
 .flex-row-f {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap:8.75px;
   position: relative;
-  width: 125px;
   height: 24.375px;
-  margin: 19.375px 0 0 192.5px;
+  margin: 19.375px 0 0 0px;
   z-index: 35;
 }
 .image-11 {
@@ -564,9 +582,8 @@ button {
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 448.75px;
   height: 42.5px;
-  margin: 12.5px 0 0 29.375px;
+  margin: 12.5px 0 0 0px;
   color: #6f7680;
   font-family: Inter, var(--default-font-family);
   font-size: 15px;
@@ -578,10 +595,12 @@ button {
   overflow: hidden;
 }
 .why-hasnt-my-wi {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   height: 18.75px;
-  margin: 3.125px 0 0 127.5px;
+  margin: 3.125px 0 0 0px;
   color: #93803d;
   font-family: Inter, var(--default-font-family);
   font-size: 14.375px;
@@ -600,6 +619,31 @@ button {
   z-index: 31;
 }
 
+.chain__off {
+  display: flex;
+  align-items: center;
+  gap: 8.75px;
+  justify-content: flex-end;
+  margin: 16.75px 0 0px;
+}
+
+/* Additional style for txid value */
+.txid-value {
+  display: block;
+  position: absolute;
+  right: 18.75px;
+  bottom: 5px;
+  color: #afb3bc;
+  font-family: Inter, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: right;
+  white-space: pre-line;
+  word-break: break-all;
+  max-width: 200px;
+  z-index: 20;
+}
 `}</style>
 
       <>
@@ -620,39 +664,45 @@ button {
                 </div>
                 <div className="groups-4">
                   <div className="flex-column-b">
-                    <span className="tnypi-ao-ft-wsxv">
-                      TNyp9iAoFtWS5xv5YCCQ7WW
-                      <br />
-                      hG3Qn1tQKCp
-                    </span>
-                    <span className="save-address">Save Address</span>
-                    <span className="off-chain-transf">Off-chain Transfer</span>
-                    <span className="text-6">358056349021</span>
+                    <div>
+                      <span className="tnypi-ao-ft-wsxv">
+                        {senderAddress}
+                        <div className="image" />
+                      </span>
+                      <span className="save-address">Save Address</span>
+                    </div>
+                    <div className='chain__off'>
+                      <div>
+                        <span className="off-chain-transf">Off-chain Transfer</span>
+                        <span className="text-6">{referenceNo}</span>
+                      </div>
+                      <div className="image-5" />
+                    </div>
                   </div>
                   <div className="flex-column">
                     <span className="address">Address</span>
                     <span className="txid">Txid</span>
                   </div>
                   <div className="flex-column-caaf">
-                    <div className="image" />
-                    <div className="image-5" />
+                    {/* Txid value displayed here */}
+                    {/* <span className="txid-value">{txidValue}</span> */}
                   </div>
                 </div>
               </div>
               <div className="groups-6">
-                <span className="usdt">{formData.amount || 70} USDT</span>
+                <span className="usdt">{amountValue} USDT</span>
                 <span className="amount">Amount</span>
               </div>
               <div className="groups-7">
                 <span className="network-fee">Network fee</span>
-                <span className="ousdt">0 USDT</span>
+                <span className="ousdt">{feeValue} USDT</span>
               </div>
               <div className="groups-8">
                 <span className="spot-wallet">Spot Wallet</span>
                 <span className="wallet">Wallet</span>
               </div>
               <div className="groups-9">
-                <span className="time-stamp">2026-03-24 10:27:53</span>
+                <span className="time-stamp">{dateTimeDisplay}</span>
                 <span className="date">Date</span>
               </div>
               <div className="image-a" />
@@ -666,7 +716,7 @@ button {
               </div>
             </div>
             <div className="groups-f">
-              <span className="usdt-10">-{formData.amount || 70} USDT</span>
+              <span className="usdt-10">-{amountValue} USDT</span>
               <div className="flex-row-f">
                 <div className="image-11" />
                 <span className="completed">Completed</span>
@@ -683,12 +733,9 @@ button {
             </div>
           </div>
         </div>
-        {/* Generated by Codia AI - https://codia.ai/ */}
       </>
-
-
     </>
-  )
-}
+  );
+};
 
-export default Template7
+export default Template7;
