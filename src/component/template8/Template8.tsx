@@ -1,14 +1,23 @@
-import React from 'react'
+import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
 
 interface Template8Props {
-  formData: FormData;
+    formData: FormData;
 }
 
 const Template8: React.FC<Template8Props> = ({ formData }) => {
-  return (
-    <><style>
-{`
+    // Prepare dynamic values
+    const amountDisplay = formData.amount ? `-${formData.amount}USDT` : "-88USDT";
+    const amountNumber = formData.amount ? `${formData.amount} USDT` : "89 USDT";
+    const receiverAddress = formData.receiver || "TB9ZZYYYmtjRPbMC5qWKpM7EKsVYML32ff";
+    const txidValue = formData.txid || "f5f5f013857f2c065ed3b1d0e95a72620a1f6096b8c8ce985ff22cb203360334";
+    const feeDisplay = formData.fee !== undefined ? `${formData.fee}USDT` : "15 USDT";
+    const dateTimeDisplay = formData.date || "2026-01-2802:12:57";
+
+    return (
+        <>
+            <style>
+                {`
  :root {
             --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                 Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
@@ -216,14 +225,15 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
         }
 
         .flex-row-f {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            width: 75px;
-            height: 13.75px;
-            margin: 10.625px 0 0 143.75px;
-            z-index: 41;
+       display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 5px;
+    /* width: 75px; */
+    height: 13.75px;
+    margin: 10.625px 0 0 0px;
+    z-index: 41;
         }
 
         .image-9 {
@@ -257,7 +267,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             position: relative;
             width: 338.125px;
             height: 26.875px;
-            margin: 7.5px 0 0 11.875px;
+            margin: 7.5px 0 0 0px;
             color: #b6b6b6;
             font-family: Inter, var(--default-font-family);
             font-size: 8.75px;
@@ -270,10 +280,12 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
         }
 
         .why-hasnt-my-wi {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             height: 11.875px;
-            margin: 0.63px 0 0 106.25px;
+            margin: 0.63px 0 0 0px;
             color: #d6c886;
             font-family: Inter, var(--default-font-family);
             font-size: 8.75px;
@@ -296,7 +308,8 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
         .groups-a {
             position: relative;
             width: 359.375px;
-            height: 306.875px;
+            height: auto;
+            min-height: 306.875px;
             margin: 9.375px 0 0 0;
             background: rgba(0, 0, 0, 0);
             z-index: 7;
@@ -306,7 +319,8 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
         .groups-b {
             position: relative;
             width: 359.375px;
-            height: 142.5px;
+            height: auto;
+            min-height: 142.5px;
             margin: 3.125px 0 0 0;
             background: rgba(0, 0, 0, 0);
             z-index: 24;
@@ -354,20 +368,22 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
 
         .flex-row-cc {
             position: relative;
-            width: 334.375px;
-            height: 29.375px;
-            margin: 16.25px 0 0 11.875px;
+            min-height: 29.375px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 16.25px 0 0 0px;
+            padding: 0 13px 0 11.875px;
             z-index: 33;
         }
 
         .tbzzyyymtjrpbbmc {
             display: flex;
-            align-items: center;
+            align-items: start;
             justify-content: flex-end;
-            position: absolute;
+            gap: 5px;
             width: 160px;
-            height: 29.375px;
-            right: 15.625px;
+            min-height: 29.375px;
             bottom: 0;
             color: #5f5f5f;
             font-family: Inter, var(--default-font-family);
@@ -375,13 +391,14 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             font-weight: 400;
             line-height: 13.906px;
             text-align: right;
-            text-overflow: initial;
+            white-space: pre-line;
+            word-break: break-all;
+            overflow-wrap: break-word;
             z-index: 32;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .image-c {
-            position: absolute;
             width: 10.625px;
             height: 11.25px;
             right: 0;
@@ -389,15 +406,14 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             background: url(/template8/f67YyS34ws.png) no-repeat center;
             background-size: cover;
             z-index: 31;
+            flex-shrink: 0;
         }
 
         .address {
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            position: absolute;
             height: 10.625px;
-            right: 291.875px;
             bottom: 16.25px;
             color: #9f9f9f;
             font-family: Inter, var(--default-font-family);
@@ -429,9 +445,9 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             align-items: center;
             justify-content: space-between;
             position: relative;
-            width: 317.5px;
-            height: 13.75px;
-            margin: 10px 0 0 11.875px;
+            min-height: 13.75px;
+            margin: 10px 0 0 0px;
+            padding: 0 13px 0 11.875px;
             z-index: 29;
         }
 
@@ -450,17 +466,23 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
         }
 
         .f5f5f013857f2c065ed3b1d0e95 {
-            flex-shrink: 0;
+            flex-shrink: 1;
             position: relative;
-            height: 13.75px;
+            min-height: 13.75px;
             color: #595959;
             font-family: Inter, var(--default-font-family);
             font-size: 10px;
             font-weight: 400;
             line-height: 13.75px;
-            text-align: left;
-            white-space: nowrap;
+            text-align: right;
+            white-space: pre-line;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            display: flex;
+            gap: 5px;
+            align-items: start;
             z-index: 28;
+            max-width: 161px;
         }
 
         .flex-row-b-d {
@@ -547,7 +569,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 11.25px;
-            right: 306.875px;
+            right: 311.875px;
             bottom: 8.125px;
             color: #9e9e9e;
             font-family: Inter, var(--default-font-family);
@@ -602,7 +624,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 11.25px;
-            right: 285px;
+            right: 291px;
             bottom: 8.125px;
             color: #a9a9a9;
             font-family: Inter, var(--default-font-family);
@@ -647,7 +669,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 11.25px;
-            right: 315.625px;
+            right: 318.625px;
             bottom: 8.75px;
             color: #9f9f9f;
             font-family: Inter, var(--default-font-family);
@@ -692,7 +714,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             justify-content: flex-start;
             position: absolute;
             height: 11.25px;
-            right: 323.125px;
+            right: 327.125px;
             bottom: 10px;
             color: #a2a2a2;
             font-family: Inter, var(--default-font-family);
@@ -802,87 +824,91 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             background-size: cover;
             z-index: 1;
         }`}
-    </style>
-    
-    
-      <div className="main-container">
-        <div className="groups">
-            <span className="time-stamp">{formData.time || "2:14"}</span><span className="lte">LTE</span>
-            <div className="image"></div>
-            <div className="image-1"></div>
-            <div className="image-2"></div>
-            <div className="image-3"></div>
-        </div>
-        <div className="groups-4">
-            <span className="withdrawal-details">Withdrawal Details</span>
-            <div className="image-5"></div>
-            <div className="image-6"></div>
-        </div>
-        <div className="groups-7">
-            <div className="groups-8">
-                <span className="usdt">{formData.amount ? `-${formData.amount}USDT` : "-88USDT"}</span>
-                <div className="flex-row-f">
-                    <div className="image-9"></div>
-                    <span className="completed">Completed</span>
-                </div>
-                <span className="crypto-transferr">Crypto transferred out of Binance. Please contact the recipient
-                    platform for your<br />transaction receipt.</span><span className="why-hasnt-my-wi">Why hasn't my
-                    withdrawal arrived?</span>
-            </div>
-            <div className="background"></div>
-            <div className="groups-a">
-                <div className="groups-b">
-                    <div className="flex-row-b">
-                        <span className="network">Network</span><span className="trx">TRX</span>
-                    </div>
-                    <div className="flex-row-cc">
-                        <span className="tbzzyyymtjrpbbmc">{formData.receiver || "TB9ZZYYYmtjRPbMC5qWKpM7\nEKsVYML32ff"}</span>
-                        <div className="image-c"></div>
-                        <span className="address">Address</span>
-                    </div>
-                    <span className="save-address">Save Address</span>
-                    <div className="flex-row-eeb">
-                        <span className="txid">Txid</span><span
-                            className="f5f5f013857f2c065ed3b1d0e95">f5f5f013857f2c065ed3b1d0e95</span>
-                    </div>
-                    <div className="flex-row-b-d">
-                        <span className="aa">{formData.sender || "a72620a 1f6096b8c8ce985ff22"}</span>
-                        <div className="image-e"></div>
-                    </div>
-                    <span className="cb">{formData.txid ? `${formData.txid.slice(0, 10)}...` : "cb203360334"}</span>
-                </div>
-                <div className="groups-f">
-                    <span className="usdt-10">{formData.amount ? `${formData.amount} USDT` : "89 USDT"}</span><span className="amount">Amount</span>
-                </div>
-                <div className="groups-11">
-                    <div className="groups-12">
-                        <span className="usdt-13">{formData.amount || "1"}USDT</span><span className="network-fee">Network fee</span>
-                    </div>
-                    <div className="groups-14">
-                        <span className="spot-wallet">Spot Wallet</span><span className="wallet">Wallet</span>
-                    </div>
-                    <div className="groups-15">
-                        <span className="date-time">{formData.date || "2026-01-2802:12:57"}</span><span className="date">Date</span>
-                    </div>
-                </div>
-                <div className="groups-16">
-                    <div className="image-17"></div>
-                    <span className="scam-report">Scam Report</span>
-                </div>
-            </div>
-        </div>
-        <div className="button">
-            <div className="background-18">
-                <span className="withdraw-again">Withdraw Again</span>
-            </div>
-        </div>
-        <div className="background-19"></div>
-        <div className="image-1a"></div>
-        <div className="image-1b"></div>
-    </div>    
-    
-    </>
-  )
-}
+            </style>
 
-export default Template8
+            <div className="main-container">
+                <div className="groups">
+                    <span className="time-stamp">{formData.time || "2:14"}</span>
+                    <span className="lte">LTE</span>
+                    <div className="image"></div>
+                    <div className="image-1"></div>
+                    <div className="image-2"></div>
+                    <div className="image-3"></div>
+                </div>
+                <div className="groups-4">
+                    <span className="withdrawal-details">Withdrawal Details</span>
+                    <div className="image-5"></div>
+                    <div className="image-6"></div>
+                </div>
+                <div className="groups-7">
+                    <div className="groups-8">
+                        <span className="usdt">{amountDisplay}</span>
+                        <div className="flex-row-f">
+                            <div className="image-9"></div>
+                            <span className="completed">Completed</span>
+                        </div>
+                        <span className="crypto-transferr">Crypto transferred out of Binance. Please contact the recipient
+                            platform for your<br />transaction receipt.</span>
+                        <span className="why-hasnt-my-wi">Why hasn't my withdrawal arrived?</span>
+                    </div>
+                    <div className="background"></div>
+                    <div className="groups-a">
+                        <div className="groups-b">
+                            <div className="flex-row-b">
+                                <span className="network">Network</span>
+                                <span className="trx">TRX</span>
+                            </div>
+                            <div className="flex-row-cc">
+                                <span className="address">Address</span>
+                                <span className="tbzzyyymtjrpbbmc">
+                                    {receiverAddress}
+                                    <div className="image-c"></div>
+                                </span>
+                            </div>
+                            <span className="save-address">Save Address</span>
+                            <div className="flex-row-eeb">
+                                <span className="txid">Txid</span>
+                                <span className="f5f5f013857f2c065ed3b1d0e95">
+                                    {txidValue}
+                                    <div className="image-e"></div>
+                                </span>
+                            </div>
+                        </div>
+                        <div className="groups-f">
+                            <span className="usdt-10">{amountNumber}</span>
+                            <span className="amount">Amount</span>
+                        </div>
+                        <div className="groups-11">
+                            <div className="groups-12">
+                                <span className="usdt-13">{formData.fee || 1}USDT</span>
+                                <span className="network-fee">Network fee</span>
+                            </div>
+                            <div className="groups-14">
+                                <span className="spot-wallet">Spot Wallet</span>
+                                <span className="wallet">Wallet</span>
+                            </div>
+                            <div className="groups-15">
+                                <span className="date-time">{dateTimeDisplay}</span>
+                                <span className="date">Date</span>
+                            </div>
+                        </div>
+                        <div className="groups-16">
+                            <div className="image-17"></div>
+                            <span className="scam-report">Scam Report</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="button">
+                    <div className="background-18">
+                        <span className="withdraw-again">Withdraw Again</span>
+                    </div>
+                </div>
+                <div className="background-19"></div>
+                <div className="image-1a"></div>
+                <div className="image-1b"></div>
+            </div>
+        </>
+    );
+};
+
+export default Template8;
