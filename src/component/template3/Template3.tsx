@@ -325,26 +325,26 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           z-index: 26;
         }
         .cddcbdc {
-          display: flex;
-          align-items: start;
-          justify-content: flex-end;
-          position: absolute;
-          width: 201.875px;
-          min-height: 48.75px;
-          right: 29.5px;
-          bottom: 2.5px;
-          color: #a2a9af;
-          font-family: Inter, var(--default-font-family);
-          font-size: 10.625px;
-          font-weight: 700;
-          line-height: 12.859px;
-          text-align: right;
-          white-space: pre-line;
-          word-break: break-all;
-          overflow-wrap: break-word;
-          z-index: 28;
-          gap: 1.88px;
-          overflow: visible;
+    display: flex;
+    align-items: start;
+    justify-content: flex-end;
+    position: absolute;
+    width: 189px;
+    min-height: 48.75px;
+    right: 29.5px;
+    bottom: 2.5px;
+    color: #a2a9af;
+    font-family: Inter, var(--default-font-family);
+    font-size: 11.88px;
+    font-weight: 400;
+    line-height: 15.7px;
+    text-align: right;
+    white-space: pre-line;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    z-index: 28;
+    gap: 1.88px;
+    overflow: visible;
         }
 
         .txid {
@@ -599,7 +599,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
         .flex-row-bf {
           position: relative;
           min-height: 15.625px;
-          margin: 8.75px 0 0 16.15px;
+          margin: 7.75px 0 0 16.15px;
           z-index: 36;
           display: flex;
           align-items: start;
@@ -609,15 +609,15 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           display: flex;
           align-items: start;
           justify-content: flex-start;
-          width: 202px;
+          width: 196px;
           min-height: 15.625px;
           right: 15px;
           bottom: 0;
           color: #9ca0a8;
           font-family: Inter, var(--default-font-family);
-          font-size: 10.625px;
-          font-weight: 700;
-          line-height: 12.859px;
+          font-size: 11.88px;
+    font-weight: 400;
+    line-height: 15.7px;
           text-align: right;
           white-space: pre-line;
           word-break: break-all;
@@ -853,12 +853,11 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
                     <span className="tdfy-ftecxp-vjmf"
                     >{formData.receiver || "TDfyFTe1cxpV3JmfgEznJmV7vsFtCc589H"}
                     </span>
-                  <div className="image-15"></div>
+                    <div className="image-15"></div>
 
                   </div>
                 </div>
-                <div className="flex-row-a">
-                </div>
+            
               </div>
             </div>
           </div>
