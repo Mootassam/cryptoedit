@@ -165,7 +165,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 16.25px;
           right: 118.75px;
           bottom: 10.625px;
-          color: #b3b9bf;
+          color: #E4E9EF;
           font-family: Inter, var(--default-font-family);
           font-size: 13.75px;
           font-weight: 700;
@@ -221,7 +221,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 25px;
           justify-content: center;
           margin: 20px 0 0 0px;
-          color: #c7cbd2;
+          color: #E4E9EF;
           font-family: Inter, var(--default-font-family);
           font-size: 23.125px;
           font-weight: 700;
