@@ -375,23 +375,7 @@ function Sidebar({
             </select>
           </div>
 
-          {/* Conditional Size Selector */}
-          {value === "800" && (
-            <div className="form__group">
-              <label htmlFor="size">Select Size</label>
-              <select
-                id="size"
-                name="bank"
-                className="app__select"
-                value={size}
-                onChange={(e) => setSize(e.target.value)}
-              >
-                <option value="small">Small</option>
-                <option value="large">Large</option>
-              </select>
-            </div>
-          )}
-
+       
           {/* Tools Section */}
           <div className="form__group">
             <label htmlFor="">Drawing Tools</label>

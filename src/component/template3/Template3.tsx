@@ -5,7 +5,25 @@ interface Template3Props {
   formData: FormData;
 }
 
+// Helper: format USD with small rate (optional, keep consistent)
+const formatUSD = (amount: number): string => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+};
+
+const USDT_TO_USD_RATE = 1.001;
+
 const Template3: React.FC<Template3Props> = ({ formData }) => {
+  // Parse amount
+  const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 18.539255;
+  const amountDisplay = formData.amount ? `-${formData.amount}USDT` : "-18.539255USDT";
+  const usdEquivalent = formatUSD(rawAmount * USDT_TO_USD_RATE);
+  // For simplicity, we keep the original amount display as is; USD not shown in this template but we can add if needed.
+
   return (
     <>
       <style>{`
@@ -208,18 +226,18 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           font-size: 23.125px;
           font-weight: 700;
           line-height: 25px;
-          text-align: left;
+          text-align: center;
           white-space: nowrap;
           z-index: 45;
         }
         .flex-row-d {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: center;
           position: relative;
-          width: 80px;
           height: 15px;
-          margin: 14.375px 0 0 145.625px;
+          margin: 14.375px 0 0 0px;
+          gap: 3.375px;
           z-index: 44;
         }
         .image-8 {
@@ -250,9 +268,8 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           align-items: center;
           justify-content: center;
           position: relative;
-          width: 340.625px;
           height: 28.75px;
-          margin: 8.125px 0 0 15.625px;
+          margin: 8.125px 0 0 0px;
           color: #575e68;
           font-family: Inter, var(--default-font-family);
           font-size: 9.375px;
@@ -264,10 +281,12 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           overflow: hidden;
         }
         .why-not-arrived {
-          display: block;
+          display: flex;
+          align-items: center;
+              justify-content: center;
           position: relative;
           height: 13.125px;
-          margin: 1.25px 0 0 104.375px;
+          margin: 1.25px 0 0 0px;
           color: #827535;
           font-family: Inter, var(--default-font-family);
           font-size: 9.375px;
@@ -290,7 +309,8 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
         .groups-a {
           position: relative;
           width: 369.375px;
-          height: 293.125px;
+          height: auto;
+          min-height: 293.125px;
           margin: -0.63px 0 0 0;
           background: rgba(0, 0, 0, 0);
           z-index: 13;
@@ -299,30 +319,34 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
         .groups-b {
           position: relative;
           width: 369.375px;
-          height: 60.625px;
+          min-height: 60.625px;
           margin: 92.5px 0 0 0;
           background: rgba(0, 0, 0, 0);
           z-index: 26;
         }
         .cddcbdc {
           display: flex;
-          align-items: center;
+          align-items: start;
           justify-content: flex-end;
           position: absolute;
           width: 201.875px;
-          height: 48.75px;
-          right: 27.5px;
+          min-height: 48.75px;
+          right: 29.5px;
           bottom: 2.5px;
           color: #a2a9af;
           font-family: Inter, var(--default-font-family);
-          font-size: 11.25px;
-          font-weight: 400;
-          line-height: 14.668px;
+          font-size: 10.625px;
+          font-weight: 700;
+          line-height: 12.859px;
           text-align: right;
-          text-overflow: initial;
+          white-space: pre-line;
+          word-break: break-all;
+          overflow-wrap: break-word;
           z-index: 28;
-          overflow: hidden;
+          gap: 1.88px;
+          overflow: visible;
         }
+
         .txid {
           display: flex;
           align-items: center;
@@ -424,7 +448,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           justify-content: flex-start;
           position: absolute;
           height: 13.125px;
-          right: 290px;
+          right: 293px;
           bottom: 10px;
           color: #5d656f;
           font-family: Inter, var(--default-font-family);
@@ -449,7 +473,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           justify-content: flex-start;
           position: absolute;
           height: 14.375px;
-          right: 260px;
+          right: 263px;
           bottom: 10px;
           color: #5d656e;
           font-family: Inter, var(--default-font-family);
@@ -565,7 +589,8 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
         .groups-14 {
           position: absolute;
           width: 369.375px;
-          height: 45.625px;
+          height: auto;
+          min-height: 45.625px;
           right: 0;
           bottom: 198.75px;
           background: rgba(0, 0, 0, 0);
@@ -573,17 +598,19 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
         }
         .flex-row-bf {
           position: relative;
-          width: 342.5px;
-          height: 15.625px;
-          margin: 8.75px 0 0 12.5px;
+          min-height: 15.625px;
+          margin: 8.75px 0 0 16.15px;
           z-index: 36;
+          display: flex;
+          align-items: start;
+          justify-content: space-between;
         }
         .tdfy-ftecxp-vjmf {
           display: flex;
-          align-items: center;
+          align-items: start;
           justify-content: flex-start;
-          position: absolute;
-          height: 15.625px;
+          width: 202px;
+          min-height: 15.625px;
           right: 15px;
           bottom: 0;
           color: #9ca0a8;
@@ -591,17 +618,18 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           font-size: 10.625px;
           font-weight: 700;
           line-height: 12.859px;
-          text-align: left;
-          white-space: nowrap;
+          text-align: right;
+          white-space: pre-line;
+          word-break: break-all;
+          overflow-wrap: break-word;
           z-index: 35;
         }
         .address {
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          position: absolute;
           height: 12.5px;
-          right: 297.5px;
+          right: 298.5px;
           bottom: 1.875px;
           color: #5e656f;
           font-family: Inter, var(--default-font-family);
@@ -613,7 +641,6 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           z-index: 36;
         }
         .image-15 {
-          position: absolute;
           width: 11.25px;
           height: 11.25px;
           right: 0;
@@ -650,7 +677,6 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           flex-shrink: 0;
           position: relative;
           width: 13.125px;
-          height: 13.125px;
           background: #1f2630;
           z-index: 32;
         }
@@ -713,7 +739,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 41.25px;
           margin: 3.75px 0 0 3.125px;
           background: #323a47;
-          border: 0.63px solid #303843;
+          border: 0.63px solid #303842;
           z-index: 7;
           border-radius: 3.75px;
         }
@@ -753,6 +779,13 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           background-size: cover;
           z-index: 3;
         }
+
+        .receiver__amount { 
+        display: flex;
+        align-items: start;
+        justify-content: flex-start;
+            padding-right: 13px;
+        gap: 3.75px;}
       `}</style>
 
       <div className="main-container">
@@ -772,54 +805,59 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           </div>
           <div className="groups-6">
             <div className="groups-7">
-              <span className="minus-usdt">{formData.amount ? `-${formData.amount}USDT` : "-18.539255USDT"}</span>
+              <span className="minus-usdt">{amountDisplay}</span>
               <div className="flex-row-d">
                 <div className="image-8"></div>
                 <span className="completed">Completed</span>
               </div>
               <span className="crypto-transferr"
-                >Crypto transferred out of Binance. Please contact the recipient
+              >Crypto transferred out of Binance. Please contact the recipient
                 platform for<br />your transaction receipt.</span
               ><span className="why-not-arrived"
-                >Why hasn't my withdrawal arrived?</span
+              >Why hasn't my withdrawal arrived?</span
               >
             </div>
             <div className="background-9"></div>
             <div className="groups-a">
               <div className="groups-b">
                 <span className="cddcbdc"
-                  >{formData.txid || "c215dd230cbdc710adee7a3b07fabd"}</span><span className="txid">Txid</span>
+                >{formData.sender || "c215dd230cbdc710adee7a3b07fabde76cf3d1f81f9eea805676bf767896cccf"}</span>
+                <span className="txid">Txid</span>
                 <div className="image-c"></div>
               </div>
               <div className="groups-d">
-                <span className="usdt">{formData.amount || "19.539255"}USDT</span
-                ><span className="amount">Amount</span>
+                <span className="usdt">{formData.amount ? `${formData.amount} USDT` : "19.539255 USDT"}</span>
+                <span className="amount">Amount</span>
               </div>
               <div className="groups-e">
-                <span className="usdt-f">1USDT</span>
+                <span className="usdt-f">{formData.fee || "1"} USDT</span>
                 <span className="network-fee">Network fee</span>
               </div>
               <div className="groups-10">
-                <span className="withdrawal-wallet">Withdrawal Wallet</span
-                ><span className="spot-wallet">Spot Wallet</span>
+                <span className="withdrawal-wallet">Withdrawal Wallet</span>
+                <span className="spot-wallet">Spot Wallet</span>
               </div>
               <div className="groups-11">
-                <span className="date">{formData.date || "2025-11-1513:19:34"}</span
-                ><span className="date-12">Date</span>
+                <span className="date">{formData.date || "2025-11-15 13:19:34"}</span>
+                <span className="date-12">Date</span>
               </div>
               <div className="groups-13">
                 <span className="network">Network</span><span className="trx">TRX</span>
               </div>
               <div className="groups-14">
                 <div className="flex-row-bf">
-                  <span className="tdfy-ftecxp-vjmf"
-                    >{formData.receiver || "TDfyFTe1cxpV3JmfgEznJmV7vsFtCc5"}</span
-                  ><span className="address">Address</span>
+                  <span className="address">Address</span>
+
+
+                  <div className='receiver__amount'>
+                    <span className="tdfy-ftecxp-vjmf"
+                    >{formData.receiver || "TDfyFTe1cxpV3JmfgEznJmV7vsFtCc589H"}
+                    </span>
                   <div className="image-15"></div>
+
+                  </div>
                 </div>
                 <div className="flex-row-a">
-                  <span className="h">89H</span>
-                  <div className="image-16"></div>
                 </div>
               </div>
             </div>
@@ -838,7 +876,6 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           </div>
           <div className="background-1c"></div>
         </div>
-        <div className="image-1d"></div>
       </div>
     </>
   );
