@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormData } from '../../shared/FormDataContext';
 import Dates from '../../shared/dates';
 
@@ -7,9 +7,60 @@ interface Template18Props {
 }
 
 const Template18: React.FC<Template18Props> = ({ formData }) => {
+  const [ethUsdRate, setEthUsdRate] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
+
+  // Fetch live ETH/USD rate from CoinGecko
+  useEffect(() => {
+    const fetchEthUsdRate = async () => {
+      try {
+        const response = await fetch(
+          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'
+        );
+        const data = await response.json();
+        const rate = data.ethereum?.usd;
+        if (rate && typeof rate === 'number') {
+          setEthUsdRate(rate);
+        } else {
+          throw new Error('Invalid rate data');
+        }
+      } catch (err) {
+        console.error('Failed to fetch ETH/USD rate:', err);
+        setError(true);
+        // Fallback to a reasonable estimate
+        setEthUsdRate(3000);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEthUsdRate();
+  }, []);
+
+  // Parse ETH amount (remove commas if any)
+  const rawAmount = formData.amount
+    ? parseFloat(String(formData.amount).replace(/,/g, ''))
+    : 12496.31; // default fallback
+
+  // Compute USD value
+  let usdFormatted = '';
+  if (!loading && ethUsdRate !== null) {
+    const usdValue = rawAmount * ethUsdRate;
+    usdFormatted = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(usdValue);
+  } else if (loading) {
+    usdFormatted = 'Loading...';
+  } else if (error) {
+    usdFormatted = 'Rate unavailable';
+  }
+
   // Helper to split address into two lines with indentation on the second line
   const formatReceiver = (address: string) => {
-    // Split after 23 characters to match the example
     const splitIndex = 23;
     const firstLine = address.slice(0, splitIndex);
     const secondLine = address.slice(splitIndex);
@@ -627,7 +678,7 @@ const Template18: React.FC<Template18Props> = ({ formData }) => {
                 </div>
                 <div className="button">
                   <div className="background">
-                    <span className="amount">${formData.amount ? `${formData.amount}` : "12,296.93"} USD</span>
+                    <span className="amount">{usdFormatted} USD</span>
                   </div>
                 </div>
                 <span className="withdrawal-details">Withdrawal details</span>

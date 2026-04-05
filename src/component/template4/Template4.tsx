@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormData } from '../../shared/FormDataContext';
 import Dates from '../../shared/dates';
 
 interface Template4Props {
   formData: FormData;
 }
-
-// Small exchange rate USDT → USD (realistic variation)
-const USDT_TO_USD_RATE = 1.001;
 
 // Format USD with commas and 2 decimals
 const formatUSD = (amount: number): string => {
@@ -20,12 +17,52 @@ const formatUSD = (amount: number): string => {
 };
 
 const Template4: React.FC<Template4Props> = ({ formData }) => {
+  const [ethUsdRate, setEthUsdRate] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
+
+  // Fetch live ETH/USD rate from CoinGecko
+  useEffect(() => {
+    const fetchEthUsdRate = async () => {
+      try {
+        const response = await fetch(
+          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'
+        );
+        const data = await response.json();
+        const rate = data.ethereum?.usd;
+        if (rate && typeof rate === 'number') {
+          setEthUsdRate(rate);
+        } else {
+          throw new Error('Invalid rate data');
+        }
+      } catch (err) {
+        console.error('Failed to fetch ETH/USD rate:', err);
+        setError(true);
+        // Fallback to a reasonable estimate (optional)
+        setEthUsdRate(3000);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEthUsdRate();
+  }, []);
+
   // Parse amount (remove commas if any)
   const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 35985.00;
-  const usdValue = rawAmount * USDT_TO_USD_RATE;
-  const usdFormatted = formatUSD(usdValue);
+  
+  // Compute USD value only if rate is available
+  let usdFormatted = '';
+  if (!loading && ethUsdRate !== null) {
+    const usdValue = rawAmount * ethUsdRate;
+    usdFormatted = formatUSD(usdValue);
+  } else if (loading) {
+    usdFormatted = 'Loading...';
+  } else if (error) {
+    usdFormatted = 'Rate unavailable';
+  }
 
-  // Prepare deposit from text (combine sender and receiver with line break)
+  // Prepare deposit from text
   const depositFromText = `${formData.sender || "OxOB341b8dEd2598bd9fA3D6Df3d8A29B542ebc6a8"}`;
 
   return (
@@ -293,7 +330,6 @@ button {
 }
 .button {
   position: relative;
-  width: 132.5px;
   height: 31.25px;
   margin: 7.5px 0 0 11.875px;
   background: rgba(0, 0, 0, 0);
@@ -479,7 +515,6 @@ position: relative;
   background-size: cover;
   z-index: 1;
 }`}</style>
-
 
       <div className="main-container">
         <div className="root">
