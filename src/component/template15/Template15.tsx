@@ -61,38 +61,8 @@ const Template15: React.FC<Template15Props> = ({ formData }) => {
     "Source Han Sans CN", sans-serif;
 }
 
-.main-container {
-  overflow: hidden;
-}
 
-.main-container,
-.main-container * {
-  box-sizing: border-box;
-}
 
-input,
-select,
-textarea,
-button {
-  outline: 0;
-}
-
-.main-container {
-  position: relative;
-  width: 368.75px;
-  height: 800px;
-  margin: 0 auto;
-  background: rgba(0, 0, 0, 0);
-  overflow: hidden;
-}
-.root {
-  position: absolute;
-  height: 800px;
-  top: 0;
-  right: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0);
-}
 .groups {
   position: relative;
   width: 368.75px;
@@ -549,7 +519,7 @@ button {
 }
 .image-13 {
   position: absolute;
-  width: 368.75px;
+  width: 369.75px;
   height: 800px;
   right: 0;
   bottom: 0;
@@ -563,7 +533,6 @@ button {
 
 
         <div className="main-container">
-          <div className="root">
             <div className="groups">
               <span className="time">{timeDisplay}</span>
               <div className="image" />
@@ -620,7 +589,7 @@ button {
                 <span className="view-block-ex">View on block explorer</span>
               </div>
             </div>
-          </div>
+      
           <div className="image-13" />
         </div>
       </>

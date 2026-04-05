@@ -96,7 +96,7 @@ function App() {
               />
             </div> */}
 
-            <FormDataProvider value={{ formData, setFormData }}>
+            <FormDataProvider value={{ formData, setFormData }} >
               {value === "template1" && <Template1 formData={formData} />}
               {value === "template2" && <Template2 formData={formData} />}
               {value === "template3" && <Template3 formData={formData} />}
@@ -115,11 +115,6 @@ function App() {
               {value === "template16" && <Template16 formData={formData} />}
 
               {value === "template17" && <Template17 formData={formData} />}
-
-
-              
-
-
             </FormDataProvider>
           </div>
         </main>

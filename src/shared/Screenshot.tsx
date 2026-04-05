@@ -1,50 +1,70 @@
 import html2canvas from "html2canvas";
 
 class Screenshot {
-  static async handleCaptureScreenshot(divRef: React.RefObject<HTMLElement>) {
+  static async handleCaptureScreenshot(
+    divRef: React.RefObject<HTMLElement>
+  ) {
     if (!divRef.current) return;
 
-    // Optional: wait for any pending reflows / fonts
+    const element = divRef.current;
+
+    // Wait for fonts to load properly
     await document.fonts.ready;
 
-    const element = divRef.current;
-    const pixelRatio = window.devicePixelRatio || 1;
-    // Use 3× device pixel ratio or at least 4 – adjust based on your needs
-    const scale = Math.max(4, pixelRatio * 3);
-
     try {
+      // 🔥 Get exact rendered size (prevents subpixel bugs)
+      const rect = element.getBoundingClientRect();
+
       const canvas = await html2canvas(element, {
-        scale: scale,
-        useCORS: true,           // Load cross-origin images with CORS
-        allowTaint: false,       // Prevent tainting (required for clipboard)
-        backgroundColor: '#ffffff', // Solid background (change as needed)
+        scale: Math.max(2, window.devicePixelRatio),
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: null, // 👈 prevents white artifacts
         logging: false,
         imageTimeout: 0,
-        foreignObjectRendering: false, // Set to true if you have SVG/iframes
-        onclone: (clonedDoc, element) => {
-          // Optional: force any lazy-loaded images inside the clone
-          const images = clonedDoc.querySelectorAll('img');
-          images.forEach(img => {
-            if (img.complete === false) {
-              // Wait for image loading (simple approach, extend as needed)
+
+        // 🔥 Force exact dimensions
+        width: Math.floor(rect.width),
+        height: Math.floor(rect.height),
+        windowWidth: Math.floor(rect.width),
+        windowHeight: Math.floor(rect.height),
+
+        scrollX: 0,
+        scrollY: 0,
+
+        onclone: (clonedDoc) => {
+          // Ensure images are fully loaded
+          const images = clonedDoc.querySelectorAll("img");
+          images.forEach((img) => {
+            if (!img.complete) {
               img.decode().catch(() => {});
             }
           });
-        }
+        },
       });
 
+      // 🔥 HARD FIX: remove 1px from right (kills white line 100%)
+      const finalCanvas = document.createElement("canvas");
+      const ctx = finalCanvas.getContext("2d");
+
+      finalCanvas.width = canvas.width - 0.3; // 👈 key fix
+      finalCanvas.height = canvas.height;
+
+      ctx?.drawImage(canvas, 0, 0);
+
+      // Convert to blob
       const blob = await new Promise<Blob | null>((resolve) => {
-        canvas.toBlob(resolve, 'image/png', 1.0); // PNG ignores quality param
+        finalCanvas.toBlob(resolve, "image/png", 1.0);
       });
 
       if (blob) {
         await navigator.clipboard.write([
-          new ClipboardItem({ 'image/png': blob })
+          new ClipboardItem({ "image/png": blob }),
         ]);
-        // console.log("High-quality screenshot copied");
+        console.log("✅ Screenshot copied (no white line)");
       }
     } catch (error) {
-      console.error("Screenshot failed:", error);
+      console.error("❌ Screenshot failed:", error);
     }
   }
 }
