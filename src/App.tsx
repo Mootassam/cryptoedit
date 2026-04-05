@@ -55,13 +55,13 @@ function App() {
   const getCanvasDimensions = () => {
     switch (value) {
       case "completed":
-        return { width: 470, height: 801 };
+        return { width: 500, height: 801 };
       case "green":
-        return { width: 440, height: 820 };
+        return { width: 500, height: 820 };
       case "large":
-        return { width: 671, height: 820 };
+        return { width: 500, height: 820 };
       default:
-        return { width: 400, height: 800 };
+        return { width: 500, height: 800 };
     }
   };
 
@@ -84,7 +84,7 @@ function App() {
         />
         <main className="app__main">
           <div className="content" ref={divRef}>
-            {/* <div className="app__canvas">
+            <div className="app__canvas">
               <canvas
                 ref={canvasRef as any}
                 width={dimensions.width}
@@ -94,7 +94,7 @@ function App() {
                 onMouseMove={draw}
                 onMouseUp={endDrawing}
               />
-            </div> */}
+            </div>
 
             <FormDataProvider value={{ formData, setFormData }} >
               {value === "template1" && <Template1 formData={formData} />}

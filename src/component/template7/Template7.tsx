@@ -162,7 +162,7 @@ button {
   display: block;
   position: relative;
   height: 17px;
-  margin: 9.375px 0 0 161.875px;
+  margin: 9.375px 0 0 129.875px;
   color: #9a8541;
   font-family: Inter, var(--default-font-family);
   font-size: 14.375px;
