@@ -489,7 +489,7 @@ function Sidebar({
               </div>
 
               {/* Date Input */}
-              {fieldLabels.date && (
+         
                 <div className="input__group">
                   <div className="input__with__buttons">
                     <input
@@ -504,7 +504,7 @@ function Sidebar({
                     </button>
                   </div>
                 </div>
-              )}
+      
 
               {/* Sender Input */}
               {fieldLabels.sender && (

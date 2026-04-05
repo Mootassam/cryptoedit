@@ -26,15 +26,22 @@ class Dates {
     if (!date) return "Aug 24, 2024 at 8:45:10 PM";
     const d = moment(date);
     if (!d.isValid()) return "Aug 24, 2024 at 8:45:10 PM";
-    return d.format("MMM DD, YYYY at h:mm:ss A");
+    return d.format("MMM DD, YYYY [at] h:mm:ss A");
   }
 
-  static formatTemplate6(date: string | undefined): string {
-    if (!date) return "Jul 9,2024 at 12:17:32 PM";
-    const d = moment(date);
-    if (!d.isValid()) return "Jul 9,2024 at 12:17:32 PM";
-    return d.format("MMM D,YYYY at h:mm:ss A");
-  }
+ static formatTemplate6(date: string | undefined): string {
+  console.log(date);
+
+  const fallback = "Jul 9,2024 at 12:17:32 PM";
+
+  if (!date) return fallback;
+
+  const d = moment(date);
+  if (!d.isValid()) return fallback;
+
+  return d.format("MMM D,YYYY [at] h:mm:ss A");
+}
+
 
   static formatTemplate7(date: string | undefined): string {
     if (!date) return "2026-03-24 10:27:53";
