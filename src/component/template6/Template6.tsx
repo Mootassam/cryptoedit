@@ -62,10 +62,10 @@ button {
   height: 19px;
   right: 291px;
   bottom: 9px;
-  color: #a7adb6;
+  color: #fff;
   font-family: Inter, var(--default-font-family);
   font-size: 17px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 19px;
   text-align: left;
   white-space: nowrap;
@@ -128,7 +128,7 @@ button {
   position: relative;
   height: 27px;
   margin: 27px 0 0 16px;
-  color: #cbd0d6;
+  color: #fff;
   font-family: Inter, var(--default-font-family);
   font-size: 22px;
   font-weight: 600;
@@ -152,7 +152,7 @@ button {
   position: relative;
   height: 21px;
   margin: 10px 0 0 16px;
-  color: #a18f62;
+  color: #FBB658;
   font-family: Inter, var(--default-font-family);
   font-size: 15px;
   font-weight: 600;
@@ -166,7 +166,7 @@ button {
   position: relative;
   height: 21px;
   margin: 9px 0 0 16px;
-  color: #949ba8;
+  color: #fff;
   font-family: Inter, var(--default-font-family);
   font-size: 17px;
   font-weight: 400;
@@ -214,7 +214,7 @@ button {
   position: relative;
   height: 53px;
   margin: 0 0 0 4px;
-  color: #3c3c3f;
+  color: #232323;
   font-family: Inter, var(--default-font-family);
   font-size: 44px;
   font-weight: 400;
@@ -367,7 +367,7 @@ button {
   flex-shrink: 0;
   position: relative;
   height: 18px;
-  color: #727273;
+  color: #2F2F31;
   font-family: Inter, var(--default-font-family);
   font-size: 13px;
   font-weight: 400;
@@ -380,7 +380,7 @@ button {
   flex-shrink: 0;
   position: relative;
   height: 17px;
-  color: #6d6c6e;
+  color: #2F2F31;
   font-family: Inter, var(--default-font-family);
   font-size: 14px;
   font-weight: 400;
@@ -406,7 +406,7 @@ button {
   height: 35px;
   right: 13px;
   bottom: 4px;
-  color: #79797a;
+  color: #2F2F31;
   font-family: Inter, var(--default-font-family);
   font-size: 13px;
   font-weight: 400;
@@ -424,7 +424,7 @@ button {
   height: 16px;
   right: 282px;
   bottom: 15px;
-  color: #747475;
+  color: #2F2F31;
   font-family: Inter, var(--default-font-family);
   font-size: 13px;
   font-weight: 400;
@@ -447,7 +447,7 @@ button {
   flex-shrink: 0;
   position: relative;
   height: 18px;
-  color: #79797a;
+  color: #2F2F31;
   font-family: Inter, var(--default-font-family);
   font-size: 13px;
   font-weight: 400;
@@ -460,7 +460,7 @@ button {
   flex-shrink: 0;
   position: relative;
   height: 15px;
-  color: #6f6f6f;
+  color: #2F2F31;
   font-family: Inter, var(--default-font-family);
   font-size: 13px;
   font-weight: 400;
@@ -483,7 +483,7 @@ button {
   flex-shrink: 0;
   position: relative;
   height: 16px;
-  color: #7a7a7b;
+  color: #2F2F31;
   font-family: Inter, var(--default-font-family);
   font-size: 13px;
   font-weight: 400;
@@ -496,7 +496,7 @@ button {
   flex-shrink: 0;
   position: relative;
   height: 16px;
-  color: #747475;
+  color: #2F2F31;
   font-family: Inter, var(--default-font-family);
   font-size: 13px;
   font-weight: 400;
@@ -521,7 +521,7 @@ button {
   height: 17px;
   right: 15px;
   bottom: 10px;
-  color: #747476;
+  color: #2F2F31;
   font-family: Inter, var(--default-font-family);
   font-size: 14px;
   font-weight: 400;
@@ -538,7 +538,7 @@ button {
   height: 15px;
   right: 326px;
   bottom: 12px;
-  color: #7a7a7b;
+  color: #2F2F31;
   font-family: Inter, var(--default-font-family);
   font-size: 13px;
   font-weight: 400;
@@ -637,7 +637,7 @@ gap: 7px;
                 <span className="network-type">Network Type</span><span className="erc">ERC20</span>
               </div>
               <div className="flex-row-cca">
-                <span className="fee">Fee</span><span className="usdt-e">10.00 USDT</span>
+                <span className="fee">Fee</span><span className="usdt-e">{formData.fee || "10.00"} USDT</span>
               </div>
               <div className="groups-f">
                 <span className="usdt-10">{formData.amount ? `${formData.amount}USDT` : "12,496.31USDT"}</span><span className="total">Total</span>
