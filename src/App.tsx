@@ -54,14 +54,10 @@ function App() {
   // Set canvas dimensions based on template
   const getCanvasDimensions = () => {
     switch (value) {
-      case "completed":
+      case "template7":
         return { width: 500, height: 801 };
-      case "green":
-        return { width: 500, height: 820 };
-      case "large":
-        return { width: 500, height: 820 };
       default:
-        return { width: 500, height: 800 };
+        return { width: 370, height: 800 };
     }
   };
 
