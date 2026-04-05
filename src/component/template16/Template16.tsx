@@ -43,7 +43,7 @@ const Template16: React.FC<Template16Props> = ({ formData }) => {
   // Date formatting – ensure it looks like "Mar 23,10:31PM"
   // If formData.date already matches that format, use it; otherwise format a given date string.
   // For simplicity, we use the provided date as-is or fallback.
-  const dateDisplay = formData.date || "Mar 23,10:31PM";
+  const dateDisplay = formData.date || "Mar 23, 10:31 PM";
 
   // Fee display
   const feeDisplay = formData.fee !== undefined ? `${formData.fee} ETH ($0.11)` : "0.30 ETH ($0.11)";

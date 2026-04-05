@@ -42,7 +42,7 @@ const Template17: React.FC<Template17Props> = ({ formData }) => {
 
   // Date and time display (format: "Mar 7,4:09AM")
   // If formData.date is provided in that format, use it; otherwise combine or fallback
-  const dateDisplay = formData.date || "Mar 7,4:09AM";
+  const dateDisplay = formData.date || "Mar 7, 4:09 AM";
   
   // Network fee (static or from formData)
   const feeDisplay = formData.fee !== undefined ? `${formData.fee} TRX` : "0 TRX";

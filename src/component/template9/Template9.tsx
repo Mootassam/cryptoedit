@@ -824,7 +824,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
                     </div>
                     <div className="groups-15">
                         <span className="submitted-time">Submitted time</span>
-                        <span className="submitted-time-text">{formData.date || "Oct 19,2025 9:35 PM"}</span>
+                        <span className="submitted-time-text">{formData.date || "Oct 19, 2025 9:35 PM"}</span>
                     </div>
                 </div>
                 <div className="flex-row-b">

@@ -523,7 +523,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
             flex-shrink: 0;
             position: relative;
             height: 15.625px;
-            color: #6d6e72;
+            color: #4f4f52;
             font-family: Inter, var(--default-font-family);
             font-size: 12.5px;
             font-weight: 400;
@@ -723,7 +723,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
                                 <span className="deposit-wallet">Deposit Wallet</span><span className="spot-wallet">Spot Wallet</span>
                             </div>
                             <div className="flex-row-d">
-                                <span className="date">Date</span><span className="text-f">{formData.date || "2023-03-16"}</span>
+                                <span className="date">Date</span><span className="text-f">{formData.date || "2023-03-16 20:23:01"}</span>
                             </div>
                         </div>
                     </div>

@@ -322,10 +322,10 @@ button {
   height: 15.625px;
   right: 14.375px;
   bottom: 11.875px;
-  color: #5d5c5e;
+  color: #2c2c2e;
   font-family: Inter, var(--default-font-family);
   font-size: 11.875px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 14.371px;
   text-align: left;
   white-space: nowrap;
@@ -393,11 +393,10 @@ button {
   flex-shrink: 0;
   position: relative;
   height: 15.625px;
-  color: #5a5a5c;
-  font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
-  font-weight: 400;
-  line-height: 15.625px;
+color: #2c2c2e;
+    font-family: Inter, var(--default-font-family);
+    font-size: 11.875px;
+    font-weight: 500;
   text-align: left;
   white-space: nowrap;
   z-index: 18;
@@ -429,11 +428,10 @@ button {
   height: 16.25px;
   right: 15px;
   bottom: 13.125px;
-  color: #4a494b;
-  font-family: Inter, var(--default-font-family);
-  font-size: 11.25px;
-  font-weight: 700;
-  line-height: 13.615px;
+color: #2c2c2e;
+    font-family: Inter, var(--default-font-family);
+    font-size: 11.875px;
+    font-weight: 500;
   text-align: left;
   white-space: nowrap;
   z-index: 14;
@@ -482,12 +480,11 @@ button {
   height: 14px;
   right: 17.5px;
   bottom: 15.375px;
-  color: #525153;
-  font-family: Inter, var(--default-font-family);
-  font-size: 11.25px;
-  font-weight: 400;
-  line-height: 13.615px;
-  text-align: left;
+color: #2c2c2e;
+    font-family: Inter, var(--default-font-family);
+    font-size: 11.875px;
+    font-weight: 500;
+    line-height: 14.371px;
   white-space: nowrap;
   z-index: 9;
 }
@@ -612,7 +609,7 @@ button {
             <div className="groups-10">
               <div className="background" />
               <div className="groups-11">
-                <span className="jul-time">{formData.date || "13Jul,01:40"}</span>
+                <span className="jul-time">{formData.date || "13 Jul, 01:40"}</span>
                 <span className="date">Date</span>
               </div>
               <div className="background-12" />

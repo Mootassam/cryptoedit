@@ -25,7 +25,7 @@ const Template5: React.FC<Template5Props> = ({ formData }) => {
   const usdFormatted = formatUSD(usdValue);
 
   // Prepare deposit from text (combine sender and receiver with line break)
-  const depositFromText = `${formData.sender || "OxOB341b8dEd2598bd9fA3D"}`;
+  const depositFromText = `${formData.sender || "OxOB341b8dEd2598bd9fA3D6Df3d8A29B542ebc6a8"}`;
 
   return (
     <>
@@ -494,7 +494,7 @@ position: relative;
             <span className="usdt-dep">USDT (ERC20) Deposit</span>
             <div className="groups-7">
               <span className="processed">Processed</span>
-              <span className="date-time">{formData.date || "Aug 24,2024 at 8:45:10 PM"}</span>
+              <span className="date-time">{formData.date || "Aug 24, 2024 at 8:45:10 PM"}</span>
             </div>
           </div>
           <div className="groups-8">

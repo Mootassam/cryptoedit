@@ -48,7 +48,7 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
     const feeDisplay = formData.fee !== undefined ? `${formData.fee}` : "0.15";
 
     // Date and time combined
-    const dateTimeDisplay = `${formData.date || "Jan 18,2026"}, ${formData.time || "9:29 PM"}`;
+    const dateTimeDisplay = `${formData.date || "Jan 18, 2026, 9:29 PM"}`;
 
     // Reference number
     const referenceNo = formData.referenceNo || "372620932";

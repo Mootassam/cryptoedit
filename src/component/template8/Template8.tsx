@@ -12,7 +12,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
     const receiverAddress = formData.receiver || "TB9ZZYYYmtjRPbMC5qWKpM7EKsVYML32ff";
     const txidValue = formData.txid || "f5f5f013857f2c065ed3b1d0e95a72620a1f6096b8c8ce985ff22cb203360334";
     const feeDisplay = formData.fee !== undefined ? `${formData.fee}USDT` : "15 USDT";
-    const dateTimeDisplay = formData.date || "2026-01-2802:12:57";
+    const dateTimeDisplay = formData.date || "2026-01-28 02:12:57";
 
     return (
         <>

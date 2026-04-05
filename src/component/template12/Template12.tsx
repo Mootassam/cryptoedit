@@ -44,7 +44,7 @@ const Template12: React.FC<Template12Props> = ({ formData }) => {
     const receiverAddress = formData.receiver || "0x507e7c8da475463ff743b6b7b65333ac8dc22f26";
 
     // Combine date and time
-    const dateTimeDisplay = `${formData.date || "Nov 9,2025"}, ${formData.time || "8:15 PM"}`;
+    const dateTimeDisplay = `${formData.date || "Nov 9, 2025, 8:15 PM"}`;
 
     // Status bar time
     const timeDisplay = formData.time || "10:31";

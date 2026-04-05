@@ -40,7 +40,7 @@ const Template15: React.FC<Template15Props> = ({ formData }) => {
   const usdEquivalent = formatUSD(usdValue);
 
   // Date and time – combine or use separate fields
-  const dateTimeDisplay = formData.date || "Today at 6:11AM";
+  const dateTimeDisplay = formData.date || "Today at 6:11 AM";
   
   // Network fee (could also derive from amount * small rate, but keep as is)
   const feeDisplay = formData.fee ? `${formData.fee} TRX($0.00)` : "0 TRX($0.00)";
