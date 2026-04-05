@@ -290,7 +290,6 @@ const Template18: React.FC<Template18Props> = ({ formData }) => {
          }
          .button {
            position: relative;
-           width: 128px;
            height: 28px;
            margin: 6px 0 0 0;
            background: rgba(0, 0, 0, 0);
