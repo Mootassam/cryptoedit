@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template2Props {
     formData: FormData;
@@ -783,7 +784,7 @@ const Template2: React.FC<Template2Props> = ({ formData }) => {
                                         <span className="status">Status</span><span className="pending">Pending</span>
                                     </div>
                                     <div className="flex-row">
-                                        <span className="time-e">Time</span><span className="text-9">{formData.date || "2024-04-03 17:20:48"}</span>
+                                        <span className="time-e">Time</span><span className="text-9">{Dates.formatTemplate2(formData.date)}</span>
                                     </div>
                                 </div>
                             </div>

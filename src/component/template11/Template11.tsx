@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template11Props {
     formData: FormData;
@@ -904,7 +905,7 @@ const Template11: React.FC<Template11Props> = ({ formData }) => {
                                 <div className="image-17"></div>
                             </div>
                             <div className="groups-18">
-                                <span className="jan-date">{dateTimeDisplay}</span>
+                                <span className="jan-date">{Dates.formatTemplate11(formData.date)}</span>
                                 <span className="submitted-time">Submitted time</span>
                             </div>
                             <div className="groups-19">

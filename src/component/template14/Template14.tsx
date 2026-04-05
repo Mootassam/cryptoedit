@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template14Props {
   formData: FormData;
@@ -609,7 +610,7 @@ color: #2c2c2e;
             <div className="groups-10">
               <div className="background" />
               <div className="groups-11">
-                <span className="jul-time">{formData.date || "13 Jul, 01:40"}</span>
+                <span className="jul-time">{Dates.formatTemplate14(formData.date)}</span>
                 <span className="date">Date</span>
               </div>
               <div className="background-12" />

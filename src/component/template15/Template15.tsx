@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template15Props {
   formData: FormData;
@@ -584,7 +585,7 @@ button {
               <div className="groups-9">
                 <div className="flex-row-ec">
                   <span className="date">Date</span>
-                  <span className="today-at-am">{dateTimeDisplay}</span>
+                  <span className="today-at-am">{Dates.formatTemplate15(formData.date)}</span>
                 </div>
                 <div className="flex-row-dd">
                   <div className="regroup">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template10Props {
   formData: FormData;
@@ -645,7 +646,7 @@ justify-content: space-between;
                 </div>
                 <div className="groups-f">
                   <span className="time-11">Time</span>
-                  <span className="time-10">{dateTimeDisplay}</span>
+                  <span className="time-10">{Dates.formatTemplate10(formData.date)}</span>
                 </div>
                 <div className="groups-12">
                   <span className="withdrawal-address">Withdrawal Address</span>

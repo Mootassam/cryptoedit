@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template7Props {
   formData: FormData;
@@ -702,7 +703,7 @@ button {
                 <span className="wallet">Wallet</span>
               </div>
               <div className="groups-9">
-                <span className="time-stamp">{dateTimeDisplay}</span>
+                <span className="time-stamp">{Dates.formatTemplate7(formData.date)}</span>
                 <span className="date">Date</span>
               </div>
               <div className="image-a" />

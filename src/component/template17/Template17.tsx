@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template17Props {
   formData: FormData;
@@ -589,7 +590,7 @@ button {
           <div className="groups-8">
             <div className="flex-row-bfb">
               <span className="date">Date</span>
-              <span className="mar-7-4-09am">{dateDisplay}</span>
+              <span className="mar-7-4-09am">{Dates.formatTemplate17(formData.date)}</span>
             </div>
             <div className="flex-row-ba">
               <span className="status">Status</span>

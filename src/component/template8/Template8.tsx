@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template8Props {
     formData: FormData;
@@ -888,7 +889,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
                                 <span className="wallet">Wallet</span>
                             </div>
                             <div className="groups-15">
-                                <span className="date-time">{dateTimeDisplay}</span>
+                                <span className="date-time">{Dates.formatTemplate8(formData.date)}</span>
                                 <span className="date">Date</span>
                             </div>
                         </div>

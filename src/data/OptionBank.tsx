@@ -2,7 +2,7 @@ const optionBank = [
   // Deposit templates
   { name: "Template 1", value: "template1", type: "deposit" },
   { name: "Template 2", value: "template2", type: "deposit" },
-  { name: "Template 4", value: "template4", type: "deposit" },
+  // { name: "Template 4", value: "template4", type: "deposit" },
   { name: "Template 5", value: "template5", type: "deposit" },
   { name: "Template 12", value: "template12", type: "deposit" },
   { name: "Template 13", value: "template13", type: "deposit" },

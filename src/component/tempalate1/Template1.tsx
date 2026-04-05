@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template1Props {
     formData: FormData;
@@ -723,7 +724,7 @@ const Template1: React.FC<Template1Props> = ({ formData }) => {
                                 <span className="deposit-wallet">Deposit Wallet</span><span className="spot-wallet">Spot Wallet</span>
                             </div>
                             <div className="flex-row-d">
-                                <span className="date">Date</span><span className="text-f">{formData.date || "2023-03-16 20:23:01"}</span>
+                                <span className="date">Date</span><span className="text-f">{Dates.formatTemplate1(formData.date)}</span>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template3Props {
   formData: FormData;
@@ -838,7 +839,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
                 <span className="spot-wallet">Spot Wallet</span>
               </div>
               <div className="groups-11">
-                <span className="date">{formData.date || "2025-11-15 13:19:34"}</span>
+                <span className="date">{Dates.formatTemplate3(formData.date)}</span>
                 <span className="date-12">Date</span>
               </div>
               <div className="groups-13">

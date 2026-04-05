@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template9Props {
     formData: FormData;
@@ -824,7 +825,7 @@ const Template9: React.FC<Template9Props> = ({ formData }) => {
                     </div>
                     <div className="groups-15">
                         <span className="submitted-time">Submitted time</span>
-                        <span className="submitted-time-text">{formData.date || "Oct 19, 2025 9:35 PM"}</span>
+                        <span className="submitted-time-text">{Dates.formatTemplate9(formData.date)}</span>
                     </div>
                 </div>
                 <div className="flex-row-b">

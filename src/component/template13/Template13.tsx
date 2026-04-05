@@ -1,5 +1,6 @@
 import React from 'react'
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template13Props {
     formData: FormData;
@@ -825,7 +826,7 @@ const Template13: React.FC<Template13Props> = ({ formData }) => {
                             <div className="groups-6">
                                 <div className="image-7"></div>
                                 <span className="successful">Successful</span>
-                                <span className="jul-date">{formData.date || "Jul19, 2024 23:11 +0400"} </span>
+                                <span className="jul-date">{Dates.formatTemplate13(formData.date)} </span>
                             </div>
                             <div className="groups-8">
                                 <div className="background">

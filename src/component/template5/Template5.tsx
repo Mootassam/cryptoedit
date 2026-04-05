@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template5Props {
   formData: FormData;
@@ -494,7 +495,7 @@ position: relative;
             <span className="usdt-dep">USDT (ERC20) Deposit</span>
             <div className="groups-7">
               <span className="processed">Processed</span>
-              <span className="date-time">{formData.date || "Aug 24, 2024 at 8:45:10 PM"}</span>
+              <span className="date-time">{Dates.formatTemplate5(formData.date)}</span>
             </div>
           </div>
           <div className="groups-8">

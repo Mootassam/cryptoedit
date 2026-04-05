@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template16Props {
   formData: FormData;
@@ -642,7 +643,7 @@ button {
               <div className="background-7">
                 <div className="groups-8">
                   <div className="flex-column">
-                    <span className="mar-10-31-pm">{dateDisplay}</span>
+                    <span className="mar-10-31-pm">{Dates.formatTemplate16(formData.date)}</span>
                     <span className="completed">Completed</span>
                     <span className="xaf">{recipientFormatted}</span>
                   </div>

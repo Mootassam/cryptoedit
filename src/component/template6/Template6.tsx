@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template6Props {
   formData: FormData;
@@ -613,7 +614,7 @@ const Template6: React.FC<Template6Props> = ({ formData }) => {
           <span className="withdraw-usdt">Withdraw USDT (Eth)</span>
           <div className="groups-6">
             <span className="pending">Pending</span>
-            <span className="time-info">{formData.date || "Jul 9,2024 at 12:17:32 PM"}</span>
+            <span className="time-info">{Dates.formatTemplate6(formData.date)}</span>
           </div>
         </div>
         <div className="groups-7">
