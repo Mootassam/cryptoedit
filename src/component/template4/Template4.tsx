@@ -1,11 +1,33 @@
-import React from 'react'
+import React from 'react';
 import { FormData } from '../../shared/FormDataContext';
+import Dates from '../../shared/dates';
 
 interface Template4Props {
   formData: FormData;
 }
 
+// Small exchange rate USDT → USD (realistic variation)
+const USDT_TO_USD_RATE = 1.001;
+
+// Format USD with commas and 2 decimals
+const formatUSD = (amount: number): string => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+};
+
 const Template4: React.FC<Template4Props> = ({ formData }) => {
+  // Parse amount (remove commas if any)
+  const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 35985.00;
+  const usdValue = rawAmount * USDT_TO_USD_RATE;
+  const usdFormatted = formatUSD(usdValue);
+
+  // Prepare deposit from text (combine sender and receiver with line break)
+  const depositFromText = `${formData.sender || "OxOB341b8dEd2598bd9fA3D6Df3d8A29B542ebc6a8"}`;
+
   return (
     <>
       <style>{`    :root {
@@ -33,710 +55,488 @@ button {
 
 .main-container {
   position: relative;
-  width: 349.375px;
+  width: 369.375px;
   height: 800px;
   margin: 0 auto;
-  background: #1f2630
+  background: rgba(0, 0, 0, 0);
+  overflow: hidden;
 }
-.groups {
+.root {
   position: absolute;
   height: 800px;
   top: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0);
-  z-index: 2;
+  background: #ffffff;
 }
-.groups-1 {
+.groups {
   position: relative;
-  width: 349.375px;
-  height: 27.5px;
+  width: 369.375px;
+  height: 256.875px;
   margin: 0 0 0 0;
-  font-size: 0px;
-  background: rgba(0, 0, 0, 0);
-  z-index: 40;
-  overflow: visible auto;
-}
-.span {
-  display: block;
-  position: relative;
-  height: 9px;
-  margin: 4.375px 0 0 226.25px;
-  color: #989ba3;
-  font-family: Inter, var(--default-font-family);
-  font-size: 7.5px;
-  font-weight: 400;
-  line-height: 9px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 46;
-}
-.flex-row-e {
-  position: relative;
-  width: 312.5px;
-  height: 15px;
-  margin: -8.375px 0 0 16.25px;
-  z-index: 49;
-}
-.colon {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  height: 15px;
-  right: 283.125px;
-  bottom: 0;
-  color: #a8abb3;
-  font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
-  font-weight: 700;
-  line-height: 15px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 49;
-}
-.regroup {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: absolute;
-  width: 30px;
-  height: 15px;
-  right: 247.5px;
-  bottom: 0;
-  z-index: 48;
-}
-.image {
-  flex-shrink: 0;
-  position: relative;
-  width: 13.125px;
-  height: 13.125px;
-  background: url(/template4/KgYDUWXRGS.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 48;
-}
-.image-2 {
-  flex-shrink: 0;
-  position: relative;
-  width: 11.25px;
-  height: 2.5px;
-  background: url(/template4/O8jBViusSL.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 47;
-}
-.image-3 {
-  position: absolute;
-  width: 12.5px;
-  height: 13.75px;
-  right: 70px;
-  bottom: 0;
-  background: url(/template4/wUYhEpjzno.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 44;
-}
-.image-4 {
-  position: absolute;
-  width: 16.25px;
-  height: 12.5px;
-  right: 28.125px;
-  bottom: 0.63px;
-  background: url(/template4/UTU0xbDJg7.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 42;
-}
-.image-5 {
-  position: absolute;
-  width: 16.875px;
-  height: 11.25px;
-  right: 48.75px;
-  bottom: 1.25px;
-  background: url(/template4/b935FGOkft.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 43;
-}
-.image-6 {
-  position: absolute;
-  width: 23.125px;
-  height: 10.625px;
-  right: 0;
-  bottom: 1.875px;
-  background: url(/template4/Csz6Hu90EL.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 41;
-}
-.kb-s {
-  display: block;
-  position: relative;
-  height: 6.875px;
-  margin: -6.25px 0 0 226.25px;
-  color: #aaaeb4;
-  font-family: Inter, var(--default-font-family);
-  font-size: 6.875px;
-  font-weight: 400;
-  line-height: 6.875px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 45;
-}
-.groups-7 {
-  position: relative;
-  width: 349.375px;
-  height: 38.125px;
-  margin: 0.63px 0 0 0;
-  background: rgba(0, 0, 0, 0);
-  z-index: 38;
-  overflow: visible auto;
-}
-.image-8 {
-  position: relative;
-  width: 14.375px;
-  height: 11.25px;
-  margin: 13.75px 0 0 16.875px;
-  background: url(/template4/PkDU1qOMOQ.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 39;
-}
-.groups-9 {
-  position: relative;
-  width: 349.375px;
-  height: 269.375px;
-  margin: 1.875px 0 0 0;
-  background: rgba(0, 0, 0, 0);
-  z-index: 31;
-  overflow: visible auto;
-}
-.image-a {
-  position: relative;
-  width: 203.125px;
-  height: 96.875px;
-  margin: 7.5px 0 0 72.5px;
-  background: url(/template4/m5aGjk88kR.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 35;
-  overflow: visible auto;
-}
-.image-b {
-  position: relative;
-  width: 140.625px;
-  height: 88.125px;
-  margin: 6.875px 0 0 60.625px;
-  background: url(/template4/F9Gfip4u3A.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 36;
-  overflow: visible auto;
-}
-.image-c {
-  position: relative;
-  width: 82.5px;
-  height: 83.125px;
-  margin: 4.375px 0 0 1.875px;
-  background: url(/template4/2qntO54J4p.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 37;
-}
-.payment-successf {
-  display: block;
-  position: relative;
-  height: 24.375px;
-  margin: 25px 0 0 89.375px;
-  color: #b0b4bb;
-  font-family: Inter, var(--default-font-family);
-  font-size: 16.875px;
-  font-weight: 700;
-  line-height: 20.423px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 34;
-}
-.usdt {
-  display: flex;
-  position: relative;
-  height: 28.75px;
-  margin: 18.125px 0 0 0px;
-  justify-content: center;
-  color: #cfd2d8;
-  font-family: Inter, var(--default-font-family);
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 28.75px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 33;
-}
-.the-recipient-ca {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 263.125px;
-  height: 32.5px;
-  margin: 16.875px 0 0 44.375px;
-  color: #5e656f;
-  font-family: Inter, var(--default-font-family);
-  font-size: 10.625px;
-  font-weight: 400;
-  line-height: 14.863px;
-  text-align: center;
-  text-overflow: initial;
-  z-index: 32;
-  overflow: hidden;
-}
-.groups-d {
-  position: relative;
-  width: 349.375px;
-  height: 459.375px;
-  margin: 3.125px 0 0 0;
-  background: rgba(0, 0, 0, 0);
-  z-index: 4;
-  overflow: visible auto;
-}
-.groups-e {
-  position: relative;
-  width: 349.375px;
-  height: 125px;
-  margin: -0.63px 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 21;
   overflow: visible auto;
 }
-.flex-row-d {
+.groups-1 {
+  position: relative;
+  width: 369.375px;
+  height: 38.75px;
+  margin: 0 0 0 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 28;
+}
+.time {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  position: relative;
-  width: 321.25px;
+  justify-content: flex-start;
+  position: absolute;
   height: 15.625px;
-  margin: 19.375px 0 0 14.375px;
-  z-index: 29;
-}
-.span-to {
-  flex-shrink: 0;
-  position: relative;
-  height: 13.75px;
-  color: #6c737d;
+  right: 305px;
+  bottom: 8.75px;
+  color: #b1bbc5;
   font-family: Inter, var(--default-font-family);
-  font-size: 11.875px;
-  font-weight: 700;
-  line-height: 13.75px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 29;
-}
-.span-nickname-muneeb {
-  flex-shrink: 0;
-  position: relative;
-  height: 15.625px;
-  color: #aaadb4;
-  font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
+  font-size: 13.75px;
   font-weight: 700;
   line-height: 15.625px;
   text-align: left;
   white-space: nowrap;
-  z-index: 28;
+  z-index: 33;
 }
-.span-940266562 {
-  display: block;
-  position: relative;
-  height: 13px;
-  margin: 5px 0 0 275px;
-  color: #666d77;
-  font-family: Inter, var(--default-font-family);
-  font-size: 10.625px;
-  font-weight: 400;
-  line-height: 12.859px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 27;
-}
-.span-add-alias {
-  display: block;
-  position: relative;
-  height: 13.75px;
-  margin: 10.125px 0 0 276.875px;
-  color: #97813a;
-  font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
-  font-weight: 400;
-  line-height: 13.75px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 26;
-}
-.groups-f {
-  position: relative;
-  width: 349.375px;
-  height: 35px;
-  margin: 11.25px 0 0 0;
-  background: rgba(0, 0, 0, 0);
-  z-index: 22;
-}
-.span-411263337551249408 {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+.image {
   position: absolute;
-  height: 15.625px;
-  right: 36.875px;
-  bottom: 10px;
-  color: #9a9da5;
-  font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
-  font-weight: 400;
-  line-height: 15.128px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 24;
-}
-.image-10 {
-  position: absolute;
-  width: 16.25px;
-  height: 16.25px;
-  right: 16.25px;
-  bottom: 8.75px;
-  background: url(/template4/e5zEBDqz0f.png)
+  width: 11.25px;
+  height: 11.25px;
+  right: 293.125px;
+  bottom: 11.25px;
+  background: url(/template5/PTtX6U5NpP.png)
     no-repeat center;
   background-size: cover;
-  z-index: 23;
+  z-index: 32;
 }
-.span-order-id {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+.image-2 {
   position: absolute;
-  height: 14.375px;
-  right: 283.75px;
-  bottom: 10px;
-  color: #666d77;
+  width: 24.375px;
+  height: 11.25px;
+  right: 13.75px;
+  bottom: 10.625px;
+  background: url(/template5/08kDoBRQFi.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 29;
+}
+.image-3 {
+  position: absolute;
+  width: 17.5px;
+  height: 11.25px;
+  right: 62.5px;
+  bottom: 10.625px;
+  background: url(/template5/QbJ4rrJ1vJ.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 31;
+}
+.image-4 {
+  position: absolute;
+  width: 15px;
+  height: 11.25px;
+  right: 43.125px;
+  bottom: 10.625px;
+  background: url(/template5/iApoegf9HZ.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 30;
+}
+.groups-5 {
+  position: relative;
+  width: 369.375px;
+  height: 53.125px;
+  margin: 1.25px 0 0 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 26;
+  overflow: visible auto;
+}
+.image-6 {
+  position: relative;
+  width: 21.25px;
+  height: 13.75px;
+  margin: 18.75px 0 0 15.625px;
+  background: url(/template5/zvgC1TWB16.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 27;
+}
+.usdt-dep {
+  display: block;
+  position: relative;
+  height: 28.75px;
+  margin: 22.5px 0 0 16.25px;
+  color: #ccd6de;
   font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
-  font-weight: 400;
-  line-height: 14.375px;
+  font-size: 21.25px;
+  font-weight: 600;
+  line-height: 25.717px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 34;
+}
+.groups-7 {
+  position: relative;
+  width: 369.375px;
+  height: 84.375px;
+  margin: 23.75px 0 0 0;
+  font-size: 0px;
+  background: rgba(0, 0, 0, 0);
+  z-index: 23;
+  overflow: visible auto;
+}
+.processed {
+  display: block;
+  position: relative;
+  height: 16.875px;
+  margin: 10.625px 0 0 15.625px;
+  color: #477f98;
+  font-family: Inter, var(--default-font-family);
+  font-size: 14.375px;
+  font-weight: 500;
+  line-height: 16.875px;
   text-align: left;
   white-space: nowrap;
   z-index: 25;
 }
-.flex-row-fd {
+.date-time {
+  display: block;
+  position: relative;
+  height: 22.5px;
+  margin: 11.25px 0 0 15px;
+  color: #abbdcb;
+  font-family: Inter, var(--default-font-family);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18.153px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 24;
+}
+.groups-8 {
+  position: relative;
+  width: 369.375px;
+  height: 541.875px;
+  margin: 0.63px 0 0 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 1;
+}
+.background {
+  position: absolute;
+  width: 369.375px;
+  height: 541.875px;
+  right: 0;
+  bottom: 0;
+  background: #fff
+    no-repeat center;
+  background-size: cover;
+  z-index: 2;
+}
+.groups-9 {
+  position: relative;
+  width: 369.375px;
+  height: 277.5px;
+  margin: 1.25px 0 0 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 4;
+  overflow: visible auto;
+}
+.groups-a {
+  position: relative;
+  width: 369.375px;
+  height: 136.875px;
+  margin: 0 0 0 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 15;
+  overflow: visible auto;
+}
+.flex-row-ea {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   position: relative;
-  width: 320.625px;
-  height: 16.25px;
-  margin: 9.375px 0 0 15px;
+  width: 291.25px;
+  height: 45.625px;
+  margin: 41.25px 0 0 0px;
   z-index: 20;
+  gap:5px;
 }
-.span-payment-method {
+.plus-amount {
   flex-shrink: 0;
   position: relative;
-  height: 16.25px;
-  color: #757c86;
+  height: 45.625px;
+  color: #57bdaa;
   font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
+  font-size: 41.25px;
   font-weight: 400;
-  line-height: 16.25px;
+  line-height: 45.625px;
   text-align: left;
   white-space: nowrap;
   z-index: 20;
 }
-.spot-account {
+.usdt {
   flex-shrink: 0;
   position: relative;
-  height: 15px;
-  color: #9ea2aa;
+  height: 27.5px;
+  color: #b6cbc7;
   font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
+  font-size: 21.25px;
   font-weight: 400;
-  line-height: 15px;
+  line-height: 27.5px;
   text-align: left;
   white-space: nowrap;
   z-index: 19;
 }
-.flex-row-e-11 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.button {
   position: relative;
-  width: 320px;
-  height: 15px;
-  margin: 19.375px 0 0 15px;
-  z-index: 18;
-}
-.paid-with {
-  flex-shrink: 0;
-  position: relative;
-  height: 14.375px;
-  color: #6b727c;
-  font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
-  font-weight: 400;
-  line-height: 14.375px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 18;
-}
-.usdt-12 {
-  flex-shrink: 0;
-  position: relative;
-  height: 15px;
-  color: #9ea1a9;
-  font-family: Inter, var(--default-font-family);
-  font-size: 12.5px;
-  font-weight: 400;
-  line-height: 15px;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 17;
-}
-.groups-13 {
-  position: relative;
-  width: 323.75px;
-  height: 95px;
-  margin: 14.375px 0 0 12.5px;
+  width: 132.5px;
+  height: 31.25px;
+  margin: 7.5px 0 0 11.875px;
   background: rgba(0, 0, 0, 0);
-  z-index: 13;
+  z-index: 16;
   overflow: visible auto;
 }
-.background {
-  position: relative;
-  width: 320px;
-  height: 88.75px;
-  margin: 4.375px 0 0 1.875px;
-  background: #1f252f;
-  border: 0.63px solid #2e353f;
-  z-index: 14;
-  border-radius: 11.25px;
+.background-b {
+position: relative;
+    width: max-content;
+    background: #fafcfc;
+    border: 0.63px solid #c2c9c8;
+    z-index: 17;
+    border-radius: 2.5px;
 }
-.enjoy-up-to {
+.usd-amount {
+    padding: 4.5px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a5b8b5;
+    font-family: Inter, var(--default-font-family);
+    font-size: 13.125px;
+    font-weight: 400;
+    line-height: 15.884px;
+    text-align: left;
+    white-space: nowrap;
+}
+.groups-c {
+  position: relative;
+  width: 369.375px;
+  height: 45.625px;
+  margin: 7.5px 0 0 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 13;
+}
+.deposit-details {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   position: absolute;
-  width: 188.125px;
-  height: 43.75px;
-  right: 115px;
-  bottom: 25.625px;
-  color: #b4b7bf;
+  height: 16.875px;
+  right: 269.50px;
+  bottom: 13.75px;
+  color: #a3a3a3;
   font-family: Inter, var(--default-font-family);
-  font-size: 14.375px;
-  font-weight: 700;
-  line-height: 20.967px;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 15.128px;
   text-align: left;
-  text-overflow: initial;
-  z-index: 16;
-  overflow: hidden;
+  white-space: nowrap;
+  z-index: 14;
 }
-.image-14 {
+.groups-d {
   position: absolute;
-  width: 47.5px;
-  height: 38.75px;
-  right: 18.125px;
-  bottom: 22.5px;
-  background: url(/template4/YOhzfXQXKQ.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 15;
+  width: 369.375px;
+  height: 59.375px;
+  right: 0;
+  bottom: 26.875px;
+  background: rgba(0, 0, 0, 0);
+  z-index: 9;
 }
-.groups-15 {
+.background-e {
   position: relative;
-  width: 349.375px;
-  height: 120.625px;
-  margin: 45px 0 0 0;
+  width: 338.75px;
+  height: 0.63px;
+  margin: -0.63px 0 0 15px;
+  background: #dedede;
+  z-index: 12;
+}
+.flex-row-e {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 340.625px;
+  min-height: 33.125px;
+  margin: 5.625px 0 0 15.625px;
+  z-index: 11;
+}
+.deposit-from {
+  flex-shrink: 0;
+  position: relative;
+  height: 16.25px;
+  color: #000;
+  font-family: Inter, var(--default-font-family);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 16.25px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 11;
+}
+.oxobbded {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  position: relative;
+  width: 185.625px;
+  min-height: 33.125px;
+  color: #89aeb8;
+  font-family: Inter, var(--default-font-family);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 15.43px;
+  text-align: right;
+  white-space: pre-line;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  text-overflow: unset;
+  overflow: visible;
+  z-index: 10;
+}
+.groups-f {
+  position: absolute;
+  width: 369.375px;
+  height: 64.375px;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0);
   z-index: 5;
-  overflow: visible auto;
 }
-.button {
+.groups-10 {
   position: relative;
-  width: 325px;
-  height: 51.875px;
-  margin: 1.875px 0 0 11.875px;
-  background: rgba(0, 0, 0, 0);
-  z-index: 10;
-  overflow: visible auto;
-}
-.background-16 {
-  position: relative;
-  width: 320px;
-  height: 46.875px;
-  margin: 3.125px 0 0 2.5px;
-  background: #fbd433;
-  border: 0.63px solid #e0ca44;
-  z-index: 11;
-  border-radius: 6.25px;
-}
-.send-another-tra {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    position: absolute;
-    height: 18.125px;
-    right: 68.75px;
-    bottom: 15px;
-    color: #1F2630;
-    font-family: Inter, var(--default-font-family);
-    font-size: 14.375px;
-    font-weight: 500;
-    line-height: 17.397px;
-    text-align: left;
-    white-space: nowrap;
-    z-index: 12;
-}
-.groups-17 {
-  position: relative;
-  width: 211.875px;
+  width: 369.375px;
   height: 43.125px;
-  margin: 22.5px 0 0 61.25px;
+  margin: 20px 0 0 0;
   background: rgba(0, 0, 0, 0);
   z-index: 6;
 }
-.image-18 {
+.network-type {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   position: absolute;
-  width: 19.375px;
-  height: 19.375px;
-  right: 88.75px;
-  bottom: 11.875px;
-  background: url(/template4/2wj3h7FgKP.png)
-    no-repeat center;
-  background-size: cover;
+  height: 16.25px;
+  right: 277.17px;
+  bottom: 13.75px;
+  color: #000;
+  font-family: Inter, var(--default-font-family);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 15.128px;
+  text-align: left;
+  white-space: nowrap;
   z-index: 8;
 }
-.image-19 {
+.erc20 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   position: absolute;
-  width: 13.125px;
-  height: 16.25px;
-  right: 13.125px;
-  bottom: 13.75px;
-  background: url(/template4/iQ2SiM8xDu.png)
-    no-repeat center;
-  background-size: cover;
+  height: 14.375px;
+  right: 14.375px;
+  bottom: 15.625px;
+  color: #1E1E1E;
+  font-family: Inter, var(--default-font-family);
+  font-size: 13.125px;
+  font-weight: 400;
+  line-height: 14.375px;
+  text-align: left;
+  white-space: nowrap;
   z-index: 7;
 }
-.image-1a {
-  position: absolute;
-  width: 14.375px;
-  height: 14.375px;
-  right: 171.25px;
-  bottom: 14.375px;
-  background: url(/template4/zpctWvnWXH.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 9;
-}
-.image-1b {
-  position: absolute;
-  height: 800px;
-  top: 0;
-  right: 0;
-  left: 0;
+.background-11 {
+  position: relative;
+  width: 131.875px;
+  height: 5px;
+  margin: 251.875px 0 0 118.75px;
+  background: url(/template5/2eyeJo5wcU.png)
     no-repeat center;
   background-size: cover;
   z-index: 3;
 }
-
-.background-1e {
+.background-12 {
   position: absolute;
-  width: 349.375px;
-  height: 1.875px;
+  width: 369.375px;
+  height: 256.875px;
   right: 0;
-  bottom: 458.125px;
-  background: url(/template4/kPXw9uwTgi.png)
+  bottom: 543.125px;
+  background: #051d43
     no-repeat center;
   background-size: cover;
-  z-index: 30;
+  z-index: 1;
 }`}</style>
 
+
       <div className="main-container">
-        <div className="groups">
-          <div className="groups-1">
-            <span className="span">3.25</span>
-            <div className="flex-row-e">
-              <span className="colon">{formData.time || "6:03"}</span>
-              <div className="regroup">
-                <div className="image"></div>
-                <div className="image-2"></div>
-              </div>
+        <div className="root">
+          <div className="groups">
+            <div className="groups-1">
+              <span className="time">{formData.time || "08:43"}</span>
+              <div className="image"></div>
+              <div className="image-2"></div>
               <div className="image-3"></div>
               <div className="image-4"></div>
-              <div className="image-5"></div>
-              <div className="image-6"></div>
             </div>
-            <span className="kb-s">KB/s</span>
+            <div className="groups-5"><div className="image-6"></div></div>
+            <span className="usdt-dep">Deposit ETH (Ethereum (ERC20))</span>
+            <div className="groups-7">
+              <span className="processed">Processed</span>
+              <span className="date-time">{Dates.formatTemplate5(formData.date)}</span>
+            </div>
           </div>
-          <div className="groups-7"><div className="image-8"></div></div>
-          <div className="groups-9">
-            <div className="image-a">
-              <div className="image-b"><div className="image-c"></div></div>
-            </div>
-            <span className="payment-successf">Payment Successful</span
-            ><span className="usdt">{formData.amount || "0.0080046"}USDT</span
-            ><span className="the-recipient-ca"
-            >The recipient can check the balance in the Funding<br />Account</span
-            >
-          </div>
-          <div className="groups-d">
-            <div className="groups-e">
-              <div className="flex-row-d">
-                <span className="span-to">To</span
-                ><span className="span-nickname-muneeb">Nickname: {formData.sender || "Muneeb-h4u6m"}</span>
-              </div>
-              <span className="span-940266562">{formData.receiver || "940266562"}</span
-              ><span className="span-add-alias">Add Alias</span>
-              <div className="groups-f">
-                <span className="span-411263337551249408">{formData.sender || "411263337551249408"}</span>
-                <div className="image-10"></div>
-                <span className="span-order-id">Order ID</span>
-              </div>
-            </div>
-            <div className="flex-row-fd">
-              <span className="span-payment-method">Payment Method</span
-              ><span className="spot-account">Spot Account</span>
-            </div>
-            <div className="flex-row-e-11">
-              <span className="paid-with">Paid With</span
-              ><span className="usdt-12">{formData.amount || "0.0080046"}USDT</span>
-            </div>
-            <div className="groups-13">
-              <div className="background">
-                <span className="enjoy-up-to"
-                >Enjoy Up to 50% Off in Hot<br />Deals</span
-                >
-                <div className="image-14"></div>
-              </div>
-            </div>
-            <div className="groups-15">
-              <div className="button">
-                <div className="background-16">
-                  <span className="send-another-tra">Send Another Transaction</span>
+          <div className="groups-8">
+            <div className="background">
+              <div className="groups-9">
+                <div className="groups-a">
+                  <div className="flex-row-ea">
+                    <span className="plus-amount">{formData.amount ? `+${formData.amount}` : "+35,985.00"}</span>
+                    <span className="usdt">ETH</span>
+                  </div>
+                  <div className="button">
+                    <div className="background-b">
+                      <span className="usd-amount">+{usdFormatted} USD</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="groups-c">
+                  <span className="deposit-details">Deposit details</span>
+                </div>
+                <div className="groups-d">
+                  <div className="background-e"></div>
+                  <div className="flex-row-e">
+                    <span className="deposit-from">Deposit from</span>
+                    <span className="oxobbded">{depositFromText}</span>
+                  </div>
+                </div>
+                <div className="groups-f">
+                  <div className="groups-10">
+                    <span className="network-type">Network Type</span>
+                    <span className="erc20">ERC20</span>
+                  </div>
                 </div>
               </div>
-              <div className="groups-17">
-                <div className="image-18"></div>
-                <div className="image-19"></div>
-                <div className="image-1a"></div>
-              </div>
+              <div className="background-11"></div>
             </div>
           </div>
         </div>
-        <div className="image-1b"></div>
-        <div className="image-1c"></div>
-        <div className="image-1d"></div>
-        <div className="background-1e"></div>
+        <div className="background-12"></div>
       </div>
-
-
     </>
-  )
-}
+  );
+};
 
-export default Template4
+export default Template4;
