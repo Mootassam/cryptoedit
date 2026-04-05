@@ -509,7 +509,7 @@ function Sidebar({
                 <div className="input__group">
                   <div className="input__with__buttons">
                     <input
-                      type="date"
+                      type="datetime-local"
                       name="date"
                       value={formData.date}
                       onChange={handleInputChange}

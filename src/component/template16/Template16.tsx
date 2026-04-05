@@ -14,15 +14,39 @@ const truncateString = (str: string, startChars: number, endChars: number): stri
   return `${start}...${end}`;
 };
 
-// Format sender address: first 10, last 10 characters (e.g., "TBzgJv9jWw...pRsSTpuvJ")
-const formatSender = (sender: string) => truncateString(sender, 10, 10);
+// Format recipient address: first 6, last 6 characters (e.g., "0x98aF7...097534")
+const formatRecipient = (recipient: string) => truncateString(recipient, 6, 6);
+
+// Format USD amount with commas and 2 decimal places
+const formatUSD = (amount: number): string => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+};
+
+// Small exchange rate USDT → USD (realistic variation)
+const USDT_TO_USD_RATE = 1.001;
 
 const Template16: React.FC<Template16Props> = ({ formData }) => {
+  // Parse amount (remove commas if any)
+  const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 307.331805;
+  const amountDisplay = formData.amount ? `${formData.amount}USDT` : "307.331805USDT";
+  const usdValue = rawAmount * USDT_TO_USD_RATE;
+  const usdFormatted = formatUSD(usdValue).replace('$', ''); // remove dollar sign for display as "$307.27" is handled separately
 
-  // Prepare formatted values with fallbacks
-  const senderFormatted = formatSender(formData.sender || "TBzgJv9jWwpRsSTpuvJ");
-  // Date is used as-is (the fallback "13Jul,01:40" matches the expected format)
-  // Amount is displayed with a plus sign
+  // Format recipient (sender address)
+  const recipientFormatted = formatRecipient(formData.sender || "0x98aF7097534");
+  
+  // Date formatting – ensure it looks like "Mar 23,10:31PM"
+  // If formData.date already matches that format, use it; otherwise format a given date string.
+  // For simplicity, we use the provided date as-is or fallback.
+  const dateDisplay = formData.date || "Mar 23,10:31PM";
+
+  // Fee display
+  const feeDisplay = formData.fee !== undefined ? `${formData.fee} ETH ($0.11)` : "0.30 ETH ($0.11)";
 
   return (
     <>
@@ -191,7 +215,7 @@ button {
 .background-7 {
   position: absolute;
   width: 340px;
-  height: 118.75px;
+  height: 123.75px;
   right: 10px;
   bottom: 510.625px;
   background: #f4f4f6;
@@ -225,7 +249,7 @@ button {
   font-size: 15.625px;
   font-weight: 600;
   line-height: 18.125px;
-  text-align: left;
+  text-align: right;
   white-space: nowrap;
   z-index: 32;
 }
@@ -239,7 +263,7 @@ button {
   font-size: 15px;
   font-weight: 600;
   line-height: 18px;
-  text-align: left;
+  text-align: right;
   white-space: nowrap;
   z-index: 29;
 }
@@ -273,7 +297,7 @@ button {
   margin: 0 0 0 0.63px;
   color: #7d7d7f;
   font-family: Inter, var(--default-font-family);
-  font-size: 13.75px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 15px;
   text-align: left;
@@ -287,7 +311,7 @@ button {
   margin: 22.5px 0 0 0;
   color: #858587;
   font-family: Inter, var(--default-font-family);
-  font-size: 14.375px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 15px;
   text-align: left;
@@ -303,7 +327,7 @@ button {
   font-family: Inter, var(--default-font-family);
   font-size: 15px;
   font-weight: 500;
-  line-height: 17.5px;
+  line-height: 15px;
   text-align: left;
   white-space: nowrap;
   z-index: 27;
@@ -472,7 +496,7 @@ button {
   font-size: 14.375px;
   font-weight: 600;
   line-height: 15px;
-  text-align: left;
+  text-align: right;
   white-space: nowrap;
   z-index: 14;
 }
@@ -546,10 +570,12 @@ button {
   z-index: 34;
 }
 .usdt {
-  display: block;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
   position: relative;
   height: 26.875px;
-  margin: 11.875px 0 0 63.125px;
+  margin: 11.875px 0 0 0px;
   color: #383838;
   font-family: Inter, var(--default-font-family);
   font-size: 25.625px;
@@ -562,12 +588,12 @@ button {
 .flex-row-e {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
-  width: 76.25px;
   height: 16.875px;
-  margin: 3.125px 0 0 142.5px;
+  margin: 3.125px 0 0 0px;
   z-index: 36;
+  gap:6px; 
 }
 .image-17 {
   flex-shrink: 0;
@@ -596,76 +622,74 @@ button {
 
         `}</style>
 
-    
-       <>
 
-  <div className="main-container">
-    <div className="root">
-      <div className="groups">
-        <span className="time">12:18</span>
-        <div className="image" />
-        <div className="image-1" />
-        <div className="image-2" />
-        <div className="image-3" />
-        <div className="image-4" />
-        <div className="image-5" />
-        <div className="image-6" />
-      </div>
-      <div className="flex-row-fcd">
-        <div className="background" />
-        <div className="background-7">
-          <div className="groups-8">
-            <div className="flex-column">
-              <span className="mar-10-31-pm">Mar 23,10:31PM</span>
-              <span className="completed">Completed</span>
-              <span className="xaf">0x98aF7...097534</span>
+      <>
+
+        <div className="main-container">
+          <div className="root">
+            <div className="groups">
+              <span className="time">{formData.time || "12:18"}</span>
+              <div className="image" />
+              <div className="image-1" />
+              <div className="image-2" />
+              <div className="image-3" />
+              <div className="image-4" />
+              <div className="image-5" />
+              <div className="image-6" />
             </div>
-            <div className="flex-column-fb">
-              <span className="date">Date</span>
-              <span className="status">Status</span>
-              <span className="recipient">Recipient</span>
+            <div className="flex-row-fcd">
+              <div className="background" />
+              <div className="background-7">
+                <div className="groups-8">
+                  <div className="flex-column">
+                    <span className="mar-10-31-pm">{dateDisplay}</span>
+                    <span className="completed">Completed</span>
+                    <span className="xaf">{recipientFormatted}</span>
+                  </div>
+                  <div className="flex-column-fb">
+                    <span className="date">Date</span>
+                    <span className="status">Status</span>
+                    <span className="recipient">Recipient</span>
+                  </div>
+                </div>
+              </div>
+              <div className="groups-9">
+                <div className="groups-a">
+                  <div className="background-b">
+                    <span className="more-details">More Details</span>
+                    <div className="image-c" />
+                  </div>
+                </div>
+                <div className="background-d" />
+                <div className="groups-e">
+                  <div className="groups-f">
+                    <span className="span-dot">{feeDisplay}</span>
+                    <span className="span-network-fee">Network fee</span>
+                    <div className="image-10" />
+                  </div>
+                  <div className="groups-11">
+                    <span className="span-nonce">Nonce</span>
+                    <span className="span-50">50</span>
+                  </div>
+                </div>
+              </div>
+              <div className="background-12" />
+            </div>
+            <div className="groups-13">
+              <span className="span-transfer">Transfer</span>
+              <div className="image-14" />
+              <div className="image-15" />
+            </div>
+            <div className="groups-16">
+              <span className="usdt">-{amountDisplay}</span>
+              <div className="flex-row-e">
+                <div className="image-17" />
+                <span className="dollar">${usdFormatted}</span>
+              </div>
             </div>
           </div>
         </div>
-        <div className="groups-9">
-          <div className="groups-a">
-            <div className="background-b">
-              <span className="more-details">More Details</span>
-              <div className="image-c" />
-            </div>
-          </div>
-          <div className="background-d" />
-          <div className="groups-e">
-            <div className="groups-f">
-              <span className="span-dot">0.30 ETH ($0.11)</span>
-              <span className="span-network-fee">Network fee</span>
-              <div className="image-10" />
-            </div>
-            <div className="groups-11">
-              <span className="span-nonce">Nonce</span>
-              <span className="span-50">50</span>
-            </div>
-          </div>
-        </div>
-        <div className="background-12" />
-      </div>
-      <div className="groups-13">
-        <span className="span-transfer">Transfer</span>
-        <div className="image-14" />
-        <div className="image-15" />
-      </div>
-      <div className="groups-16">
-        <span className="usdt">-307.331805USDT</span>
-        <div className="flex-row-e">
-          <div className="image-17" />
-          <span className="dollar">$307.27</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</>
-
-
+      </>
     </>
   );
 };

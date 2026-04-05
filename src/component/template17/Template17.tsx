@@ -14,8 +14,8 @@ const truncateString = (str: string, startChars: number, endChars: number): stri
   return `${start}...${end}`;
 };
 
-// Format sender address: first 7, last 7 characters → "TAzsQ9G...PHzA8wr"
-const formatSender = (sender: string) => truncateString(sender, 7, 7);
+// Format recipient address: first 7, last 7 characters → "TDii6va...8xcqYx"
+const formatRecipient = (recipient: string) => truncateString(recipient, 7, 7);
 
 // Format USD amount with commas and 2 decimal places
 const formatUSD = (amount: number): string => {
@@ -31,25 +31,27 @@ const formatUSD = (amount: number): string => {
 const USDT_TO_USD_RATE = 1.001;
 
 const Template17: React.FC<Template17Props> = ({ formData }) => {
-  // Parse amount (remove any non-numeric characters if needed, but assume it's a number or numeric string)
-  const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 2482.112203;
-  const amountDisplay = formData.amount ? `+${formData.amount}USDT` : "+2,482.112203USDT";
-
+  // Parse amount (remove commas if any)
+  const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 3.960836;
+  const amountDisplay = formData.amount ? `${formData.amount} USDT` : "3.960836 USDT";
+  
   // Calculate USD equivalent using the rate
   const usdValue = rawAmount * USDT_TO_USD_RATE;
-  const usdEquivalent = formatUSD(usdValue);
+  const usdEquivalent = formatUSD(usdValue); // e.g., "$3.96"
+  const usdDisplay = usdEquivalent.replace('$', ''); // remove $ sign because template already has "$" in the span
 
-  // Date and time – combine or use separate fields
-  const dateTimeDisplay = formData.date || "Today at 6:11AM";
+  // Date and time display (format: "Mar 7,4:09AM")
+  // If formData.date is provided in that format, use it; otherwise combine or fallback
+  const dateDisplay = formData.date || "Mar 7,4:09AM";
   
-  // Network fee (could also derive from amount * small rate, but keep as is)
-  const feeDisplay = formData.fee ? `${formData.fee} TRX($0.00)` : "0 TRX($0.00)";
+  // Network fee (static or from formData)
+  const feeDisplay = formData.fee !== undefined ? `${formData.fee} TRX` : "0 TRX";
 
   // Time in status bar (top right)
-  const timeDisplay = formData.time || "9:44";
+  const timeDisplay = formData.time || "10:54";
   
-  // Format sender (now 7+7)
-  const senderFormatted = formatSender(formData.sender || "TAzsQ9GPHzA8wr");
+  // Format recipient (sender address)
+  const recipientFormatted = formatRecipient(formData.sender || "TDii6va8xcqYx");
 
   return (
     <>
@@ -217,7 +219,7 @@ button {
 .background-7 {
   position: absolute;
   width: 340.625px;
-  height: 119.375px;
+  height: 123.375px;
   right: 9.375px;
   bottom: 510px;
   background: #f4f4f6;
@@ -336,14 +338,14 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 17.5px;
-  right: 251.875px;
+  right: 258.875px;
   bottom: 9.375px;
   color: #78787a;
-  font-family: Inter, var(--default-font-family);
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 17.5px;
-  text-align: left;
+    font-family: Inter, var(--default-font-family);
+    font-size: 14.375px;
+    font-weight: 500;
+    line-height: 15px;
+    text-align: left;
   white-space: nowrap;
   z-index: 22;
 }
@@ -535,30 +537,32 @@ button {
   z-index: 29;
 }
 .usdt {
-  display: block;
+  display: flex;
+  justify-content: center;
   position: relative;
   height: 26.25px;
-  margin: 12.5px 0 0 74.375px;
+  margin: 12.5px 0 0 0px;
   color: #3a3a3a;
   font-family: Inter, var(--default-font-family);
   font-size: 25.625px;
   font-weight: 700;
   line-height: 26.25px;
-  text-align: left;
+  text-align: center;
   white-space: nowrap;
   z-index: 31;
 }
 .dollar {
-  display: block;
+  display: flex;
+  justify-content: center;
   position: relative;
   height: 16.875px;
-  margin: 3.75px 0 0 164.375px;
+  margin: 3.75px 0 0 0px;
   color: #767676;
   font-family: Inter, var(--default-font-family);
   font-size: 15.625px;
   font-weight: 600;
   line-height: 16.875px;
-  text-align: left;
+  text-align: center;
   white-space: nowrap;
   z-index: 30;
 }
@@ -570,7 +574,7 @@ button {
   <div className="main-container">
     <div className="root">
       <div className="groups">
-        <span className="time-span">10:54</span>
+        <span className="time-span">{timeDisplay}</span>
         <div className="image" />
         <div className="image-1" />
         <div className="image-2" />
@@ -585,14 +589,14 @@ button {
           <div className="groups-8">
             <div className="flex-row-bfb">
               <span className="date">Date</span>
-              <span className="mar-7-4-09am">Mar 7,4:09AM</span>
+              <span className="mar-7-4-09am">{dateDisplay}</span>
             </div>
             <div className="flex-row-ba">
               <span className="status">Status</span>
               <span className="completed">Completed</span>
             </div>
             <div className="groups-9">
-              <span className="tdiiva-8xcqyx">TDii6va...8xcqYx</span>
+              <span className="tdiiva-8xcqyx">{recipientFormatted}</span>
               <span className="recipient">Recipient</span>
             </div>
           </div>
@@ -600,7 +604,7 @@ button {
         <div className="groups-a">
           <div className="groups-b">
             <div className="background-c">
-              <span className="o-trx">O TRX</span>
+              <span className="o-trx">{feeDisplay}</span>
               <span className="network-fee">Network fee</span>
               <div className="image-d" />
             </div>
@@ -620,15 +624,13 @@ button {
         <div className="image-14" />
       </div>
       <div className="groups-15">
-        <span className="usdt">-3.960836 USDT</span>
-        <span className="dollar">$3.96</span>
+        <span className="usdt">-{amountDisplay}</span>
+        <span className="dollar">${usdDisplay}</span>
       </div>
     </div>
   </div>
   {/* Generated by Codia AI - https://codia.ai/ */}
 </>
-
-
 
     </>
   );

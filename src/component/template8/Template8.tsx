@@ -69,7 +69,7 @@ const Template8: React.FC<Template8Props> = ({ formData }) => {
             color: #2d2d2d;
             font-family: Inter, var(--default-font-family);
             font-size: 14.375px;
-            font-weight: 400;
+            font-weight: 500;
             line-height: 16.875px;
             text-align: left;
             white-space: nowrap;
