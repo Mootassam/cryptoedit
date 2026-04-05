@@ -234,19 +234,22 @@ button {
 }
 .background {
   position: relative;
-  width: 123px;
+  width: max-content;
+  display:flex;
+  justify-content: center;
+  align-items: center;
   height: 25px;
   margin: 2px 0 0 3px;
   background: #f7fbfb;
   border: 1px solid #ccd7d6;
   z-index: 22;
   border-radius: 3px 3px 3px 0;
+  padding:4px 8px;
 }
 .amount {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
   height: 16px;
   right: 38px;
   bottom: 4px;
@@ -263,7 +266,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
   height: 15px;
   right: 6px;
   bottom: 5px;
@@ -280,7 +282,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
   width: 8px;
   height: 15px;
   right: 103px;
@@ -312,7 +313,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
   height: 24px;
   right: 80px;
   bottom: 114px;
@@ -385,7 +385,7 @@ button {
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  text-align: left;
+  text-align: right;
   white-space: nowrap;
   z-index: 16;
 }
@@ -422,7 +422,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 16px;
-  right: 275px;
+  right: 282px;
   bottom: 15px;
   color: #747475;
   font-family: Inter, var(--default-font-family);
@@ -465,7 +465,7 @@ button {
   font-size: 13px;
   font-weight: 400;
   line-height: 15px;
-  text-align: left;
+  text-align: right;
   white-space: nowrap;
   z-index: 10;
 }
@@ -501,7 +501,7 @@ button {
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
-  text-align: left;
+  text-align: right;
   white-space: nowrap;
   z-index: 8;
 }
@@ -526,7 +526,7 @@ button {
   font-size: 14px;
   font-weight: 400;
   line-height: 16.943px;
-  text-align: left;
+  text-align: right;
   white-space: nowrap;
   z-index: 6;
 }
@@ -536,7 +536,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 15px;
-  right: 321px;
+  right: 326px;
   bottom: 12px;
   color: #7a7a7b;
   font-family: Inter, var(--default-font-family);
@@ -579,6 +579,15 @@ button {
   background-size: cover;
   z-index: 1;
 }
+
+.crypto__amount{ 
+display: flex;
+align-items: center;
+justify-content: flex-start;
+gap: 7px;
+
+
+}
   `}</style>
 
 
@@ -594,22 +603,25 @@ button {
           <span className="withdraw-usdt">Withdraw USDT (Eth)</span>
           <div className="groups-6">
             <span className="pending">Pending</span>
-            <span className="time-info">{formData.date || "Jul9,2024at12:17:32PM"}</span>
+            <span className="time-info">{formData.date || "Jul 9,2024 at 12:17:32 PM"}</span>
           </div>
         </div>
         <div className="groups-7">
           <div className="groups-8">
             <div className="groups-9">
               <div className="flex-column-f">
+                <div className='crypto__amount'>
                 <span className="number-info">{formData.amount || "12,496.31"}</span>
+                   <span className="crypto">USDT</span>
+                </div>
                 <div className="button">
                   <div className="background">
-                    <span className="amount">{formData.amount ? `${formData.amount}` : "12,296.93"}</span><span className="currency">USD</span><span className="symbol">$</span>
+                    <span className="amount">${formData.amount ? `${formData.amount}` : "12,296.93"} USD</span>
                   </div>
                 </div>
                 <span className="withdrawal-details">Withdrawal details</span>
               </div>
-              <span className="crypto">USDT</span>
+             
             </div>
             <div className="groups-a">
               <div className="groups-b">
