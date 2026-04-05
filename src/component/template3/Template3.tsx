@@ -333,7 +333,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
     min-height: 48.75px;
     right: 29.5px;
     bottom: 2.5px;
-    color: #a2a9af;
+    color: #E4E9EF;
     font-family: Inter, var(--default-font-family);
     font-size: 11.88px;
     font-weight: 400;
@@ -391,7 +391,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 14px;
           right: 11.875px;
           bottom: 9.75px;
-          color: #959ca4;
+          color: #E4E9EF;
           font-family: Inter, var(--default-font-family);
           font-size: 11.875px;
           font-weight: 400;
@@ -433,7 +433,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 13.125px;
           right: 11.875px;
           bottom: 10.625px;
-          color: #9ca3ab;
+          color: #E4E9EF;
           font-family: Inter, var(--default-font-family);
           font-size: 12.5px;
           font-weight: 400;
@@ -492,7 +492,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 14.375px;
           right: 11.875px;
           bottom: 9.375px;
-          color: #9198a1;
+          color: #E4E9EF;
           font-family: Inter, var(--default-font-family);
           font-size: 11.25px;
           font-weight: 400;
@@ -517,7 +517,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 13.75px;
           right: 11.875px;
           bottom: 12.5px;
-          color: #949ba4;
+          color: #E4E9EF;
           font-family: Inter, var(--default-font-family);
           font-size: 12.5px;
           font-weight: 400;
@@ -577,7 +577,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           height: 11.875px;
           right: 11.875px;
           bottom: 50.625px;
-          color: #a0a7af;
+          color: #E4E9EF;
           font-family: Inter, var(--default-font-family);
           font-size: 11.875px;
           font-weight: 400;
@@ -613,7 +613,7 @@ const Template3: React.FC<Template3Props> = ({ formData }) => {
           min-height: 15.625px;
           right: 15px;
           bottom: 0;
-          color: #9ca0a8;
+          color: #E4E9EF;
           font-family: Inter, var(--default-font-family);
           font-size: 11.88px;
     font-weight: 400;
