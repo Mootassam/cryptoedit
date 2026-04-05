@@ -627,7 +627,7 @@ gap: 7px;
               <div className="groups-b">
                 <div className="background-c"></div>
                 <div className="flex-row">
-                  <span className="sending">Sending</span><span className="usdt">{formData.amount ? `${formData.amount}USDT` : "12,486.31USDT"}</span>
+                  <span className="sending">Sending</span><span className="usdt">{formData.amount ? `${formData.amount} USDT` : "12,486.31 USDT"}</span>
                 </div>
               </div>
               <div className="groups-d">
