@@ -523,7 +523,7 @@ button {
   bottom: 10px;
   color: #2F2F31;
   font-family: Inter, var(--default-font-family);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 16.943px;
   text-align: right;
@@ -640,7 +640,7 @@ gap: 7px;
                 <span className="fee">Fee</span><span className="usdt-e">{formData.fee || "10.00"} USDT</span>
               </div>
               <div className="groups-f">
-                <span className="usdt-10">{formData.amount ? `${formData.amount}USDT` : "12,496.31USDT"}</span><span className="total">Total</span>
+                <span className="usdt-10">{formData.amount ? `${formData.amount} USDT` : "12,496.31 USDT"}</span><span className="total">Total</span>
               </div>
             </div>
           </div>
