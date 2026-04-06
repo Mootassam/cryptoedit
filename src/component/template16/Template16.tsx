@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormData } from '../../shared/FormDataContext';
 import Dates from '../../shared/dates';
 
@@ -15,11 +15,12 @@ const truncateString = (str: string, startChars: number, endChars: number): stri
   return `${start}...${end}`;
 };
 
-// Format recipient address: first 6, last 6 characters (e.g., "0x98aF7...097534")
+// Format recipient address: first 6, last 6 characters
 const formatRecipient = (recipient: string) => truncateString(recipient, 6, 6);
 
 // Format USD amount with commas and 2 decimal places
 const formatUSD = (amount: number): string => {
+  if (isNaN(amount)) return '$0.00';
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -32,22 +33,64 @@ const formatUSD = (amount: number): string => {
 const USDT_TO_USD_RATE = 1.001;
 
 const Template16: React.FC<Template16Props> = ({ formData }) => {
+  // State for live ETH/USD rate
+  const [ethUsdRate, setEthUsdRate] = useState<number | null>(null);
+  const [loadingRate, setLoadingRate] = useState<boolean>(true);
+  const [rateError, setRateError] = useState<boolean>(false);
+
+  // Fetch live ETH/USD rate from CoinGecko
+  useEffect(() => {
+    const fetchEthUsdRate = async () => {
+      try {
+        const response = await fetch(
+          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'
+        );
+        const data = await response.json();
+        const rate = data.ethereum?.usd;
+        if (rate && typeof rate === 'number') {
+          setEthUsdRate(rate);
+        } else {
+          throw new Error('Invalid rate data');
+        }
+      } catch (err) {
+        console.error('Failed to fetch ETH/USD rate:', err);
+        setRateError(true);
+        // Fallback to a reasonable estimate
+        setEthUsdRate(3000);
+      } finally {
+        setLoadingRate(false);
+      }
+    };
+
+    fetchEthUsdRate();
+  }, []);
+
   // Parse amount (remove commas if any)
   const rawAmount = formData.amount ? parseFloat(String(formData.amount).replace(/,/g, '')) : 307.331805;
   const amountDisplay = formData.amount ? `${formData.amount}USDT` : "307.331805USDT";
   const usdValue = rawAmount * USDT_TO_USD_RATE;
-  const usdFormatted = formatUSD(usdValue).replace('$', ''); // remove dollar sign for display as "$307.27" is handled separately
+  const usdFormatted = formatUSD(usdValue).replace('$', ''); // remove dollar sign for display
 
   // Format recipient (sender address)
   const recipientFormatted = formatRecipient(formData.sender || "0x98aF7097534");
-  
-  // Date formatting – ensure it looks like "Mar 23,10:31PM"
-  // If formData.date already matches that format, use it; otherwise format a given date string.
-  // For simplicity, we use the provided date as-is or fallback.
-  const dateDisplay = formData.date || "Mar 23, 10:31 PM";
 
-  // Fee display
-  const feeDisplay = formData.fee !== undefined ? `${formData.fee} ETH ($0.11)` : "0.30 ETH ($0.11)";
+  // ----- SAFE FEE HANDLING -----
+  const rawFee = formData.fee !== undefined ? String(formData.fee).replace(/,/g, '') : '0';
+  const parsedFee = parseFloat(rawFee);
+  const safeFeeEth = isNaN(parsedFee) ? 0 : parsedFee;
+
+  let feeUsdFormatted = '$0.00';
+  if (!loadingRate && ethUsdRate !== null) {
+    const feeUsd = safeFeeEth * ethUsdRate;
+    feeUsdFormatted = formatUSD(feeUsd);
+  } else if (loadingRate) {
+    feeUsdFormatted = 'Loading...';
+  } else if (rateError) {
+    feeUsdFormatted = 'Rate unavailable';
+  }
+
+  const feeDisplay = `${safeFeeEth} ETH (${feeUsdFormatted})`;
+  // -----------------------------
 
   return (
     <>
@@ -619,78 +662,73 @@ button {
   white-space: nowrap;
   z-index: 35;
 }
-
-
         `}</style>
 
-
-      <>
-
-        <div className="main-container">
-          <div className="root">
-            <div className="groups">
-              <span className="time">{formData.time || "12:18"}</span>
-              <div className="image" />
-              <div className="image-1" />
-              <div className="image-2" />
-              <div className="image-3" />
-              <div className="image-4" />
-              <div className="image-5" />
-              <div className="image-6" />
-            </div>
-            <div className="flex-row-fcd">
-              <div className="background" />
-              <div className="background-7">
-                <div className="groups-8">
-                  <div className="flex-column">
-                    <span className="mar-10-31-pm">{Dates.formatTemplate16(formData.date)}</span>
-                    <span className="completed">Completed</span>
-                    <span className="xaf">{recipientFormatted}</span>
-                  </div>
-                  <div className="flex-column-fb">
-                    <span className="date">Date</span>
-                    <span className="status">Status</span>
-                    <span className="recipient">Recipient</span>
-                  </div>
+      <div className="main-container">
+        <div className="root">
+          <div className="groups">
+            <span className="time">{formData.time || "12:18"}</span>
+            <div className="image" />
+            <div className="image-1" />
+            <div className="image-2" />
+            <div className="image-3" />
+            <div className="image-4" />
+            <div className="image-5" />
+            <div className="image-6" />
+          </div>
+          <div className="flex-row-fcd">
+            <div className="background" />
+            <div className="background-7">
+              <div className="groups-8">
+                <div className="flex-column">
+                  <span className="mar-10-31-pm">{Dates.formatTemplate16(formData.date)}</span>
+                  <span className="completed">Completed</span>
+                  <span className="xaf">{recipientFormatted}</span>
+                </div>
+                <div className="flex-column-fb">
+                  <span className="date">Date</span>
+                  <span className="status">Status</span>
+                  <span className="recipient">Recipient</span>
                 </div>
               </div>
-              <div className="groups-9">
-                <div className="groups-a">
-                  <div className="background-b">
-                    <span className="more-details">More Details</span>
-                    <div className="image-c" />
-                  </div>
-                </div>
-                <div className="background-d" />
-                <div className="groups-e">
-                  <div className="groups-f">
-                    <span className="span-dot">{feeDisplay}</span>
-                    <span className="span-network-fee">Network fee</span>
-                    <div className="image-10" />
-                  </div>
-                  <div className="groups-11">
-                    <span className="span-nonce">Nonce</span>
-                    <span className="span-50">50</span>
-                  </div>
+            </div>
+            <div className="groups-9">
+              <div className="groups-a">
+                <div className="background-b">
+                  <span className="more-details">More Details</span>
+                  <div className="image-c" />
                 </div>
               </div>
-              <div className="background-12" />
-            </div>
-            <div className="groups-13">
-              <span className="span-transfer">Transfer</span>
-              <div className="image-14" />
-              <div className="image-15" />
-            </div>
-            <div className="groups-16">
-              <span className="usdt">-{amountDisplay}</span>
-              <div className="flex-row-e">
-                <div className="image-17" />
-                <span className="dollar">${usdFormatted}</span>
+              <div className="background-d" />
+              <div className="groups-e">
+                <div className="groups-f">
+                  {/* Fixed: no NaN anymore */}
+                  <span className="span-dot">{feeDisplay}</span>
+                  <span className="span-network-fee">Network fee</span>
+                  <div className="image-10" />
+                </div>
+                <div className="groups-11">
+                  <span className="span-nonce">Nonce</span>
+                  <span className="span-50">50</span>
+                </div>
               </div>
+            </div>
+            <div className="background-12" />
+          </div>
+          <div className="groups-13">
+            <span className="span-transfer">Transfer</span>
+            <div className="image-14" />
+            <div className="image-15" />
+          </div>
+          <div className="groups-16">
+            <span className="usdt">-{amountDisplay}</span>
+            <div className="flex-row-e">
+              <div className="image-17" />
+              <span className="dollar">${usdFormatted}</span>
             </div>
           </div>
         </div>
-      </>
+      </div>
     </>
   );
 };

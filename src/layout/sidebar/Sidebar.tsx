@@ -11,7 +11,14 @@ import {
   FaClock,
   FaCalendar,
   FaPaste,
-  FaRandom
+  FaRandom,
+  FaMobileAlt,
+  FaBatteryFull,
+  FaBell,
+  FaPhone,
+  FaTelegram,
+  FaWhatsapp,
+  FaComment
 } from "react-icons/fa";
 
 // Import coin images (you'll need to add these images to your project)
@@ -56,6 +63,7 @@ function Sidebar({
   formData,
   setFormData,
 }) {
+  console.log("🚀 ~ Sidebar ~ value:", value)
   // Template field label mappings
   const templateFieldLabels = {
     template1: {
@@ -173,6 +181,14 @@ function Sidebar({
       date: 'Date',
       time: 'Time',
       fee: 'Network fee'
+    },
+    template16: {
+      sender: 'Address',
+      receiver: 'Txid',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Network fee'
     }
   };
 
@@ -182,11 +198,23 @@ function Sidebar({
   };
 
   const fieldLabels = getCurrentFieldLabels();
+  console.log("🚀 ~ Sidebar ~ fieldLabels:", fieldLabels)
   const [selectedCoin, setSelectedCoin] = useState("USDT");
   const [showEditModal, setShowEditModal] = useState(false);
   const [language, setLanguage] = useState("english");
   const [randomData, setRandomData] = useState(false);
   const [isScreenshotAnimating, setIsScreenshotAnimating] = useState(false);
+  const [showPhoneHeaderModal, setShowPhoneHeaderModal] = useState(false);
+
+  const [phoneHeaderData, setPhoneHeaderData] = useState({
+    time: "09:41",
+    battery: 85,
+    batteryCharging: false,
+    missedCalls: 0,
+    telegram: 0,
+    whatsapp: 0,
+    notifications: 3
+  });
 
   // formData is now received from props (global state from App.tsx)
 
@@ -375,30 +403,37 @@ function Sidebar({
             </select>
           </div>
 
-       
+
           {/* Tools Section */}
           <div className="form__group">
             <label htmlFor="">Drawing Tools</label>
 
             <div className="sidebar__">
-            <div className="app__tools">
-              <input
-                type="color"
-                value={color}
-                onChange={changeColor}
-                className="btn--color"
-                title="Select color"
-              />
-              <button className="tool__btn undo" onClick={undo} title="Undo">
-                <FaUndo size={16} />
-              </button>
-              <button onClick={erase} className="tool__btn erase__button" title="Eraser">
-                <FaEraser size={16} />
-              </button>
+              <div className="app__tools">
+                <input
+                  type="color"
+                  value={color}
+                  onChange={changeColor}
+                  className="btn--color"
+                  title="Select color"
+                />
+                <button className="tool__btn undo" onClick={undo} title="Undo">
+                  <FaUndo size={16} />
+                </button>
+                <button onClick={erase} className="tool__btn erase__button" title="Eraser">
+                  <FaEraser size={16} />
+                </button>
+              </div>
+              {/* <div className="phone__header-btn">
+                <button
+                  className="phone__header-edit-btn"
+                  onClick={() => setShowPhoneHeaderModal(true)}
+                  title="Edit Phone Header"
+                >
+                  <FaMobileAlt size={16} />
+                </button>
+              </div> */}
             </div>
-                  <div></div>
-
-        </div>
           </div>
 
           {/* Brush Size - Removed preview */}
@@ -432,7 +467,7 @@ function Sidebar({
           </div>
         </div>
 
-   
+
 
         {/* Screenshot Button */}
         <button
@@ -477,22 +512,22 @@ function Sidebar({
               </div>
 
               {/* Date Input */}
-         
-                <div className="input__group">
-                  <div className="input__with__buttons">
-                    <input
-                      type="datetime-local"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleInputChange}
-                      placeholder={fieldLabels.date}
-                    />
-                    <button className="input__button" onClick={setCurrentDate} title="Set today's date">
-                      <FaCalendar size={14} />
-                    </button>
-                  </div>
+
+              <div className="input__group">
+                <div className="input__with__buttons">
+                  <input
+                    type="datetime-local"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleInputChange}
+                    placeholder={fieldLabels.date}
+                  />
+                  <button className="input__button" onClick={setCurrentDate} title="Set today's date">
+                    <FaCalendar size={14} />
+                  </button>
                 </div>
-      
+              </div>
+
 
               {/* Sender Input */}
               {fieldLabels.sender && (
@@ -657,6 +692,108 @@ function Sidebar({
                 Cancel
               </button>
               <button className="modal__btn modal__btn--save" onClick={handleSave}>
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Phone Header Modal */}
+      {showPhoneHeaderModal && (
+        <div className="modal__overlay" onClick={() => setShowPhoneHeaderModal(false)}>
+          <div className="modal__content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal__header">
+              <h2 className="modal__title">
+                <FaMobileAlt style={{ marginRight: '8px' }} />
+                Edit Phone Header
+              </h2>
+              <button className="modal__close" onClick={() => setShowPhoneHeaderModal(false)}>
+                <FaTimes />
+              </button>
+            </div>
+
+            <div className="modal__form">
+              <div className="phone__header-preview">
+                <div className="phone__header-status-bar">
+                  <span className="phone__time">{phoneHeaderData.time}</span>
+                  <div className="phone__status-right">
+                    <div className="phone__signal">
+                      <span className="signal__bar"></span>
+                      <span className="signal__bar"></span>
+                      <span className="signal__bar"></span>
+                      <span className="signal__bar"></span>
+                    </div>
+                    <div className="phone__battery">
+                      <FaBatteryFull size={14} />
+                      <span>{phoneHeaderData.battery}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="input__group">
+                <label>Time (HH:MM)</label>
+                <div className="input__with__buttons">
+                  <input
+                    type="text"
+                    value={phoneHeaderData.time}
+                    onChange={(e) => setPhoneHeaderData(prev => ({ ...prev, time: e.target.value }))}
+                    placeholder="09:41"
+                  />
+                  <button
+                    className="input__button"
+                    onClick={() => {
+                      const now = new Date();
+                      const timeString = now.toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false
+                      });
+                      setPhoneHeaderData(prev => ({ ...prev, time: timeString }));
+                    }}
+                    title="Set current time"
+                  >
+                    <FaClock size={14} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="input__group">
+                <label>Battery Level (%)</label>
+                <div className="input__with__buttons">
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={phoneHeaderData.battery}
+                    onChange={(e) => setPhoneHeaderData(prev => ({ ...prev, battery: parseInt(e.target.value) || 0 }))}
+                  />
+                  <button
+                    className="input__button"
+                    onClick={() => setPhoneHeaderData(prev => ({ ...prev, battery: 100 }))}
+                    title="Full battery"
+                  >
+                    <FaBatteryFull size={14} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="notifications__section">
+                <h4 className="notifications__title">
+                  <FaBell style={{ marginRight: '6px' }} />
+                  Notification Badges
+                </h4>
+
+
+              </div>
+            </div>
+
+            <div className="modal__actions">
+              <button className="modal__btn modal__btn--cancel" onClick={() => setShowPhoneHeaderModal(false)}>
+                Cancel
+              </button>
+              <button className="modal__btn modal__btn--save" onClick={() => setShowPhoneHeaderModal(false)}>
                 Save Changes
               </button>
             </div>
