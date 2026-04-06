@@ -30,7 +30,6 @@ class Dates {
   }
 
  static formatTemplate6(date: string | undefined): string {
-  console.log(date);
 
   const fallback = "Jul 9,2024 at 12:17:32 PM";
 

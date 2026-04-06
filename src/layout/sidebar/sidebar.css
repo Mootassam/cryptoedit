@@ -343,10 +343,10 @@
 
 /* Screenshot Button */
 .app__screenshot {
-  margin-top: auto;
   padding: 14px 20px;
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
+  margin-top: 15px;
   border: none;
   border-radius: 12px;
   font-size: 14px;
@@ -683,4 +683,12 @@
   .language__buttons {
     flex-direction: column;
   }
+
+
 }
+
+  .sidebar__ { 
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }

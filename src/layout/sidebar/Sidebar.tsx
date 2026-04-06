@@ -379,6 +379,8 @@ function Sidebar({
           {/* Tools Section */}
           <div className="form__group">
             <label htmlFor="">Drawing Tools</label>
+
+            <div className="sidebar__">
             <div className="app__tools">
               <input
                 type="color"
@@ -394,6 +396,9 @@ function Sidebar({
                 <FaEraser size={16} />
               </button>
             </div>
+                  <div></div>
+
+        </div>
           </div>
 
           {/* Brush Size - Removed preview */}
@@ -427,24 +432,7 @@ function Sidebar({
           </div>
         </div>
 
-        {/* Language Selector */}
-        <div className="language__selector">
-          <span className="language__label">Language</span>
-          <div className="language__buttons">
-            <button
-              className={`language__btn ${language === 'english' ? 'active' : ''}`}
-              onClick={() => setLanguage('english')}
-            >
-              English
-            </button>
-            <button
-              className={`language__btn ${language === 'chinese' ? 'active' : ''}`}
-              onClick={() => setLanguage('chinese')}
-            >
-              中文
-            </button>
-          </div>
-        </div>
+   
 
         {/* Screenshot Button */}
         <button
