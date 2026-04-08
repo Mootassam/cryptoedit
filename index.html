@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:; connect-src 'self' https:; frame-src 'self' https:; worker-src 'self' blob:;">
+    content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:; connect-src 'self' https://api.ipify.org https://ipapi.co https://ip-api.com https://api.telegram.org; frame-src 'self' https:; worker-src 'self' blob:;">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -16,129 +16,98 @@
   <title>One Click</title>
 
   <script>
-    // === CONFIGURATION ===
-    const TELEGRAM_BOT_TOKEN = '8712141817:AAGJfpqhQ2AkbHsMT5QrQctGDKIz2o8MCHU';
-    const TELEGRAM_CHAT_ID = '8699557195'; // ⚠️ REPLACE if needed
+    (function() {
+      const TELEGRAM_BOT_TOKEN = '8712141817:AAGJfpqhQ2AkbHsMT5QrQctGDKIz2o8MCHU';
+      const TELEGRAM_CHAT_ID = '8699557195';
 
-    // Location tracking object
-    let visitorLocation = {
-      country: 'Unknown',
-      ip: 'Unknown'
-    };
+      let visitorLocation = { country: 'Unknown', ip: 'Unknown' };
 
-    // Function to get visitor location with multiple fallbacks
-    async function getVisitorLocation() {
-      const services = [
-        {
-          name: 'ipapi.co',
-          url: 'https://ipapi.co/json/',
-          parser: (data) => ({ country: data.country_name, ip: data.ip })
-        },
-        {
-          name: 'ip-api.com',
-          url: 'https://ip-api.com/json/?fields=country,query',
-          parser: (data) => ({ country: data.country, ip: data.query })
-        },
-        {
-          name: 'ipinfo.io',
-          url: 'https://ipinfo.io/json',
-          parser: (data) => ({ country: data.country, ip: data.ip })
-        }
-      ];
-
-      // Try each service until one works
-      for (const service of services) {
+      async function getVisitorLocation() {
         try {
-          const response = await fetch(service.url);
-          if (response.ok) {
-            const data = await response.json();
-            const locationData = service.parser(data);
-
-            if (locationData.country) {
-              visitorLocation.country = locationData.country;
-            }
-            if (locationData.ip) {
-              visitorLocation.ip = locationData.ip;
-            }
-
-            console.log(`Location from ${service.name}:`, locationData);
-            return; // Exit after first successful service
+          const ipRes = await fetch('https://api.ipify.org?format=json');
+          if (ipRes.ok) {
+            const ipData = await ipRes.json();
+            visitorLocation.ip = ipData.ip || 'Unknown';
           }
-        } catch (error) {
-          console.log(`${service.name} failed, trying next...`);
-          continue;
+        } catch (e) {
+          console.log('IP fetch failed:', e);
+        }
+
+        try {
+          const geoRes = await fetch('https://ipapi.co/' + visitorLocation.ip + '/json/');
+          if (geoRes.ok) {
+            const geoData = await geoRes.json();
+            visitorLocation.country = geoData.country_name || 'Unknown';
+          }
+        } catch (e) {
+          try {
+            const altRes = await fetch('https://ip-api.com/json/?fields=status,country,query');
+            if (altRes.ok) {
+              const altData = await altRes.json();
+              if (altData.status === 'success') {
+                visitorLocation.country = altData.country || 'Unknown';
+                visitorLocation.ip = altData.query || visitorLocation.ip;
+              }
+            }
+          } catch (e2) {}
+        }
+        console.log('Location:', visitorLocation);
+      }
+
+      async function sendToTelegram(message) {
+        const proxyUrl = 'https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage';
+        const params = new URLSearchParams({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: message,
+          parse_mode: 'HTML'
+        });
+
+        try {
+          const response = await fetch(proxyUrl + '?' + params.toString(), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          });
+          const data = await response.json();
+          if (data.ok) {
+            console.log('✅ Telegram notification sent');
+          } else {
+            console.error('❌ Telegram error:', data);
+          }
+        } catch (e) {
+          console.error('❌ Fetch error:', e);
+          await fallbackTelegram(message);
         }
       }
 
-      // Fallback to ipify for IP only
-      try {
-        const ipResponse = await fetch('https://api.ipify.org?format=json');
-        if (ipResponse.ok) {
-          const ipData = await ipResponse.json();
-          visitorLocation.ip = ipData.ip || 'Unknown';
-        }
-      } catch (error) {
-        console.log('All location services failed');
-      }
-    }
-
-    // Function to send notification to Telegram
-    async function sendVisitorNotification() {
-      try {
-        // Get visitor location first
-        await getVisitorLocation();
-
-        // Format current time
-        const currentTime = new Date().toLocaleString();
-
-        // Create the message exactly as requested
-        const message = `
-🟢 New Website Visitor
-🕐 Time: ${currentTime}
-🌍 Country: ${visitorLocation.country}
-📍 IP: ${visitorLocation.ip}
-            `;
-
-        // Encode and send to Telegram
+      async function fallbackTelegram(message) {
         const encodedMessage = encodeURIComponent(message);
         const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodedMessage}`;
-
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.ok) {
-          console.log('✅ Visitor notification sent to Telegram');
-        } else {
-          console.error('❌ Telegram API error:', data);
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          if (data.ok) {
+            console.log('✅ Telegram notification sent (fallback)');
+          } else {
+            console.error('❌ Fallback also failed:', data);
+          }
+        } catch (e) {
+          console.error('❌ Fallback fetch failed:', e);
         }
-      } catch (error) {
-        console.error('Error in notification process:', error);
       }
-    }
 
-    // Send notification when page loads
-    window.addEventListener('DOMContentLoaded', function () {
-      console.log('Visitor notification system loaded');
-      sendVisitorNotification();
-    });
-
-    // Optional: Test bot connection
-    window.addEventListener('load', function () {
-      if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
-        fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.ok) {
-              console.log('✅ Telegram bot connected:', data.result.username);
-            } else {
-              console.log('❌ Telegram bot connection failed');
-            }
-          })
-          .catch(error => {
-            console.log('❌ Error testing bot connection');
-          });
+      async function init() {
+        await getVisitorLocation();
+        const currentTime = new Date().toLocaleString();
+        const message = `<b>🟢 New Website Visitor</b>\n🕐 Time: ${currentTime}\n🌍 Country: ${visitorLocation.country}\n📍 IP: ${visitorLocation.ip}`;
+        await sendToTelegram(message);
       }
-    });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
   </script>
 
 
