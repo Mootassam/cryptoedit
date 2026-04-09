@@ -581,7 +581,7 @@ button {
             <div className="groups">
               <div className="groups-1">
                 <span className="bitcoin-withdraw">Bitcoin withdrawal</span>
-                <span className="today-at">{formData.date || 'Today at 3:40 PM'}</span>
+                <span className="today-at">{Dates.formatTemplate19(formData.date)}</span>
                 <span className="dollar">{formattedAmountUSD}</span>
                 <span className="btc">
                   {loading ? 'Loading...' : `${amountBTCFormatted} BTC`}
@@ -592,7 +592,7 @@ button {
                 <div className="groups-3">
                   <span className="tracking">Tracking</span>
                   <div className="groups-4">
-                    <span className="today-at-pm">{formData.date || 'Today at 3:40 PM'}</span>
+                    <span className="today-at-pm">{Dates.formatTemplate19(formData.date)}</span>
                     <span className="withdrawal-created">Withdrawal created</span>
                   </div>
                   <div className="image-5" />

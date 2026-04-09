@@ -7,63 +7,93 @@ interface Template21Props {
 }
 
 const Template21: React.FC<Template21Props> = ({ formData }) => {
-  const [ethUsdRate, setEthUsdRate] = useState<number | null>(null);
+  const [btcUsdRate, setBtcUsdRate] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
 
-  // Fetch live ETH/USD rate from CoinGecko
+  // Fetch live BTC/USD rate from CoinGecko
   useEffect(() => {
-    const fetchEthUsdRate = async () => {
+    const fetchBtcUsdRate = async () => {
       try {
         const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'
+          'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'
         );
         const data = await response.json();
-        const rate = data.ethereum?.usd;
-        if (rate && typeof rate === 'number') {
-          setEthUsdRate(rate);
+        const rate = data.bitcoin?.usd;
+        if (rate && typeof rate === 'number' && rate > 0) {
+          setBtcUsdRate(rate);
         } else {
           throw new Error('Invalid rate data');
         }
       } catch (err) {
-        console.error('Failed to fetch ETH/USD rate:', err);
-        setError(true);
-        // Fallback to a reasonable estimate
-        setEthUsdRate(3000);
+        console.error('Failed to fetch BTC/USD rate, using fallback:', err);
+        setBtcUsdRate(60000); // fallback rate
       } finally {
         setLoading(false);
       }
     };
-
-    fetchEthUsdRate();
+    fetchBtcUsdRate();
   }, []);
 
-  // Parse ETH amount (remove commas if any)
-  const rawAmount = formData.amount
-    ? parseFloat(String(formData.amount).replace(/,/g, ''))
-    : 12496.31; // default fallback
+  // Helper: parse number from string (remove commas)
+  const parseNumber = (value: string | number | undefined, defaultValue: number): number => {
+    if (value === undefined || value === null) return defaultValue;
+    const parsed = parseFloat(String(value).replace(/,/g, ''));
+    return isNaN(parsed) ? defaultValue : parsed;
+  };
 
-  // Compute USD value
-  let usdFormatted = '';
-  if (!loading && ethUsdRate !== null) {
-    const usdValue = rawAmount * ethUsdRate;
-    usdFormatted = new Intl.NumberFormat('en-US', {
+  // Amount in USD (from formData.amount) – default $108.51
+  const amountUSD = parseNumber(formData.amount, 108.51);
+  // Fee in USD (from formData.fee) – default $0.000011? But fee is in USD, so we'll use a small default like 0.000011 USD? Actually the original placeholder was "0.000011BTC". Since fee is now in USD, we set a sensible default e.g. 0.50 USD.
+  // But to match the visual, we'll assume the client provides fee in USD. Default 0.50 USD (approx 0.00000833 BTC at 60k)
+  const feeUSD = parseNumber(formData.fee, 0.50);
+
+  // Effective rate (fallback 60000)
+  const rate = btcUsdRate !== null ? btcUsdRate : 60000;
+
+  // Convert to BTC
+  const amountBTC = amountUSD / rate;
+  const feeBTC = feeUSD / rate;
+
+  // Format BTC with 8 decimals
+  const formatBTC = (value: number): string => {
+    return value.toLocaleString(undefined, {
+      minimumFractionDigits: 8,
+      maximumFractionDigits: 8,
+    });
+  };
+
+  const amountBTCFormatted = formatBTC(amountBTC);
+  const feeBTCFormatted = formatBTC(feeBTC);
+
+  // Format USD values
+  const formatUSD = (value: number): string => {
+    return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    }).format(usdValue);
-  } else if (loading) {
-    usdFormatted = 'Loading...';
-  } else if (error) {
-    usdFormatted = 'Rate unavailable';
-  }
+    }).format(value);
+  };
 
-  // Helper to split address into two lines with indentation on the second line
-  const formatReceiver = (address: string) => {
+  const amountUSDFormatted = formatUSD(amountUSD);
+  const feeUSDFormatted = formatUSD(feeUSD);
+  const pricePerCoinFormatted = formatUSD(rate);
+
+  // Format transaction hash (txid) with ellipsis
+  const formatTxid = (txid: string | undefined): string => {
+    const defaultTxid = 'qdkswz...f5y0it';
+    if (!txid) return defaultTxid;
+    if (txid.length <= 13) return txid;
+    return `${txid.slice(0, 6)}...${txid.slice(-6)}`;
+  };
+
+  // Format address into two lines with indentation on second line
+  const formatAddress = (address: string | undefined): React.ReactNode => {
+    const defaultAddr = 'bclqzw8hywvtyws6r4zn5x4vkxnj70wxe0z9wynquk';
+    const addr = address || defaultAddr;
     const splitIndex = 23;
-    const firstLine = address.slice(0, splitIndex);
-    const secondLine = address.slice(splitIndex);
+    const firstLine = addr.slice(0, splitIndex);
+    const secondLine = addr.slice(splitIndex);
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
         <span>{firstLine}</span>
@@ -72,7 +102,8 @@ const Template21: React.FC<Template21Props> = ({ formData }) => {
     );
   };
 
-  const defaultAddress = "0xB6755A53889e71cc0F72123d018E0c1f4A7DB8b9";
+  // Loading or error handling – we always show values (with fallback rate)
+  const showLoading = loading && btcUsdRate === null;
 
   return (
     <>
@@ -239,10 +270,11 @@ button {
   overflow: visible auto;
 }
 .minus-btc {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   height: 16.25px;
-  margin: 23.125px 0 0 137.5px;
   color: #79797a;
   font-family: Inter, var(--default-font-family);
   font-size: 14.375px;
@@ -253,10 +285,11 @@ button {
   z-index: 57;
 }
 .negative-value {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   height: 30.625px;
-  margin: 4.375px 0 0 127.5px;
   color: #0f0f0f;
   font-family: Inter, var(--default-font-family);
   font-size: 24.375px;
@@ -314,7 +347,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 16.875px;
-  right: 259.375px;
+  right: 265.375px;
   bottom: 15.625px;
   color: #0f0f0f;
   font-family: Inter, var(--default-font-family);
@@ -367,7 +400,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 15px;
-  right: 290.625px;
+  right: 292.625px;
   bottom: 16.875px;
   color: #0f0f0f;
   font-family: Inter, var(--default-font-family);
@@ -409,7 +442,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 15px;
-  right: 266.875px;
+  right: 269.875px;
   bottom: 16.875px;
   color: #0f0f0f;
   font-family: Inter, var(--default-font-family);
@@ -451,7 +484,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 15px;
-  right: 253.125px;
+  right: 259.125px;
   bottom: 17.5px;
   color: #0f0f0f;
   font-family: Inter, var(--default-font-family);
@@ -493,7 +526,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 15px;
-  right: 236.25px;
+  right:245.25px;
   bottom: 17.5px;
   color: #0f0f0f;
   font-family: Inter, var(--default-font-family);
@@ -677,7 +710,7 @@ button {
   justify-content: flex-start;
   position: absolute;
   height: 14.375px;
-  right: 327.5px;
+  right: 330.5px;
   bottom: 41.25px;
   color: #0f0f0f;
   font-family: Inter, var(--default-font-family);
@@ -690,7 +723,6 @@ button {
 }
 .text-content {
   display: flex;
-  align-items: center;
   justify-content: flex-end;
   position: absolute;
   width: 192.5px;
@@ -918,124 +950,118 @@ button {
   background-size: cover;
   z-index: 2;
 }
-
-
-
       `}</style>
 
-      <>
-
-
-
-        <div className="main-container">
-          <div className="root">
-            <div className="groups">
-              <div className="groups-1">
-                <span className="time">16:20</span>
-                <div className="image" />
-                <div className="image-2" />
-                <div className="image-3" />
-                <div className="image-4" />
+      <div className="main-container">
+        <div className="root">
+          <div className="groups">
+            <div className="groups-1">
+              <span className="time">16:20</span>
+              <div className="image" />
+              <div className="image-2" />
+              <div className="image-3" />
+              <div className="image-4" />
+            </div>
+            <div className="groups-5">
+              <span className="sent-bitcoin">Sent Bitcoin</span>
+              <div className="image-6" />
+            </div>
+            <div className="groups-7">
+              <span className="minus-btc">
+                {showLoading ? 'Loading...' : `-${amountBTCFormatted} BTC`}
+              </span>
+              <span className="negative-value">
+                {showLoading ? 'Loading...' : `-${amountUSDFormatted}`}
+              </span>
+            </div>
+            <div className="background" />
+            <div className="groups-8">
+              <div className="groups-9">
+                <span className="currency-value">
+                  {showLoading ? 'Loading...' : pricePerCoinFormatted}
+                </span>
+                <span className="price-per-coin">Price per coin</span>
               </div>
-              <div className="groups-5">
-                <span className="sent-bitcoin">Sent Bitcoin</span>
-                <div className="image-6" />
+              <div className="groups-a">
+                <span className="bitcoin">Bitcoin</span>
+                <div className="image-b" />
+                <span className="network">Network</span>
               </div>
-              <div className="groups-7">
-                <span className="minus-btc">-0.0012BTC</span>
-                <span className="negative-value">-$108.51</span>
+              <div className="groups-c">
+                <span className="btc-value">
+                  {showLoading ? 'Loading...' : `${feeBTCFormatted} BTC`}
+                </span>
+                <span className="network-fee">Network fee</span>
               </div>
-              <div className="background" />
-              <div className="groups-8">
-                <div className="groups-9">
-                  <span className="currency-value">$89,731.96</span>
-                  <span className="price-per-coin">Price per coin</span>
+              <div className="groups-d">
+                <span className="number">22</span>
+                <span className="confirmations">Confirmations</span>
+              </div>
+              <div className="groups-e">
+                <span className="random-text">
+                  {formatTxid(formData.txid)}
+                </span>
+                <span className="transaction-hash">Transaction hash</span>
+              </div>
+              <div className="groups-f">
+                <span className="time-stamp">{Dates.formatTemplate21(formData.date)}</span>
+                <span className="date">Date</span>
+              </div>
+              <div className="background-10" />
+              <div className="groups-11">
+                <div className="groups-12">
+                  <div className="image-13" />
+                  <span className="completed">Completed</span>
+                  <span className="status">Status</span>
                 </div>
-                <div className="groups-a">
-                  <span className="bitcoin">Bitcoin</span>
-                  <div className="image-b" />
-                  <span className="network">Network</span>
-                </div>
-                <div className="groups-c">
-                  <span className="btc-value">0.000011BTC</span>
-                  <span className="network-fee">Network fee</span>
-                </div>
-                <div className="groups-d">
-                  <span className="number">22</span>
-                  <span className="confirmations">Confirmations</span>
-                </div>
-                <div className="groups-e">
-                  <span className="random-text">qdkswz...f5y0it</span>
-                  <span className="transaction-hash">Transaction hash</span>
-                </div>
-                <div className="groups-f">
-                  <span className="time-stamp">4:19PM-Jan22,2026</span>
-                  <span className="date">Date</span>
-                </div>
-                <div className="background-10" />
-                <div className="groups-11">
-                  <div className="groups-12">
-                    <div className="image-13" />
-                    <span className="completed">Completed</span>
-                    <span className="status">Status</span>
-                  </div>
-                  <div className="groups-14">
-                    <div className="button">
-                      <div className="background-15">
-                        <span className="view-on-block-ex">
-                          View on block explorer
-                        </span>
-                      </div>
+                <div className="groups-14">
+                  <div className="button">
+                    <div className="background-15">
+                      <span className="view-on-block-ex">
+                        View on block explorer
+                      </span>
                     </div>
                   </div>
                 </div>
-                <div className="groups-16">
-                  <span className="to">To</span>
-                </div>
-                <span className="text-content">
-                  bclqzw8hywvtyws6r4
-                  <br />
-                  zn5x4vkxnj70wxe0z9wyn
-                  <br />
-                  quk
-                </span>
               </div>
-              <div className="groups-17">
-                <div className="flex-row-c">
-                  <div className="background-18" />
-                  <div className="groups-19">
-                    <div className="image-1a" />
-                    <span className="my-assets">My assets</span>
-                  </div>
-                  <div className="groups-1b">
-                    <div className="image-1c" />
-                    <span className="trade">Trade</span>
-                  </div>
-                  <div className="groups-1d">
-                    <div className="image-1e" />
-                    <span className="earn">Earn</span>
-                  </div>
-                  <div className="groups-1f">
-                    <div className="image-20" />
-                    <span className="home">Home</span>
-                  </div>
-                  <div className="groups-21">
-                    <div className="image-22" />
-                    <span className="web3">Web3</span>
-                  </div>
-                </div>
-                <div className="background-23" />
+              <div className="groups-16">
+                <span className="to">To</span>
               </div>
+              <span className="text-content">
+                {formatAddress(formData.sender)}
+              </span>
+            </div>
+            <div className="groups-17">
+              <div className="flex-row-c">
+                <div className="background-18" />
+                <div className="groups-19">
+                  <div className="image-1a" />
+                  <span className="my-assets">My assets</span>
+                </div>
+                <div className="groups-1b">
+                  <div className="image-1c" />
+                  <span className="trade">Trade</span>
+                </div>
+                <div className="groups-1d">
+                  <div className="image-1e" />
+                  <span className="earn">Earn</span>
+                </div>
+                <div className="groups-1f">
+                  <div className="image-20" />
+                  <span className="home">Home</span>
+                </div>
+                <div className="groups-21">
+                  <div className="image-22" />
+                  <span className="web3">Web3</span>
+                </div>
+              </div>
+              <div className="background-23" />
             </div>
           </div>
-          <div className="image-24" />
         </div>
-        {/* Generated by Codia AI - https://codia.ai/ */}
-      </>
-
+        <div className="image-24" />
+      </div>
     </>
-
-
   );
 };
 

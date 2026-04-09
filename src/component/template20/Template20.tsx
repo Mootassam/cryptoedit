@@ -482,7 +482,7 @@ button {
                   <div className="image-8" />
                   <span className="bitcoin-btc">Bitcoin (BTC)</span>
                   <span className="currency">{formattedAmountUSD}</span>
-                  <span className="date-time">Nov 21,2025,1:24 PM</span>
+                  <span className="date-time">{Dates.formatTemplate20(formData.date)}</span>
                 </div>
               </div>
               <div className="groups-9">

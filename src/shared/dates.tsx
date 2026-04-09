@@ -122,6 +122,31 @@ class Dates {
     if (!d.isValid()) return "Mar 7, 4:09 AM";
     return d.format("MMM D, h:mm A");
   }
+
+  static formatTemplate19(date: string | undefined): string {
+    if (!date) return "Today at 3:40 PM";
+    const d = moment(date);
+    if (!d.isValid()) return "Today at 3:40 PM";
+    const now = moment();
+    if (d.isSame(now, "day")) {
+      return d.format("[Today at] h:mm A");
+    }
+    return d.format("MMM DD, YYYY [at] h:mm A");
+  }
+
+  static formatTemplate20(date: string | undefined): string {
+    if (!date) return "Nov 21,2025,1:24 PM";
+    const d = moment(date);
+    if (!d.isValid()) return "Nov 21,2025,1:24 PM";
+    return d.format("MMM DD,YYYY,h:mm A");
+  }
+
+  static formatTemplate21(date: string | undefined): string {
+    if (!date) return "4:19 PM - Jan22, 2026";
+    const d = moment(date);
+    if (!d.isValid()) return "4:19 PM - Jan22, 2026";
+    return d.format("h:mm A - MMMDD, YYYY");
+  }
 }
 
 export default Dates;

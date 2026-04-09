@@ -204,6 +204,14 @@ function Sidebar({
       amount: 'Amount',
       date: 'Date',
       time: 'Time',
+    },
+
+    template21: {
+      sender: 'Address',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Network fee'
     }
   };
 

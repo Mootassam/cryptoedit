@@ -85,7 +85,7 @@ function App() {
         />
         <main className="app__main">
           <div className="content" ref={divRef}>
-            <div className="app__canvas">
+            {/* <div className="app__canvas">
               <canvas
                 ref={canvasRef as any}
                 width={dimensions.width}
@@ -95,7 +95,7 @@ function App() {
                 onMouseMove={draw}
                 onMouseUp={endDrawing}
               />
-            </div>
+            </div> */}
 
             <FormDataProvider value={{ formData, setFormData }} >
               {value === "template1" && <Template1 formData={formData} />}
