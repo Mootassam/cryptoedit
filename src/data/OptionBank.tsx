@@ -21,11 +21,14 @@ const optionBank = [
   { name: "Template 17", value: "template17", type: "withdraw" },
   { name: "Template 18", value: "template18", type: "withdraw" },
   { name: "Template 19", value: "template19", type: "withdraw" },
+  { name: "Template 20", value: "template20", type: "withdraw" },
+  { name: "Template 21", value: "template21", type: "withdraw" },
 
 
 
 
 
 ];
+
 
 export default optionBank;
