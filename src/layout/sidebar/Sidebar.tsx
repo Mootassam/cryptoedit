@@ -189,6 +189,21 @@ function Sidebar({
       date: 'Date',
       time: 'Time',
       fee: 'Network fee'
+    },
+
+    template19: {
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
+      fee: 'Network fee'
+    },
+
+
+    template20: {
+      sender: 'Address',
+      amount: 'Amount',
+      date: 'Date',
+      time: 'Time',
     }
   };
 

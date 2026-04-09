@@ -7,59 +7,67 @@ interface Template20Props {
 }
 
 const Template20: React.FC<Template20Props> = ({ formData }) => {
-  const [ethUsdRate, setEthUsdRate] = useState<number | null>(null);
+  const [btcUsdRate, setBtcUsdRate] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
 
-  // Fetch live ETH/USD rate from CoinGecko
+  // Fetch live BTC/USD rate from CoinGecko
   useEffect(() => {
-    const fetchEthUsdRate = async () => {
+    const fetchBtcUsdRate = async () => {
       try {
         const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'
+          'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'
         );
         const data = await response.json();
-        const rate = data.ethereum?.usd;
-        if (rate && typeof rate === 'number') {
-          setEthUsdRate(rate);
+        const rate = data.bitcoin?.usd;
+        if (rate && typeof rate === 'number' && rate > 0) {
+          setBtcUsdRate(rate);
         } else {
           throw new Error('Invalid rate data');
         }
       } catch (err) {
-        console.error('Failed to fetch ETH/USD rate:', err);
-        setError(true);
-        // Fallback to a reasonable estimate
-        setEthUsdRate(3000);
+        console.error('Failed to fetch BTC/USD rate, using fallback:', err);
+        // Fallback to a reasonable estimate (e.g., $60,000 per BTC)
+        setBtcUsdRate(60000);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchEthUsdRate();
+    fetchBtcUsdRate();
   }, []);
 
-  // Parse ETH amount (remove commas if any)
-  const rawAmount = formData.amount
-    ? parseFloat(String(formData.amount).replace(/,/g, ''))
-    : 12496.31; // default fallback
+  // Parse USD amount (remove commas if any) with default 2600.39
+  const rawAmountUSD = (() => {
+    if (formData.amount) {
+      const parsed = parseFloat(String(formData.amount).replace(/,/g, ''));
+      return isNaN(parsed) ? 2600.39 : parsed;
+    }
+    return 2600.39;
+  })();
 
-  // Compute USD value
-  let usdFormatted = '';
-  if (!loading && ethUsdRate !== null) {
-    const usdValue = rawAmount * ethUsdRate;
-    usdFormatted = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(usdValue);
-  } else if (loading) {
-    usdFormatted = 'Loading...';
-  } else if (error) {
-    usdFormatted = 'Rate unavailable';
-  }
+  // Compute BTC value (use fallback rate if still null)
+  const effectiveRate = btcUsdRate !== null ? btcUsdRate : 60000;
+  const amountBTC = rawAmountUSD / effectiveRate;
 
-  // Helper to split address into two lines with indentation on the second line
+  // Format BTC with 8 decimal places
+  const formatBTC = (value: number) => {
+    return value.toLocaleString(undefined, {
+      minimumFractionDigits: 8,
+      maximumFractionDigits: 8,
+    });
+  };
+
+  const amountBTCFormatted = formatBTC(amountBTC);
+
+  // Format USD for display
+  const formattedAmountUSD = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(rawAmountUSD);
+
+  // Helper (unused but kept for consistency)
   const formatReceiver = (address: string) => {
     const splitIndex = 23;
     const firstLine = address.slice(0, splitIndex);
@@ -71,8 +79,6 @@ const Template20: React.FC<Template20Props> = ({ formData }) => {
       </div>
     );
   };
-
-  const defaultAddress = "0xB6755A53889e71cc0F72123d018E0c1f4A7DB8b9";
 
   return (
     <>
@@ -454,57 +460,53 @@ button {
       `}</style>
 
       <>
-
-        <>
-
-          <div className="main-container">
-            <div className="root">
-              <div className="groups">
-                <span className="time">1:27</span>
-                <div className="image" />
-                <div className="image-1" />
-                <div className="image-2" />
-                <div className="image-3" />
-              </div>
-              <div className="groups-4">
-                <span className="crypto-sent-comp">Crypto sent-Completed</span>
-                <div className="image-5" />
-              </div>
-              <div className="groups-6">
-                <div className="groups-7">
-                  <div className="background">
-                    <span className="plus-btc">+0.03109889BTC</span>
-                    <div className="image-8" />
-                    <span className="bitcoin-btc">Bitcoin (BTC)</span>
-                    <span className="currency">($2,600.39)</span>
-                    <span className="date-time">Nov 21,2025,1:24 PM</span>
-                  </div>
+        <div className="main-container">
+          <div className="root">
+            <div className="groups">
+              <span className="time">{formData.time || "1:27"}</span>
+              <div className="image" />
+              <div className="image-1" />
+              <div className="image-2" />
+              <div className="image-3" />
+            </div>
+            <div className="groups-4">
+              <span className="crypto-sent-comp">Crypto sent-Completed</span>
+              <div className="image-5" />
+            </div>
+            <div className="groups-6">
+              <div className="groups-7">
+                <div className="background">
+                  <span className="plus-btc">
+                    {loading ? 'Loading...' : `+${amountBTCFormatted} BTC`}
+                  </span>
+                  <div className="image-8" />
+                  <span className="bitcoin-btc">Bitcoin (BTC)</span>
+                  <span className="currency">{formattedAmountUSD}</span>
+                  <span className="date-time">Nov 21,2025,1:24 PM</span>
                 </div>
-                <div className="groups-9">
-                  <div className="background-a">
-                    <span className="blockchain-info">
-                      The transfer was added to the blockchain.
-                    </span>
-                    <div className="image-b" />
-                  </div>
+              </div>
+              <div className="groups-9">
+                <div className="background-a">
+                  <span className="blockchain-info">
+                    The transfer was added to the blockchain.
+                  </span>
+                  <div className="image-b" />
                 </div>
-                <span className="source">From</span>
-                <div className="groups-c">
-                  <div className="background-d">
-                    <span className="span">
-                      bc1q7cfxwf8qdkn4xr3awjhgkr3lq5fc7mpvf55lv8
-                    </span>
-                    <span className="external-crypto">External crypto address</span>
-                    <span className="show-transaction">Show transaction info</span>
-                  </div>
+              </div>
+              <span className="source">From</span>
+              <div className="groups-c">
+                <div className="background-d">
+                  <span className="span">
+                    {formData.sender || "bc1q7cfxwf8qdkn4xr3awjhgkr3lq5fc7mpvf55lv8"}
+                  </span>
+                  <span className="external-crypto">External crypto address</span>
+                  <span className="show-transaction">Show transaction info</span>
                 </div>
               </div>
             </div>
           </div>
-        </>
-
+        </div>
       </>
-
     </>
   );
 };

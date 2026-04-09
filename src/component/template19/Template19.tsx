@@ -7,59 +7,93 @@ interface Template19Props {
 }
 
 const Template19: React.FC<Template19Props> = ({ formData }) => {
-  const [ethUsdRate, setEthUsdRate] = useState<number | null>(null);
+  const [btcUsdRate, setBtcUsdRate] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
 
-  // Fetch live ETH/USD rate from CoinGecko
+  // Fetch live BTC/USD rate from CoinGecko, with fallback
   useEffect(() => {
-    const fetchEthUsdRate = async () => {
+    const fetchBtcUsdRate = async () => {
       try {
         const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'
+          'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'
         );
         const data = await response.json();
-        const rate = data.ethereum?.usd;
-        if (rate && typeof rate === 'number') {
-          setEthUsdRate(rate);
+        const rate = data.bitcoin?.usd;
+        if (rate && typeof rate === 'number' && rate > 0) {
+          setBtcUsdRate(rate);
         } else {
           throw new Error('Invalid rate data');
         }
       } catch (err) {
-        console.error('Failed to fetch ETH/USD rate:', err);
-        setError(true);
-        // Fallback to a reasonable estimate
-        setEthUsdRate(3000);
+        console.error('Failed to fetch BTC/USD rate, using fallback:', err);
+        // Fallback to a reasonable estimate (e.g., $60,000 per BTC)
+        setBtcUsdRate(60000);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchEthUsdRate();
+    fetchBtcUsdRate();
   }, []);
 
-  // Parse ETH amount (remove commas if any)
-  const rawAmount = formData.amount
-    ? parseFloat(String(formData.amount).replace(/,/g, ''))
-    : 12496.31; // default fallback
+  // Parse amount (USD) and fee (USD) with defaults
+  const rawAmountUSD = (() => {
+    if (formData.amount) {
+      const parsed = parseFloat(String(formData.amount).replace(/,/g, ''));
+      return isNaN(parsed) ? 175.97 : parsed;
+    }
+    return 175.97;
+  })();
 
-  // Compute USD value
-  let usdFormatted = '';
-  if (!loading && ethUsdRate !== null) {
-    const usdValue = rawAmount * ethUsdRate;
-    usdFormatted = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(usdValue);
-  } else if (loading) {
-    usdFormatted = 'Loading...';
-  } else if (error) {
-    usdFormatted = 'Rate unavailable';
-  }
+  const rawFeeUSD = (() => {
+    if (formData.fee) {
+      const parsed = parseFloat(String(formData.fee).replace(/,/g, ''));
+      return isNaN(parsed) ? 3.11 : parsed;
+    }
+    return 3.11;
+  })();
 
-  // Helper to split address into two lines with indentation on the second line
+  const totalUSD = rawAmountUSD + rawFeeUSD;
+
+  // Compute BTC values (use fallback rate if still null, though rate should be set)
+  const effectiveRate = btcUsdRate !== null ? btcUsdRate : 60000;
+  const amountBTC = rawAmountUSD / effectiveRate;
+  const totalBTC = totalUSD / effectiveRate;
+
+  // Format BTC with 8 decimal places
+  const formatBTC = (value: number) => {
+    return value.toLocaleString(undefined, {
+      minimumFractionDigits: 8,
+      maximumFractionDigits: 8,
+    });
+  };
+
+  const amountBTCFormatted = formatBTC(amountBTC);
+  const totalBTCFormatted = formatBTC(totalBTC);
+
+  // Format USD values
+  const formattedAmountUSD = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(rawAmountUSD);
+
+  const formattedFeeUSD = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(rawFeeUSD);
+
+  const formattedTotalUSD = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(totalUSD);
+
+  // Helper (unused but kept for consistency)
   const formatReceiver = (address: string) => {
     const splitIndex = 23;
     const firstLine = address.slice(0, splitIndex);
@@ -71,8 +105,6 @@ const Template19: React.FC<Template19Props> = ({ formData }) => {
       </div>
     );
   };
-
-  const defaultAddress = "0xB6755A53889e71cc0F72123d018E0c1f4A7DB8b9";
 
   return (
     <>
@@ -537,7 +569,6 @@ button {
   right: 0;
   bottom: 0;
   background-color: #ffffff;
-    no-repeat center;
   background-size: cover;
   z-index: 1;
 }
@@ -545,23 +576,23 @@ button {
       `}</style>
 
       <>
-
         <div className="main-container">
           <div className="root">
             <div className="groups">
               <div className="groups-1">
-               
                 <span className="bitcoin-withdraw">Bitcoin withdrawal</span>
-                <span className="today-at">Today at 3:40 PM</span>
-                <span className="dollar">$175.97</span>
-                <span className="btc">0.00254478BTC</span>
+                <span className="today-at">{formData.date || 'Today at 3:40 PM'}</span>
+                <span className="dollar">{formattedAmountUSD}</span>
+                <span className="btc">
+                  {loading ? 'Loading...' : `${amountBTCFormatted} BTC`}
+                </span>
               </div>
               <div className="background" />
               <div className="groups-2">
                 <div className="groups-3">
                   <span className="tracking">Tracking</span>
                   <div className="groups-4">
-                    <span className="today-at-pm">Today at 3:40 PM</span>
+                    <span className="today-at-pm">{formData.date || 'Today at 3:40 PM'}</span>
                     <span className="withdrawal-created">Withdrawal created</span>
                   </div>
                   <div className="image-5" />
@@ -587,23 +618,23 @@ button {
               <span className="exchange-rate-fees">Exchange rate and fees</span>
               <div className="flex-row-bf">
                 <span className="transfer-amount">Transfer amount</span>
-                <span className="dollar-d">$175.97</span>
+                <span className="dollar-d">{formattedAmountUSD}</span>
               </div>
               <div className="flex-row">
                 <span className="fees">Fees</span>
-                <span className="fees-amount">$3.11</span>
+                <span className="fees-amount">{formattedFeeUSD}</span>
               </div>
               <div className="flex-row-e">
                 <span className="total">Total</span>
-                <span className="total-amount">$179.08(0.00258982 BTC)</span>
+                <span className="total-amount">
+                  {loading ? 'Loading...' : `${formattedTotalUSD} (${totalBTCFormatted} BTC)`}
+                </span>
               </div>
             </div>
           </div>
           <div className="image-f" />
         </div>
-        {/* Generated by Codia AI - https://codia.ai/ */}
       </>
-
     </>
   );
 };
