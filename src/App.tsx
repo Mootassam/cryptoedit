@@ -1,3 +1,4 @@
+
 import { useRef, useState } from "react";
 import "./App.css";
 import Header from "./layout/Header";
@@ -24,6 +25,7 @@ import Template15 from "./component/template15/Template15";
 import Template16 from "./component/template16/Template16";
 import Template17 from "./component/template17/Template17";
 import Template18 from "./component/template18/Template18";
+import Template19 from "./component/template19/Template19";
 
 
 function App() {
@@ -113,7 +115,7 @@ function App() {
 
               {value === "template17" && <Template17 formData={formData} />}
               {value === "template18" && <Template18 formData={formData} />}
-
+              {value === "template19" && <Template19 formData={formData} />}
             </FormDataProvider>
           </div>
         </main>
