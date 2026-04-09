@@ -670,7 +670,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .app__sidebar {
-    width: 260px;
+    width: 100%;
     padding: 16px;
   }
   
