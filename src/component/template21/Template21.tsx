@@ -956,7 +956,7 @@ button {
         <div className="root">
           <div className="groups">
             <div className="groups-1">
-              <span className="time">16:20</span>
+              <span className="time">{formData.time || '16:20'}</span>
               <div className="image" />
               <div className="image-2" />
               <div className="image-3" />
