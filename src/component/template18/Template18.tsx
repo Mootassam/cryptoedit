@@ -16,7 +16,7 @@ const Template18: React.FC<Template18Props> = ({ formData }) => {
   useEffect(() => {
     const fetchEthUsdRate = async () => {
       try {
-              const response = await axios.get(
+        const response = await axios.get(
           '/coingecko/api/v3/simple/price',
           {
             params: {
