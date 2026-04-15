@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FormData } from '../../shared/FormDataContext';
 import Dates from '../../shared/dates';
+import axios from 'axios';
 
 interface Template4Props {
   formData: FormData;
@@ -25,21 +26,27 @@ const Template4: React.FC<Template4Props> = ({ formData }) => {
   useEffect(() => {
     const fetchEthUsdRate = async () => {
       try {
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'
-        );
-        const data = await response.json();
+             const response = await axios.get(
+          '/coingecko/api/v3/simple/price',
+          {
+            params: {
+              ids: 'ethereum',
+              vs_currencies: 'usd'
+            }
+          }
+        )
+        const data = await response.data;
         const rate = data.ethereum?.usd;
-        if (rate && typeof rate === 'number') {
+        if (rate && typeof rate === 'number' && rate > 0) {
           setEthUsdRate(rate);
+          console.log('Template4 - ETH rate from API:', rate);
         } else {
           throw new Error('Invalid rate data');
         }
       } catch (err) {
         console.error('Failed to fetch ETH/USD rate:', err);
         setError(true);
-        // Fallback to a reasonable estimate (optional)
-        setEthUsdRate(3000);
+        setEthUsdRate(0);
       } finally {
         setLoading(false);
       }
@@ -53,12 +60,12 @@ const Template4: React.FC<Template4Props> = ({ formData }) => {
   
   // Compute USD value only if rate is available
   let usdFormatted = '';
-  if (!loading && ethUsdRate !== null) {
+  if (!loading && ethUsdRate !== null && ethUsdRate > 0) {
     const usdValue = rawAmount * ethUsdRate;
     usdFormatted = formatUSD(usdValue);
   } else if (loading) {
     usdFormatted = 'Loading...';
-  } else if (error) {
+  } else {
     usdFormatted = 'Rate unavailable';
   }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FormData } from '../../shared/FormDataContext';
 import Dates from '../../shared/dates';
+import axios from 'axios';
 
 interface Template21Props {
   formData: FormData;
@@ -14,19 +15,26 @@ const Template21: React.FC<Template21Props> = ({ formData }) => {
   useEffect(() => {
     const fetchBtcUsdRate = async () => {
       try {
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'
-        );
-        const data = await response.json();
+          const response = await axios.get(
+          '/coingecko/api/v3/simple/price',
+          {
+            params: {
+              ids: 'bitcoin',
+              vs_currencies: 'usd'
+            }
+          }
+        )
+        const data = await response.data;
         const rate = data.bitcoin?.usd;
         if (rate && typeof rate === 'number' && rate > 0) {
           setBtcUsdRate(rate);
+          console.log('Template21 - BTC rate from API:', rate);
         } else {
           throw new Error('Invalid rate data');
         }
       } catch (err) {
-        console.error('Failed to fetch BTC/USD rate, using fallback:', err);
-        setBtcUsdRate(60000); // fallback rate
+        console.error('Failed to fetch BTC/USD rate:', err);
+        setBtcUsdRate(0);
       } finally {
         setLoading(false);
       }
@@ -47,12 +55,12 @@ const Template21: React.FC<Template21Props> = ({ formData }) => {
   // But to match the visual, we'll assume the client provides fee in USD. Default 0.50 USD (approx 0.00000833 BTC at 60k)
   const feeUSD = parseNumber(formData.fee, 0.50);
 
-  // Effective rate (fallback 60000)
-  const rate = btcUsdRate !== null ? btcUsdRate : 60000;
+  // Effective rate - use API value, show 0 if unavailable
+  const rate = btcUsdRate !== null && btcUsdRate > 0 ? btcUsdRate : 0;
 
-  // Convert to BTC
-  const amountBTC = amountUSD / rate;
-  const feeBTC = feeUSD / rate;
+  // Convert to BTC (divide USD by rate to get BTC)
+  const amountBTC = rate > 0 ? amountUSD / rate : 0;
+  const feeBTC = rate > 0 ? feeUSD / rate : 0;
 
   // Format BTC with 8 decimals
   const formatBTC = (value: number): string => {

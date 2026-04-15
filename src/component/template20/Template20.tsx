@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FormData } from '../../shared/FormDataContext';
 import Dates from '../../shared/dates';
+import axios from 'axios';
 
 interface Template20Props {
   formData: FormData;
@@ -14,20 +15,26 @@ const Template20: React.FC<Template20Props> = ({ formData }) => {
   useEffect(() => {
     const fetchBtcUsdRate = async () => {
       try {
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'
-        );
-        const data = await response.json();
+          const response = await axios.get(
+          '/coingecko/api/v3/simple/price',
+          {
+            params: {
+              ids: 'bitcoin',
+              vs_currencies: 'usd'
+            }
+          }
+        )
+        const data = await response.data;
         const rate = data.bitcoin?.usd;
         if (rate && typeof rate === 'number' && rate > 0) {
           setBtcUsdRate(rate);
+          console.log('Template20 - BTC rate from API:', rate);
         } else {
           throw new Error('Invalid rate data');
         }
       } catch (err) {
-        console.error('Failed to fetch BTC/USD rate, using fallback:', err);
-        // Fallback to a reasonable estimate (e.g., $60,000 per BTC)
-        setBtcUsdRate(60000);
+        console.error('Failed to fetch BTC/USD rate:', err);
+        setBtcUsdRate(0);
       } finally {
         setLoading(false);
       }
@@ -45,9 +52,9 @@ const Template20: React.FC<Template20Props> = ({ formData }) => {
     return 2600.39;
   })();
 
-  // Compute BTC value (use fallback rate if still null)
-  const effectiveRate = btcUsdRate !== null ? btcUsdRate : 60000;
-  const amountBTC = rawAmountUSD / effectiveRate;
+  // Compute BTC value - use API value, handle 0 rate
+  const effectiveRate = btcUsdRate !== null && btcUsdRate > 0 ? btcUsdRate : 0;
+  const amountBTC = effectiveRate > 0 ? rawAmountUSD / effectiveRate : 0;
 
   // Format BTC with 8 decimal places
   const formatBTC = (value: number) => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FormData } from '../../shared/FormDataContext';
 import Dates from '../../shared/dates';
+import axios from 'axios';
 
 interface Template19Props {
   formData: FormData;
@@ -10,24 +11,30 @@ const Template19: React.FC<Template19Props> = ({ formData }) => {
   const [btcUsdRate, setBtcUsdRate] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // Fetch live BTC/USD rate from CoinGecko, with fallback
+  // Fetch live BTC/USD rate from CoinGecko
   useEffect(() => {
     const fetchBtcUsdRate = async () => {
       try {
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'
-        );
-        const data = await response.json();
+        const response = await axios.get(
+          '/coingecko/api/v3/simple/price',
+          {
+            params: {
+              ids: 'bitcoin',
+              vs_currencies: 'usd'
+            }
+          }
+        )
+        const data = await response.data;
         const rate = data.bitcoin?.usd;
         if (rate && typeof rate === 'number' && rate > 0) {
           setBtcUsdRate(rate);
+          console.log('Template19 - BTC rate from API:', rate);
         } else {
           throw new Error('Invalid rate data');
         }
       } catch (err) {
-        console.error('Failed to fetch BTC/USD rate, using fallback:', err);
-        // Fallback to a reasonable estimate (e.g., $60,000 per BTC)
-        setBtcUsdRate(60000);
+        console.error('Failed to fetch BTC/USD rate:', err);
+        setBtcUsdRate(0);
       } finally {
         setLoading(false);
       }
@@ -55,10 +62,10 @@ const Template19: React.FC<Template19Props> = ({ formData }) => {
 
   const totalUSD = rawAmountUSD + rawFeeUSD;
 
-  // Compute BTC values (use fallback rate if still null, though rate should be set)
-  const effectiveRate = btcUsdRate !== null ? btcUsdRate : 60000;
-  const amountBTC = rawAmountUSD / effectiveRate;
-  const totalBTC = totalUSD / effectiveRate;
+  // Compute BTC values - use API value, handle 0 rate
+  const effectiveRate = btcUsdRate !== null && btcUsdRate > 0 ? btcUsdRate : 0;
+  const amountBTC = effectiveRate > 0 ? rawAmountUSD / effectiveRate : 0;
+  const totalBTC = effectiveRate > 0 ? totalUSD / effectiveRate : 0;
 
   // Format BTC with 8 decimal places
   const formatBTC = (value: number) => {
