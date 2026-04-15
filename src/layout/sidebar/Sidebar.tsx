@@ -388,7 +388,42 @@ function Sidebar({
       <div className="app__sidebar">
         {/* Coin Selection */}
 
-
+        <div className="coin__selection">
+          <label htmlFor="coin">Select Coin</label>
+          <div className="coin__options">
+            {coinOptions.map((coin) => (
+              <button
+                key={coin.id}
+                className={`coin__option ${selectedCoin === coin.id ? 'selected' : ''}`}
+                onClick={() => setSelectedCoin(coin.id)}
+                style={{
+                  borderColor: selectedCoin === coin.id ? coin.color : undefined
+                }}
+              >
+                {/* Try to use image, fallback to SVG if not available */}
+                {coin.icon ? (
+                  <img
+                    src={coin.icon}
+                    alt={coin.name}
+                    className="coin__icon"
+                    onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                      // If image fails to load, show fallback
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const nextSibling = target.nextElementSibling as HTMLElement;
+                      if (nextSibling) {
+                        nextSibling.style.display = 'flex';
+                      }
+                    }}
+                  />
+                ) : (
+                  <CoinIcon type={coin.id.toLowerCase()} />
+                )}
+                <span className="coin__name">{coin.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
         {/* Transaction Type Selector */}
         <div className="transaction__type">
           <button

@@ -15,14 +15,8 @@ const Template21: React.FC<Template21Props> = ({ formData }) => {
   useEffect(() => {
     const fetchBtcUsdRate = async () => {
       try {
-          const response = await axios.get(
-          '/coingecko/api/v3/simple/price',
-          {
-            params: {
-              ids: 'bitcoin',
-              vs_currencies: 'usd'
-            }
-          }
+        const response = await axios.get(
+          '/api/price'
         )
         const data = await response.data;
         const rate = data.bitcoin?.usd;
